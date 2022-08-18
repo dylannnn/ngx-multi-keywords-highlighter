@@ -1,0 +1,71 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/ngx-multi-keywords-highlighter/src",
+  "prefix": "ngx-multi-keywords-highlighter",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngx-multi-keywords-highlighter"],
+      "options": {
+        "project": "libs/ngx-multi-keywords-highlighter/ng-package.json",
+        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-multi-keywords-highlighter/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-multi-keywords-highlighter/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngx-multi-keywords-highlighter"],
+      "options": {
+        "jestConfig": "libs/ngx-multi-keywords-highlighter/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-multi-keywords-highlighter/**/*.ts",
+          "libs/ngx-multi-keywords-highlighter/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
+        "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
+        "compodoc": true
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ngx-multi-keywords-highlighter",
+        "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
+        "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
+        "compodoc": true
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
