@@ -1,6 +1,8 @@
 {
   "name": "ngx-multi-keywords-highlighter",
   "version": "0.0.0",
+  "repository": "https://github.com/dylannnn/ngx-multi-keywords-highlighter",
+  "homepage": "https://www.yunfei.li",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
