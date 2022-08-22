@@ -1,0 +1,27 @@
+<nav
+  class="container m-auto mat-elevation-z1"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <a mat-button color="primary">DEMO</a>
+  <div fxLayoutGap="10px">
+    <button
+      mat-button
+      (click)="toggleLib()"
+      [routerLink]="[
+        { outlets: { 'multi-keywords-highlighter': ['lib-experimental'] } }
+      ]"
+      class="mdl-button mdl-button--raised mdl-button--colored"
+    >
+      Highlighter
+    </button>
+    <lib-ngx-multi-keywords-highlighter
+      class="custom-lib"
+      (keywordListOutput)="onKeywordListOutput($event)"
+    ></lib-ngx-multi-keywords-highlighter>
+    <router-outlet name="multi-keywords-highlighter"></router-outlet>
+    <button mat-icon-button color="primary">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,137 @@
+<button
+  mat-icon-button
+  aria-hidden="false"
+  aria-label="Multi keywords highlighter"
+  [color]="config.themeColor"
+  [matTooltip]="appName"
+  [matMenuTriggerFor]="menu"
+  (menuOpened)="onOpened()"
+  (menuClosed)="onClosed()"
+>
+  <mat-icon
+    id="mh-keyword-count"
+    aria-hidden="false"
+    aria-label="Keywords highlights icon"
+    [matBadge]="keywordCount$ | async"
+    [matBadgeHidden]="(keywordCount$ | async) === 0"
+    matBadgePosition="after"
+    matBadgeColor="accent"
+    svgIcon="highlight"
+  ></mat-icon>
+</button>
+<mat-menu
+  backdropClass="mh__backdrop"
+  class="mh__menu"
+  #menu="matMenu"
+  xPosition="before"
+  yPosition="below"
+>
+  <div
+    fxLayout="column"
+    class="mh__panel"
+    (click)="$event.stopPropagation()"
+    [ngStyle]="{ minWidth: config.minWidth + 'px' }"
+  >
+    <div class="mh__header" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="mh__text"
+        >{{ appName }}
+        <small class="mh__version mh__text-tint">{{ appVersion }}</small></span
+      >
+      <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="10px">
+        <ng-container *ngIf="config.enableColorPalette">
+          <button
+            mat-icon-button
+            aria-label="Color theme"
+            [color]="config.themeColor"
+            [matMenuTriggerFor]="colorMenu"
+          >
+            <mat-icon svgIcon="color_lens"></mat-icon>
+          </button>
+          <mat-menu
+            backdropClass="mh__backdrop"
+            class="mh__menu"
+            #colorMenu="matMenu"
+            xPosition="before"
+            yPosition="below"
+          >
+            <div fxLayout="column" (click)="$event.stopPropagation()">
+              <!-- <lib-color-palette></lib-color-palette> -->
+            </div>
+          </mat-menu>
+        </ng-container>
+        <mat-slide-toggle
+          [checked]="highlightStauts$ | async"
+          [matTooltip]="config.enableHighlighterTooltip"
+          [labelPosition]="config.toggleLabelPosition"
+          [color]="config.themeColor"
+          (change)="onToggle($event)"
+        >
+          <ng-container *ngIf="config.enableToggleLabel">
+            <span class="mh__text">{{ highlightedStautsText$ | async }}</span>
+          </ng-container>
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div class="mh__body" fxLayout="column">
+      <div class="mh__content">
+        <mat-form-field class="mh__keyword__list">
+          <mat-chip-list aria-label="Keyword list" #keywordChipList>
+            <mat-chip
+              *ngFor="let keyword of keywordList$ | async; trackBy: trackById"
+              selectable="true"
+              [removable]="config.removable"
+              (removed)="removeKeyword(keyword)"
+              [ngStyle]="{ 'background-color': keyword?.color }"
+            >
+              <span
+                matTooltip="{{
+                  keyword.name.length >= 36 ? keyword.name : null
+                }}"
+                class="mh__keyword__list__text"
+                [ngStyle]="{ color: config.chipTextColor }"
+              >
+                {{ keyword.name }}
+              </span>
+              <mat-icon
+                class="border-icon"
+                svgIcon="clear"
+                matTooltip="Clear"
+                matChipRemove
+                *ngIf="config.removable"
+                [ngStyle]="{ fill: config.chipIconColor }"
+              >
+              </mat-icon>
+            </mat-chip>
+            <input
+              placeholder="{{ config.keywordsPlaceholder }}"
+              [matChipInputFor]="keywordChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addKeyword($event)"
+            />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="mh__text mh__text-tint"
+          >Separate by comma [,] or enter key</span
+        >
+        <span class="mh__text mh__text-tint">
+          <ng-container *ngIf="config.linkToCopyright; else normalCopyright">
+            &copy;
+            <a
+              [href]="copyrightLink"
+              class="mh-copyright underline"
+              target="_blank"
+              >{{ copyright }}</a
+            >&nbsp;
+          </ng-container>
+          <ng-template #normalCopyright>
+            <span class="mh-copyright">&copy; {{ copyright }}&nbsp;</span>
+          </ng-template>
+          <span>{{ currentYear | date: 'yyyy' }}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</mat-menu>

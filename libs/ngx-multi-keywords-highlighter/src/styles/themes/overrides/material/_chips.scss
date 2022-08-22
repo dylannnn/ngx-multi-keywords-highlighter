@@ -1,0 +1,13 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Chip
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-chip {
+  overflow: hidden;
+  .mh__keyword__list__text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    // 100% - (icon width) - (padding on the right)
+    max-width: calc(100% - 18px - 8px);
+  }
+}
