@@ -1,0 +1,50 @@
+.mat-menu-panel {
+  &.mh {
+    &__menu {
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.mh {
+  &__menu {
+    padding: 0 1rem 0.25rem;
+  }
+  &__text {
+    font-size: 12px;
+    &-tint {
+      color: lighten($color: #000000, $amount: 60);
+    }
+    &-highlighted {
+      padding: 0 5px;
+      box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 5px;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
+  &__version {
+    font-size: 12px;
+  }
+  &__keyword {
+    &__list {
+      width: 100%;
+    }
+  }
+}
+
+a {
+  &.mh {
+    &-copyright {
+      color: lighten($color: #000000, $amount: 60);
+      text-decoration: none;
+      &.underline {
+        text-decoration: underline;
+      }
+    }
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}

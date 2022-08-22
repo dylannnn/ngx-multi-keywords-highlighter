@@ -1,9 +1,14 @@
 const rootMain = require('../../../.storybook/main');
 
+/** @type {import('@storybook/core-common/types/index').StorybookConfig} */
 module.exports = {
   ...rootMain,
 
-  core: { ...rootMain.core, builder: 'webpack5' },
+  framework: '@storybook/angular',
+  core: {
+    ...rootMain.core,
+    builder: '@storybook/builder-webpack5',
+  },
 
   stories: [
     ...rootMain.stories,
