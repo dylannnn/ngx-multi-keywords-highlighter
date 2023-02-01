@@ -25,7 +25,7 @@ Example:
     ...,
     NgxMultiKeywordsHighlighterModule.forRoot({
       themeColor: MATERIAL_COLOR.PRIMARY,
-      enableToggleLabel: true,
+      enableToggleLabel: false,
       toggleLabelPosition: LABEL_POSITION.BEFORE,
       enableHighlighterTooltip: 'Turn on/off highlighter',
       minWidth: 320
@@ -51,7 +51,7 @@ Lazyload Module to an auxiliary routes
   loadChildren: () => import('@amfrontender/ngx-multi-keywords-highlighter').then(m => {
     m.NgxMultiKeywordsHighlighterModule.forRoot({
       themeColor: MATERIAL_COLOR.PRIMARY,
-      enableToggleLabel: true,
+      enableToggleLabel: false,
       toggleLabelPosition: LABEL_POSITION.BEFORE,
       enableHighlighterTooltip: 'Turn on/off highlighter',
       minWidth: 320,

@@ -51,7 +51,7 @@ export class NgxMultiKeywordsHighlighterService {
   }
 
   get rootNode(): Element {
-    return this.document.body.getElementsByTagName(defaultConfig.appRoot)[0];
+    return this.document.body.getElementsByTagName(defaultConfig.appRoot)[0] || this.document.body;
   }
 
   /**
@@ -73,12 +73,12 @@ export class NgxMultiKeywordsHighlighterService {
         id: (currentSequence += 1),
       });
       this.keywordSequence.next(currentSequence);
-    }
 
-    if (this.isHighlight) {
-      this.hightlightKeyword(keyword);
+      if (this.isHighlight) {
+        this.hightlightKeyword(keyword);
+      }
+      this.localKeywordsSubject.next(tempKeywordList);
     }
-    this.localKeywordsSubject.next(tempKeywordList);
   }
 
   /**
@@ -112,9 +112,9 @@ export class NgxMultiKeywordsHighlighterService {
     const index = tempKeywordList.indexOf(keyword);
     if (index >= 0) {
       tempKeywordList.splice(index, 1);
+      this.deHightlightKeyword(keyword);
+      this.localKeywordsSubject.next(tempKeywordList);
     }
-    this.deHightlightKeyword(keyword);
-    this.localKeywordsSubject.next(tempKeywordList);
   }
 
   /**
@@ -131,7 +131,9 @@ export class NgxMultiKeywordsHighlighterService {
    */
   hightlightAllKeywords(): void {
     const allKeywords = this.localKeywordsSubject.value;
-    allKeywords.forEach((keyword) => this.hightlightKeyword(keyword));
+    allKeywords.forEach((keyword) => {
+      this.hightlightKeyword(keyword);
+    });
   }
 
   /**
@@ -139,7 +141,9 @@ export class NgxMultiKeywordsHighlighterService {
    */
   deHightlightAllKeywords(): void {
     const allKeywords = this.localKeywordsSubject.value;
-    allKeywords.forEach((keyword) => this.deHightlightKeyword(keyword));
+    allKeywords.forEach((keyword) => {
+      this.deHightlightKeyword(keyword)
+    });
   }
 
   /**
@@ -200,7 +204,6 @@ export class NgxMultiKeywordsHighlighterService {
 
       let insertNode: Text | HTMLSpanElement | undefined;
 
-      // eslint-disable-next-line no-cond-assign
       while ((insertNode = newNodes.shift())) {
         parentNode.insertBefore(insertNode, nextNode);
       }

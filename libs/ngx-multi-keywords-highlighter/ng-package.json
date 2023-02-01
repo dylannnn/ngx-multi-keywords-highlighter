@@ -3,5 +3,12 @@
   "dest": "../../dist/libs/ngx-multi-keywords-highlighter",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": [
+    {
+      "glob": "**/*.*",
+      "input": "src/styles",
+      "output": "themes"
+    }
+  ]
 }

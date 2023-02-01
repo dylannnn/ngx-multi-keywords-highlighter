@@ -1,18 +1,18 @@
-.mat-menu-panel {
-  &.mh {
-    &__menu {
-      min-width: 100%;
-      max-width: 100%;
+[role='menu'] {
+  &.mat-mdc-menu-panel {
+    &.mh {
+      &-menu {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0 1rem 0.25rem;
+      }
     }
   }
 }
 
 .mh {
-  &__menu {
-    padding: 0 1rem 0.25rem;
-  }
-  &__text {
-    font-size: 12px;
+  &-text {
+    font-size: 0.75rem;
     &-tint {
       color: lighten($color: #000000, $amount: 60);
     }
@@ -24,12 +24,25 @@
       display: inline-block;
     }
   }
-  &__version {
-    font-size: 12px;
+  &-version {
+    font-size: 0.75rem;
   }
-  &__keyword {
-    &__list {
+  &-keyword {
+    &-list {
       width: 100%;
+    }
+  }
+}
+
+.mh-toggle {
+  &[ng-reflect-label-position='before'] {
+    .mh-text {
+      @apply mr-3;
+    }
+  }
+  &[ng-reflect-label-position='after'] {
+    .mh-text {
+      @apply ml-3;
     }
   }
 }
@@ -47,4 +60,19 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+
+// MDC CHIP
+.mat-mdc-chip-input {
+  &.mat-mdc-form-field-input-control {
+    margin-left: 0;
+  }
+}
+
+// MDC CHIP SET
+.mat-mdc-chip-set
+  .mat-mdc-standard-chip:not(.mdc-evolution-chip--selected)
+  .mdc-evolution-chip__action--primary:before {
+  border-width: 0;
 }

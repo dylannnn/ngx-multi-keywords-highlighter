@@ -1,7 +1,9 @@
 {
+  "name": "demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/demo/src",
-  "prefix": "app",
+  "prefix": "mkh",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -10,14 +12,11 @@
         "outputPath": "dist/apps/demo",
         "index": "apps/demo/src/index.html",
         "main": "apps/demo/src/main.ts",
-        "polyfills": "apps/demo/src/polyfills.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-        "styles": [
-          "libs/ngx-multi-keywords-highlighter/src/styles/index.scss",
-          "apps/demo/src/styles.scss"
-        ],
+        "styles": ["apps/demo/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -32,12 +31,6 @@
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
               "maximumError": "4kb"
-            }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "apps/demo/src/environments/environment.ts",
-              "with": "apps/demo/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
@@ -73,18 +66,25 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/demo/**/*.ts", "apps/demo/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/demo"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/demo/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   },
-  "tags": []
+  "tags": ["scope:app"]
 }

@@ -13,8 +13,12 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:app",
+                "onlyDependOnLibsWithTags": ["scope:app", "scope:lib"]
+              },
+              {
+                "sourceTag": "scope:lib",
+                "onlyDependOnLibsWithTags": ["scope:lib"]
               }
             ]
           }
@@ -29,6 +33,13 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
       "rules": {}
     }
   ]
