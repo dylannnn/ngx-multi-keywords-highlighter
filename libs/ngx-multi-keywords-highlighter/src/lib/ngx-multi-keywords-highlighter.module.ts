@@ -5,7 +5,6 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MultiKeywordsHighlighterConfig,
@@ -13,28 +12,29 @@ import {
 } from './core';
 import { MaterialComponentsModule } from './material';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
+import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
 
 @NgModule({
   declarations: [NgxMultiKeywordsHighlighterComponent],
   imports: [
     CommonModule,
-    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialComponentsModule,
   ],
+  providers: [NgxMultiKeywordsHighlighterService],
   exports: [NgxMultiKeywordsHighlighterComponent],
 })
 export class NgxMultiKeywordsHighlighterModule {
-  constructor(
-    @Optional() @SkipSelf() parentModule?: NgxMultiKeywordsHighlighterModule
-  ) {
-    if (parentModule) {
-      throw new Error(
-        'NgxMultiKeywordsHighlighterModule is already loaded. Import it in the AppModule only'
-      );
-    }
-  }
+  // constructor(
+  //   @Optional() @SkipSelf() parentModule?: NgxMultiKeywordsHighlighterModule
+  // ) {
+  //   if (parentModule) {
+  //     throw new Error(
+  //       'NgxMultiKeywordsHighlighterModule is already loaded. Import it in the AppModule only'
+  //     );
+  //   }
+  // }
 
   static forRoot(
     config: Partial<MultiKeywordsHighlighterConfig>

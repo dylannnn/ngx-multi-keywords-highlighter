@@ -4,20 +4,19 @@ import {
   Meta,
   componentWrapperDecorator,
 } from '@storybook/angular';
+import { action } from '@storybook/addon-actions';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MATERIAL_COLOR, LABEL_POSITION } from './core';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
+import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
 
 const storyRoot = 'story-root';
 
 export default {
   title: 'Library/Multi Keywords Highlighter',
   component: NgxMultiKeywordsHighlighterComponent,
-  // parameters: {
-  //   layout: 'centered',
-  // },
   decorators: [
     moduleMetadata({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -46,13 +45,24 @@ export default {
 const DefaultTemplate: Story<NgxMultiKeywordsHighlighterComponent> = (
   args: NgxMultiKeywordsHighlighterComponent
 ) => ({
-  props: args,
+  props: {
+    ...args,
+    initialized: action('initialized'),
+    keywordListOutput: action('keywordListOutput'),
+    highlighted: action('highlighted'),
+    openMenu: action('openMenu'),
+    closeMenu: action('closeMenu'),
+  },
 });
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {};
 Default.parameters = {
   layout: 'centered',
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/JduLjCLQvSyhDnoGO2ELN8/Multi-Keywords-Highlighter?node-id=0%3A1',
+  },
 };
 
 /**
@@ -61,14 +71,21 @@ Default.parameters = {
 const CustomTemplate: Story<NgxMultiKeywordsHighlighterComponent> = (
   args: NgxMultiKeywordsHighlighterComponent
 ) => ({
-  props: args,
+  props: {
+    ...args,
+    initialized: action('initialized'),
+    keywordListOutput: action('keywordListOutput'),
+    highlighted: action('highlighted'),
+    openMenu: action('openMenu'),
+    closeMenu: action('closeMenu'),
+  },
   moduleMetadata: {
     imports: [
       NgxMultiKeywordsHighlighterModule.forRoot({
         themeColor: MATERIAL_COLOR.ACCENT,
         enableToggleLabel: true,
-        toggleLabelPosition: LABEL_POSITION.AFTER,
-        enableHighlighterTooltip: 'OPEN/CLOSE',
+        toggleLabelPosition: LABEL_POSITION.BEFORE,
+        enableHighlighterTooltip: 'On/Off',
         linkToCopyright: true,
         minWidth: 320,
         appRoot: storyRoot,
@@ -77,7 +94,7 @@ const CustomTemplate: Story<NgxMultiKeywordsHighlighterComponent> = (
   },
 });
 
-export const Custom = CustomTemplate.bind({});
+export const Customized = CustomTemplate.bind({});
 
 /**
  * DEMO Template with configuration
@@ -88,12 +105,8 @@ Playground.decorators = [
   componentWrapperDecorator(
     (story) => `
     <nav class="container my-8 m-auto p-6 border flex align-middle justify-between">
-      <p class="mr-4">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare sem sit amet dapibus sodales. Quisque porta viverra massa, vel tempus ipsum hendrerit in. Phasellus pulvinar metus erat, non commodo lectus gravida et. Proin nec est maximus, laoreet nisl a, scelerisque eros. Fusce sit amet hendrerit metus, a varius dolor. Pellentesque aliquam, ligula non sollicitudin fringilla, purus mi varius sapien, vitae semper quam tortor nec nulla. Ut facilisis dui non eros semper semper. Phasellus pretium lectus in sem bibendum, quis viverra augue posuere. Aliquam malesuada quam eget nisl euismod posuere. Phasellus sed lectus a metus auctor auctor eu non dui. Nunc tincidunt tristique malesuada. Integer dictum viverra ultricies. In eros eros, ultrices ac luctus sit amet, elementum id libero. Duis sed eros nibh. In eu imperdiet nulla.
-      </p>
-      <div>
-      ${story}
-      </div>
+      <p class="mr-4">${LOREM_IPSUM}</p>
+      <div>${story}</div>
     </nav>
   `
   ),

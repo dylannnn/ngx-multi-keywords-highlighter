@@ -4,6 +4,7 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -15,20 +16,23 @@ import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import {
   IKeyword,
   LibConfig,
-  MATERIAL_COLOR,
+  // MATERIAL_COLOR,
   MultiKeywordsHighlighterConfig,
 } from './core';
 import { ICON_HIGHLIGHT, ICON_COLOR_LENS, ICON_CLEAR } from './material';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
-  selector: 'lib-ngx-multi-keywords-highlighter',
+  selector: 'mkh-multi-keywords-highlighter',
   templateUrl: './ngx-multi-keywords-highlighter.component.html',
   styleUrls: ['./ngx-multi-keywords-highlighter.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxMultiKeywordsHighlighterComponent implements OnInit {
+  @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
+
   /**
    * Output event for initialized event
    * @returns boolean
@@ -99,7 +103,6 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
       sanitizer.bypassSecurityTrustHtml(ICON_CLEAR)
     );
   }
-
   ngOnInit(): void {
     this.initialized.emit(true);
   }
@@ -180,7 +183,7 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
    * On keywords highlighter closed event
    */
   onClosed(): void {
-    this.openMenu.emit(true);
+    this.closeMenu.emit(true);
   }
 
   /**
@@ -191,13 +194,14 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
     this.mkhService.toggleHighlightStatus(event.checked);
     this.mkhService.toggleHighlighter();
     this.highlighted.emit(event.checked);
-    event.checked
-      ? (this.config.themeColor = MATERIAL_COLOR.ACCENT)
-      : (this.config.themeColor = MATERIAL_COLOR.PRIMARY);
+    // BUG: this.config is READONLY, Need to create a method to update the config.
+    // event.checked
+    //   ? (this.config.themeColor = MATERIAL_COLOR.ACCENT)
+    //   : (this.config.themeColor = MATERIAL_COLOR.PRIMARY);
   }
 
   trackById(index: number, keyword: IKeyword): number | undefined {
-    return keyword.id;
+    return keyword?.id;
   }
 
   /**

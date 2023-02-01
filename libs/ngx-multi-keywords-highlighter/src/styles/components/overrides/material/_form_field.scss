@@ -1,0 +1,13 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Form Field
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-mdc-form-field {
+  .mdc-text-field--filled {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent;
+  }
+}

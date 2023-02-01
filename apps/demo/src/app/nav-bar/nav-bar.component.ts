@@ -1,48 +1,64 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { IKeyword } from '@amfrontender/ngx-multi-keywords-highlighter';
-import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, filter, take } from 'rxjs';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'mkh-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavBarComponent implements OnInit {
-  initHighlighter = false;
-  showHighlighter = false;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  private showHighlighterSubject = new BehaviorSubject(false);
+  showHighlighter$ = this.showHighlighterSubject.asObservable();
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const children = this.activatedRoute.children;
-    children.forEach((child) => {
-      if (child.outlet !== 'primary') {
-        this.router.navigate([
-          { outlets: { 'multi-keywords-highlighter': null } },
-        ]);
+    this.resetShowHighlighter();
+  }
+
+  resetShowHighlighter() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      take(1)
+    ).subscribe({
+      next: (onNavigationEnd) => {
+        const navigationEndEvent = onNavigationEnd as unknown as NavigationEnd;
+        const mkhOutletsURLRegex = new RegExp(/(multi-keywords-highlighter:lib-experimental)/g);
+        const onMkhOutletURL = mkhOutletsURLRegex.test(navigationEndEvent.url);
+        this.showHighlighterSubject.next(onMkhOutletURL);
       }
     });
   }
-
-  // ngAfterContentChecked(): void {
-  //   const children = this.activatedRoute.children;
-  //   children.forEach(child => {
-  //     console.log('After ngAfterContentChecked :', child.outlet);
-  //     if (child.outlet !== 'primary' && !this.initHighlighter) {
-  //       this.router.navigate([{ outlets: { 'multi-keywords-highlighter': null }}]);
-  //     }
-  //   });
-  // }
 
   onKeywordListOutput(emitEvent: IKeyword[]): void {
     console.log('[DEMO] ON keywordListOutput: ', emitEvent);
   }
 
   toggleLib(): void {
-    this.showHighlighter = !this.showHighlighter;
-    if (!this.showHighlighter) {
-      this.router.navigate([
-        { outlets: { 'multi-keywords-highlighter': null } },
-      ]);
-    }
+    this.showHighlighterSubject.next(!this.showHighlighterSubject.value);
+
+    this.showHighlighter$.pipe(
+      take(1)
+    ).subscribe({
+      next: (status) => {
+        if (!status) {
+          this.clearNavigationOutlet();
+        } else {
+          this.router.navigate([{ outlets: { 'multi-keywords-highlighter': ['lib-experimental'] }}]);
+        }
+      },
+      error: () => {
+        this.clearNavigationOutlet();
+      }
+    });
+  }
+
+  clearNavigationOutlet(): void {
+    this.router.navigate([
+      { outlets: { 'multi-keywords-highlighter': null } },
+    ]);
   }
 }

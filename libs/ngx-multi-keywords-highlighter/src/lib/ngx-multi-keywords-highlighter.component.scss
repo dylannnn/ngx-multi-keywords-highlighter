@@ -1,35 +1,63 @@
-.mat-menu-panel {
-  &.mh {
-    &__menu {
-      min-width: 100%;
-      max-width: 100%;
+[role='menu'] {
+  &.mat-mdc-menu-panel {
+    &.mh {
+      &-menu {
+        @apply min-w-full max-w-full pt-0 px-4 pb-1;
+      }
     }
   }
 }
 
 .mh {
-  &__menu {
-    padding: 0 1rem 0.25rem;
-  }
-  &__text {
-    font-size: 12px;
+  &-text {
+    @apply text-xs;
     &-tint {
       color: lighten($color: #000000, $amount: 60);
     }
     &-highlighted {
-      padding: 0 5px;
-      box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 5px;
-      border-radius: 3px;
-      text-decoration: none;
-      display: inline-block;
+      @apply py-0 px-[5px] rounded-[3px] no-underline inline-block shadow-md;
     }
   }
-  &__version {
-    font-size: 12px;
+  &-app-name {
+    @apply mr-1;
   }
-  &__keyword {
-    &__list {
-      width: 100%;
+  &-version {
+    @apply text-xs;
+  }
+  &-panel {
+    @apply flex flex-col;
+  }
+  &-keyword {
+    &-list {
+      @apply w-full;
+    }
+  }
+  &-header {
+    @apply flex flex-row items-center justify-between;
+  }
+  &-actions {
+    @apply flex flex-row items-center justify-end;
+  }
+  &-body {
+    @apply flex flex-col;
+  }
+  &-footer {
+    @apply flex items-center justify-between;
+  }
+  &-date {
+    @apply ml-1;
+  }
+}
+
+.mh-toggle {
+  &[ng-reflect-label-position='before'] {
+    .mh-text {
+      @apply mr-3;
+    }
+  }
+  &[ng-reflect-label-position='after'] {
+    .mh-text {
+      @apply ml-3;
     }
   }
 }
@@ -38,13 +66,28 @@ a {
   &.mh {
     &-copyright {
       color: lighten($color: #000000, $amount: 60);
-      text-decoration: none;
+      @apply no-underline;
       &.underline {
-        text-decoration: underline;
+        text-decoration-line: underline;
       }
     }
   }
   &:hover {
-    text-decoration: underline;
+    @apply underline;
   }
+}
+
+
+// MDC CHIP
+.mat-mdc-chip-input {
+  &.mat-mdc-form-field-input-control {
+    @apply ml-0;
+  }
+}
+
+// MDC CHIP SET
+.mat-mdc-chip-set
+  .mat-mdc-standard-chip:not(.mdc-evolution-chip--selected)
+  .mdc-evolution-chip__action--primary:before {
+  @apply border-0;
 }
