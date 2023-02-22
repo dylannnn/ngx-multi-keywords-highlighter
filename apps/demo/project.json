@@ -16,7 +16,7 @@
         "tsConfig": "apps/demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-        "styles": ["apps/demo/src/styles.scss"],
+        "styles": ["apps/demo/src/styles.scss", "libs/ngx-multi-keywords-highlighter/src/styles/themes.scss"],
         "scripts": []
       },
       "configurations": {

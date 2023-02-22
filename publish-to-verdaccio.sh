@@ -78,12 +78,7 @@ validNpmrc() {
 build() {
   echo "Start building $LIBRARY_NAME..."
 
-  npm run build
-  # npx scss-bundle --config libs/controls-library/scss-bundle.config.json
-  # npx scss-bundle --config libs/controls-library/scss-importable.config.json
-  # npx sass dist/libs/controls-library/controls-library.scss dist/libs/controls-library/controls-library.css
-  # cp -r libs/controls-library/src/assets/fonts dist/libs/controls-library
-  # mkdir dist/libs/controls-library/fonts/line-awesome && cp node_modules/line-awesome/dist/line-awesome/fonts/* dist/libs/controls-library/fonts/line-awesome
+  npx nx build ngx-multi-keywords-highlighter
 
   echo "The $LIBRARY_NAME has been built successfully"
 }

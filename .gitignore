@@ -39,3 +39,9 @@ testem.log
 Thumbs.db
 
 .angular
+
+# Verdaccio
+verdaccio/conf/auth/**/*
+!verdaccio/conf/auth/htpasswd
+verdaccio/conf/storage/**/*
+!verdaccio/conf/storage/.keepme

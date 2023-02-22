@@ -30,16 +30,16 @@
   data-testid="highlight-keywords-menu"
 >
   <div
-    class="mh-panel flex flex-col"
+    class="mh-panel"
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
-    <div class="mh-header flex flex-row items-center justify-between">
+    <div class="mh-header">
       <span class="mh-text">
-        <span class="mr-1">{{ appName }}</span>
+        <span class="mh-app-name">{{ appName }}</span>
         <small class="mh-version mh-text-tint">{{ appVersion }}</small>
       </span>
-      <div class="mh-actions flex flex-row items-center justify-end">
+      <div class="mh-actions">
         <ng-container *ngIf="config.enableColorPalette">
           <button
             mat-icon-button
@@ -51,12 +51,12 @@
           </button>
           <mat-menu
             backdropClass="mh-backdrop"
-            class="mh-menu"
+            class="mh-color-palette-menu"
             #colorMenu="matMenu"
             xPosition="before"
             yPosition="below"
           >
-            <div class="flex" (click)="$event.stopPropagation()">
+            <div (click)="$event.stopPropagation()">
               <!-- <lib-color-palette></lib-color-palette> -->
             </div>
           </mat-menu>
@@ -77,7 +77,7 @@
         </mat-slide-toggle>
       </div>
     </div>
-    <div class="mh-body" fxLayout="column">
+    <div class="mh-body">
       <div class="mh-content">
         <mat-form-field class="mh-keyword-list" appearance="fill">
           <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
@@ -99,7 +99,6 @@
                 {{ keyword.name }}
               </span>
               <mat-icon
-                class="border-icon"
                 svgIcon="clear"
                 matTooltip="Clear"
                 matChipRemove
@@ -118,7 +117,7 @@
           />
         </mat-form-field>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="mh-footer">
         <span class="mh-text mh-text-tint"
           >Separate by comma [,] or enter key</span
         >
@@ -135,7 +134,7 @@
           <ng-template #normalCopyright>
             <span class="mh-copyright">&copy; {{ copyright }}</span>
           </ng-template>
-          <span class="ml-1">{{ currentYear | date : 'yyyy' }}</span>
+          <span class="mh-date">{{ currentYear | date : 'yyyy' }}</span>
         </span>
       </div>
     </div>
