@@ -1,0 +1,15 @@
+{
+  "stepDefinitions": [
+    "src/cucumber/[filepath]/**/*.{js,ts}",
+    "src/cucumber/[filepath].{js,ts}"
+  ],
+  "nonGlobalStepDefinitions": true,
+  "messages": {
+    "enabled": true,
+    "output": "../../dist/cypress/apps/ngx-multi-keywords-highlighter-e2e/cucumber/cucumber-messages.ndjson"
+  },
+  "html": {
+    "enabled": true,
+    "output": "../../dist/cypress/apps/ngx-multi-keywords-highlighter-e2e/cucumber/cucumber-report.html"
+  }
+}

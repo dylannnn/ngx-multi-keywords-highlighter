@@ -1,17 +1,18 @@
 <nav
-  class="container m-auto mat-elevation-z1 flex items-center justify-between"
+  class="mkh-nav-bar mat-elevation-z1"
 >
   <a mat-button color="primary">DEMO</a>
-  <div class="flex items-center ml-3">
+  <div class="mkh-nav-bar-right">
     <button
+      data-testid="toggle-highlight-button"
       mat-button
       (click)="toggleLib()"
-      class="mdl-button mdl-button--raised mdl-button--colored"
     >
       Highlighter
     </button>
     <mkh-multi-keywords-highlighter
-      class="custom-lib"
+      class="default-lib"
+      data-testid="default-lib"
       (keywordListOutput)="onKeywordListOutput($event)"
     ></mkh-multi-keywords-highlighter>
     <router-outlet name="multi-keywords-highlighter"></router-outlet>

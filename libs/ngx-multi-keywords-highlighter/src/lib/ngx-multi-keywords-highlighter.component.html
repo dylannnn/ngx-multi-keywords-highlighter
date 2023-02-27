@@ -27,10 +27,10 @@
   #menu="matMenu"
   xPosition="before"
   yPosition="below"
-  data-testid="highlight-keywords-menu"
 >
   <div
     class="mh-panel"
+    data-testid="highlight-keywords-panel"
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
@@ -109,6 +109,7 @@
             </mat-chip-row>
           </mat-chip-grid>
           <input
+            data-testid="mkh-keywords-input"
             placeholder="{{ config.keywordsPlaceholder }}"
             [matChipInputFor]="keywordChipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
