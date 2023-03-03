@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ModuleWithProviders,
-  NgModule,
-  Optional,
-  SkipSelf,
+  NgModule
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {

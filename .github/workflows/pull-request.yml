@@ -1,0 +1,29 @@
+name: Test and Build
+
+on:
+  pull_request:
+    branches: [ develop, beta ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Clean Install
+        run: npm ci
+      - name: Lint
+        run: npm run ngx-multi-keywords-highlighter:lint
+      - name: Test
+        run: npm run ngx-multi-keywords-highlighter:test
+      - name: Build
+        run: npm run ngx-multi-keywords-highlighter:build
+      - name: Semantic DryRun
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release --ci --debug=true --dry-run=true
