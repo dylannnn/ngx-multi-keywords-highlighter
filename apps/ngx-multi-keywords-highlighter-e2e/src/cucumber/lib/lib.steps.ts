@@ -1,4 +1,3 @@
-import { When, Then, Given } from '@badeball/cypress-cucumber-preprocessor';
 import { CoreSteps } from '../core/core.steps';
 import { LibPageObjects } from './lib.po';
 import libData from './lib.data';

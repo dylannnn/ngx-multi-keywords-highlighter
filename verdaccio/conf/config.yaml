@@ -24,9 +24,9 @@ packages:
 web:
   enable: true
   title: Private NPM Registry
-  # logo: ./conf/logo.svg
-  # favicon: ./conf/favicon.ico
-  primary_color: "#082B52"
+  logo: ./conf/logo-light.svg
+  favicon: ./conf/favicon.ico
+  primary_color: "#3748AC"
   darkMode: false
   pkgManagers:
     - npm
