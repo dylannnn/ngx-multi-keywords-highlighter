@@ -1,7 +1,8 @@
 <h2>Works as well in ngComponentOutlet</h2>
 <p><ng-content></ng-content></p>
 
-<lib-ngx-multi-keywords-highlighter
-  class="custom-lib"
+<mkh-multi-keywords-highlighter
+  class="dynamic-component-lib"
+  data-testid="dynamic-component-lib"
   (keywordListOutput)="onKeywordListOutput($event)"
-></lib-ngx-multi-keywords-highlighter>
+></mkh-multi-keywords-highlighter>

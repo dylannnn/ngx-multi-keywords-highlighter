@@ -11,3 +11,4 @@ hideGenerator: true
 disablePrivate: true
 disableInternal: true
 # disableCoverage: true
+unitTestCoverage: ./dist/coverage/libs/ngx-multi-keywords-highlighter/coverage-summary.json

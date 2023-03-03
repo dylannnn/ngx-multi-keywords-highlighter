@@ -7,6 +7,8 @@
   [matMenuTriggerFor]="menu"
   (menuOpened)="onOpened()"
   (menuClosed)="onClosed()"
+  #menuTrigger="matMenuTrigger"
+  data-testid="highlight-keywords-button"
 >
   <mat-icon
     id="mh-keyword-count"
@@ -20,24 +22,24 @@
   ></mat-icon>
 </button>
 <mat-menu
-  backdropClass="mh__backdrop"
-  class="mh__menu"
+  backdropClass="mh-backdrop"
+  class="mh-menu"
   #menu="matMenu"
   xPosition="before"
   yPosition="below"
 >
   <div
-    fxLayout="column"
-    class="mh__panel"
+    class="mh-panel"
+    data-testid="highlight-keywords-panel"
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
-    <div class="mh__header" fxLayout="row" fxLayoutAlign="space-between center">
-      <span class="mh__text"
-        >{{ appName }}
-        <small class="mh__version mh__text-tint">{{ appVersion }}</small></span
-      >
-      <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="10px">
+    <div class="mh-header">
+      <span class="mh-text">
+        <span class="mh-app-name">{{ appName }}</span>
+        <small class="mh-version mh-text-tint">{{ appVersion }}</small>
+      </span>
+      <div class="mh-actions">
         <ng-container *ngIf="config.enableColorPalette">
           <button
             mat-icon-button
@@ -48,35 +50,39 @@
             <mat-icon svgIcon="color_lens"></mat-icon>
           </button>
           <mat-menu
-            backdropClass="mh__backdrop"
-            class="mh__menu"
+            backdropClass="mh-backdrop"
+            class="mh-color-palette-menu"
             #colorMenu="matMenu"
             xPosition="before"
             yPosition="below"
           >
-            <div fxLayout="column" (click)="$event.stopPropagation()">
+            <div (click)="$event.stopPropagation()">
               <!-- <lib-color-palette></lib-color-palette> -->
             </div>
           </mat-menu>
         </ng-container>
         <mat-slide-toggle
+          class="mh-toggle"
           [checked]="highlightStauts$ | async"
           [matTooltip]="config.enableHighlighterTooltip"
           [labelPosition]="config.toggleLabelPosition"
           [color]="config.themeColor"
           (change)="onToggle($event)"
+          ariaLabel="Toggle Highlighter"
+          data-testid="highlight-keywords-slide-toggle"
         >
           <ng-container *ngIf="config.enableToggleLabel">
-            <span class="mh__text">{{ highlightedStautsText$ | async }}</span>
+            <span class="mh-text">{{ highlightedStautsText$ | async }}</span>
           </ng-container>
         </mat-slide-toggle>
       </div>
     </div>
-    <div class="mh__body" fxLayout="column">
-      <div class="mh__content">
-        <mat-form-field class="mh__keyword__list">
-          <mat-chip-list aria-label="Keyword list" #keywordChipList>
-            <mat-chip
+    <div class="mh-body">
+      <div class="mh-content">
+        <mat-form-field class="mh-keyword-list" appearance="fill">
+          <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
+          <mat-chip-grid aria-label="Enter keywords" #keywordChipList>
+            <mat-chip-row
               *ngFor="let keyword of keywordList$ | async; trackBy: trackById"
               selectable="true"
               [removable]="config.removable"
@@ -87,13 +93,12 @@
                 matTooltip="{{
                   keyword.name.length >= 36 ? keyword.name : null
                 }}"
-                class="mh__keyword__list__text"
+                class="mh-keyword-list-text"
                 [ngStyle]="{ color: config.chipTextColor }"
               >
                 {{ keyword.name }}
               </span>
               <mat-icon
-                class="border-icon"
                 svgIcon="clear"
                 matTooltip="Clear"
                 matChipRemove
@@ -101,22 +106,23 @@
                 [ngStyle]="{ fill: config.chipIconColor }"
               >
               </mat-icon>
-            </mat-chip>
-            <input
-              placeholder="{{ config.keywordsPlaceholder }}"
-              [matChipInputFor]="keywordChipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="true"
-              (matChipInputTokenEnd)="addKeyword($event)"
-            />
-          </mat-chip-list>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input
+            data-testid="mkh-keywords-input"
+            placeholder="{{ config.keywordsPlaceholder }}"
+            [matChipInputFor]="keywordChipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="addKeyword($event)"
+          />
         </mat-form-field>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span class="mh__text mh__text-tint"
+      <div class="mh-footer">
+        <span class="mh-text mh-text-tint"
           >Separate by comma [,] or enter key</span
         >
-        <span class="mh__text mh__text-tint">
+        <span class="mh-text mh-text-tint">
           <ng-container *ngIf="config.linkToCopyright; else normalCopyright">
             &copy;
             <a
@@ -124,12 +130,12 @@
               class="mh-copyright underline"
               target="_blank"
               >{{ copyright }}</a
-            >&nbsp;
+            >
           </ng-container>
           <ng-template #normalCopyright>
-            <span class="mh-copyright">&copy; {{ copyright }}&nbsp;</span>
+            <span class="mh-copyright">&copy; {{ copyright }}</span>
           </ng-template>
-          <span>{{ currentYear | date: 'yyyy' }}</span>
+          <span class="mh-date">{{ currentYear | date : 'yyyy' }}</span>
         </span>
       </div>
     </div>

@@ -1,0 +1,43 @@
+storage: ./storage
+
+plugins: ./plugins
+
+auth:
+  htpasswd:
+    file: ./auth/htpasswd
+    algorithm: bcrypt
+    rounds: 10
+    max_users: 5
+
+uplinks:
+  npmjs:
+   url: https://registry.npmjs.org/
+
+packages:
+  "@amfrontender/*":
+    access: $all
+    publish: $anonymous
+  "**":
+    access: $all
+    proxy: npmjs
+
+web:
+  enable: true
+  title: Private NPM Registry
+  # logo: ./conf/logo.svg
+  # favicon: ./conf/favicon.ico
+  primary_color: "#082B52"
+  darkMode: false
+  pkgManagers:
+    - npm
+    - yarn
+    - pnpm
+  login: false
+  html_cache: true
+  showInfo: true
+  showSettings: true
+  showThemeSwitch: true
+  showFooter: true
+  showSearch: true
+  showDownloadTarball: true
+  showRaw: true

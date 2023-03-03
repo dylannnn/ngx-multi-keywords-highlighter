@@ -1,27 +1,31 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import {
   LABEL_POSITION,
   MATERIAL_COLOR,
   NgxMultiKeywordsHighlighterComponent,
 } from '@amfrontender/ngx-multi-keywords-highlighter';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+
 import { DemoComponent } from './demo/demo.component';
-// import { NgxMultiKeywordsHighlighterComponent } from '@ngx-multi-keywords-highlighter';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'demo',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'demo',
-    component: DemoComponent,
+    component: DemoComponent
   },
   // Demo for lazyloading library
   {
     path: 'lib-experimental',
-    // IF not loaded via AppModule, then can be loaded here.
+    outlet: 'multi-keywords-highlighter',
+    component: NgxMultiKeywordsHighlighterComponent
+    /**
+     *  IF NgxMultiKeywordsHighlighterModule not been loaded via AppModule, then it can be lazy loaded here with code below.
+     */
     // loadChildren: () => import('@amfrontender/ngx-multi-keywords-highlighter').then(m => {
     //   m.NgxMultiKeywordsHighlighterModule.forRoot({
     //     themeColor: MATERIAL_COLOR.PRIMARY,
@@ -33,12 +37,11 @@ const routes: Routes = [
     //   })
     //   return m.NgxMultiKeywordsHighlighterModule;
     // }),
-    outlet: 'multi-keywords-highlighter',
-    component: NgxMultiKeywordsHighlighterComponent,
+    // outlet: 'multi-keywords-highlighter'
   },
   {
     path: '**',
-    redirectTo: 'demo',
+    redirectTo: 'demo'
   },
 ];
 

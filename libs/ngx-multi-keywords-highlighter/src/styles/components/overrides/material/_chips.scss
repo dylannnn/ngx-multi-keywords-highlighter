@@ -1,0 +1,8 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Chips
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-mdc-chip {
+  overflow: hidden;
+  // TODO: Fix overflow issue on chips
+  // [bug(chip): Overflow visible on action chips text break chip design and usability #26584](https://github.com/angular/components/issues/26584)
+}

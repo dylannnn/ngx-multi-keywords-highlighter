@@ -22,7 +22,7 @@ $ng-material-theme: mat.define-light-theme(
       primary: $ng-material-primary,
       accent: $ng-material-accent,
       warn: $ng-material-warn,
-    ),
+    )
   )
 );
 
@@ -30,6 +30,8 @@ $ng-material-theme: mat.define-light-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($ng-material-theme);
+@include mat.slide-toggle-density(-3);
+@include mat.icon-button-density(-2);
 
 html,
 body {
