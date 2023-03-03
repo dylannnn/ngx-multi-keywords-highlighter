@@ -1,14 +1,37 @@
 version: "3.8"
 
 services:
-  mkh-storybook:
-    image: nginx:latest
+  storybook:
+    build:
+      context: .
+      dockerfile: ./docker/storybook/storybook.Dockerfile
     restart: always
     ports:
       - "8092:8080"
-    volumes:
-      - ./docker/default.conf:/etc/nginx/conf.d/default.conf
-      - ./dist/storybook/ngx-multi-keywords-highlighter:/usr/share/nginx/html
+
+  compodoc:
+    build:
+      context: .
+      dockerfile: ./docker/compodoc/compodoc.Dockerfile
+    restart: always
+    ports:
+      - "8094:8080"
+
+  coverage:
+    build:
+      context: .
+      dockerfile: ./docker/coverage/coverage.Dockerfile
+    restart: always
+    ports:
+      - "8096:8080"
+
+  demo:
+    build:
+      context: .
+      dockerfile: ./docker/demo/demo.Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
 
   verdaccio:
     build:

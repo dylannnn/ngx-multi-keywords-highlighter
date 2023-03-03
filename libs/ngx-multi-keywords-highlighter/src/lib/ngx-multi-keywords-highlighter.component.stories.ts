@@ -59,10 +59,13 @@ export const Default = DefaultTemplate.bind({});
 Default.args = {};
 Default.parameters = {
   layout: 'centered',
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/JduLjCLQvSyhDnoGO2ELN8/Multi-Keywords-Highlighter?node-id=0%3A1',
-  },
+  /**
+   * storybook-addon-designs is currently incompatibal with storybook v7
+   */
+  // design: {
+  //   type: 'figma',
+  //   url: 'https://www.figma.com/file/JduLjCLQvSyhDnoGO2ELN8/Multi-Keywords-Highlighter?node-id=0%3A1',
+  // },
 };
 
 /**
