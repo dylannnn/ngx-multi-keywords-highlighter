@@ -1,7 +1,6 @@
-app-nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+.mkh-nav-bar {
+  @apply container m-auto flex items-center justify-between;
+  &-right {
+    @apply flex items-center ml-3;
+  }
 }

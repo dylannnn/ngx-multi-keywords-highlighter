@@ -21,7 +21,7 @@ export class MultiKeywordsHighlighterConstants {
     ON: 'ON',
     OFF: 'OFF',
   };
-  static HIGHLIGHT_CLASS = 'mh__text-highlighted';
+  static HIGHLIGHT_CLASS = 'mh-text-highlighted';
   static MIN_SEARCH_LENGTH = 2;
   static APP_ROOT = 'app-root';
 }

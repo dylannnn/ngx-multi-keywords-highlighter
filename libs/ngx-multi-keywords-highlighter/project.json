@@ -1,11 +1,13 @@
 {
+  "name": "ngx-multi-keywords-highlighter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/ngx-multi-keywords-highlighter/src",
-  "prefix": "lib",
+  "prefix": "mkh",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ngx-multi-keywords-highlighter"],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/ngx-multi-keywords-highlighter/ng-package.json",
         "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js"
@@ -22,14 +24,21 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ngx-multi-keywords-highlighter"],
+      "outputs": ["{workspaceRoot}/dist/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/ngx-multi-keywords-highlighter/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "libs/ngx-multi-keywords-highlighter/**/*.ts",
@@ -43,7 +52,7 @@
         "port": 4400,
         "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
         "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
-        "compodoc": true,
+        "compodoc": false,
         "styles": ["libs/ngx-multi-keywords-highlighter/src/styles/index.scss"]
       },
       "configurations": {
@@ -59,7 +68,7 @@
         "outputDir": "dist/storybook/ngx-multi-keywords-highlighter",
         "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
         "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
-        "compodoc": true,
+        "compodoc": false,
         "styles": ["libs/ngx-multi-keywords-highlighter/src/styles/index.scss"]
       },
       "configurations": {
@@ -67,7 +76,13 @@
           "quiet": true
         }
       }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/ngx-multi-keywords-highlighter/.storybook --url=http://localhost:4400"
+      }
     }
   },
-  "tags": []
+  "tags": ["scope:lib"]
 }

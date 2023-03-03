@@ -1,21 +1,45 @@
-# NgxMultiKeywordsHighlighter
+# NgxMultiKeywordsHighlighterWorkspace
 
-nx g @nrwl/angular:lib ngx-multi-keywords-highlighter --publishable --buildable --linter=eslint --unitTestRunner=jest --importPath=@amfrontender/ngx-multi-keywords-highlighter
+[![ngx-multi-keywords-highlighter-e2e](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/2dbycs&style=flat&logo=cypress)](https://cloud.cypress.io/projects/2dbycs/runs)
 
-nx g @nrwl/angular:storybook-configuration ngx-multi-keywords-highlighter
+## How to use
 
-nx g @nrwl/angular:setup-tailwind ngx-multi-keywords-highlighter
+Add `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/index.scss"` or `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/themes.scss"` to your angular.json to the build options of styles.
 
-nx g @nrwl/angular:setup-tailwind demo
+Import the `NgxMultiKeywordsHighlighterModule` to your app.module.ts
 
-npm i -D @storybook/addons @storybook/theming @storybook/addon-docs @compodoc/compodoc @tailwindcss/typography @tailwindcss/forms @tailwindcss/line-clamp @tailwindcss/aspect-ratio
+```typescript
+import { LABEL_POSITION, MATERIAL_COLOR, NgxMultiKeywordsHighlighterModule } from '@amfrontender/ngx-multi-keywords-highlighter';
+```
 
-nx g @nrwl/angular:setup-tailwind
+Add `NgxMultiKeywordsHighlighterModule` config to the imports
 
-nx g @nrwl/angular:stories
+```typescript
+@NgModule({
+  declarations: [...],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxMultiKeywordsHighlighterModule.forRoot({
+      themeColor: MATERIAL_COLOR.PRIMARY,
+      enableToggleLabel: true,
+      toggleLabelPosition: LABEL_POSITION.BEFORE,
+      enableHighlighterTooltip: 'Turn on/off highlighter',
+      minWidth: 320,
+      appRoot: 'mkh-root',
+    }),
+    ...
+  ],
+  providers: [...],
+  bootstrap: [...],
+})
+export class AppModule {}
+```
 
-## TODO
+Add selector to the html
 
-[] Config storybook with branding
-[] Config jest reports
-[] Config library to use materials style
+```html
+<mkh-multi-keywords-highlighter class="custom-lib"></mkh-multi-keywords-highlighter>
+```
+
+For more advanced usages, please check the storybook or the demo app

@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   Injector,
   OnInit,
@@ -8,15 +9,17 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+
 import { DynamicComponent } from '../dynamic-component/dynamic.component';
 import { Info } from '../shared/info.class';
 import { PeriodicElement } from '../shared/periodic-element.interface';
 import { MOCK_PERIODIC_ELEMENT_DATA } from '../shared/periodic-element.mock';
 
 @Component({
-  selector: 'app-demo',
+  selector: 'mkh-demo',
   templateUrl: './demo.component.html',
   styleUrls: ['./demo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<PeriodicElement>;
