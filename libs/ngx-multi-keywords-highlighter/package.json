@@ -2,8 +2,13 @@
   "name": "@amfrontender/ngx-multi-keywords-highlighter",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^14.1.0",
-    "@angular/core": "^14.1.0"
+    "@angular/cdk": "^14.1.2",
+    "@angular/common": "~14.1.1",
+    "@angular/core": "~14.1.1",
+    "@angular/flex-layout": "^14.0.0-beta.40",
+    "@angular/forms": "~14.1.1",
+    "@angular/material": "^14.1.2",
+    "rxjs": "~7.5.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

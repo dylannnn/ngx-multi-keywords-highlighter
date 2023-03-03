@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/demo/src",
-  "prefix": "ngx-multi-keywords-highlighter",
+  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -14,7 +14,10 @@
         "tsConfig": "apps/demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-        "styles": ["apps/demo/src/styles.scss"],
+        "styles": [
+          "libs/ngx-multi-keywords-highlighter/src/styles/index.scss",
+          "apps/demo/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
