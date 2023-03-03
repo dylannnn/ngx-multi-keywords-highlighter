@@ -1,9 +1,9 @@
-import { rootMain } from '../../../.storybook/main';
-
-import type { StorybookConfig, Options } from '@storybook/core-common';
+import { StorybookConfig, Options } from '@storybook/core-webpack';
+import { rootMain, framework } from '../../../.storybook/main';
 
 const config: StorybookConfig = {
   ...rootMain,
+  framework,
   core: { ...rootMain.core, builder: 'webpack5' },
   stories: [
     ...rootMain.stories,
@@ -11,6 +11,10 @@ const config: StorybookConfig = {
     '../**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [...(rootMain.addons || [])],
+  docs: {
+    autodocs: true,
+    defaultName: 'Docs',
+  },
   webpackFinal: async (config, { configType }: Options) => {
     // apply any global webpack configs that might have been specified in .storybook/main.ts
     if (rootMain.webpackFinal) {

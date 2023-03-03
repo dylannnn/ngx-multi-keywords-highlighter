@@ -1,4 +1,4 @@
-import { create } from '@storybook/theming';
+import { create } from '@storybook/theming/create';
 import logoUrl from './logo.svg';
 
 export default create({
@@ -8,6 +8,6 @@ export default create({
 
   brandTitle: 'Multi-Keywords Highlighter',
   brandUrl: 'https://yunfei.li',
-  brandImage: process.env['NODE_ENV'] === 'production' ? logoUrl : '/logo.svg',
+  brandImage: logoUrl,
   brandTarget: '_self',
 });

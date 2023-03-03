@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/core-common';
+import { StorybookConfig } from '@storybook/core-webpack';
 
 export const rootMain: StorybookConfig = {
   stories: [],
@@ -8,6 +8,12 @@ export const rootMain: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-actions',
     '@storybook/addon-interactions',
-    'storybook-addon-designs',
-  ],
+    '@storybook/addon-a11y',
+    'storybook-addon-designs'
+  ]
+};
+
+export const framework = {
+  name: '@storybook/angular',
+  options: {}
 };
