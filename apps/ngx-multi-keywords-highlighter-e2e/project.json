@@ -4,7 +4,7 @@
   "sourceRoot": "apps/ngx-multi-keywords-highlighter-e2e/src",
   "projectType": "application",
   "targets": {
-    "e2e": {
+    "e2e:watch": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
