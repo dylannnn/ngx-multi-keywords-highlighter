@@ -5,34 +5,37 @@ name: Publish NGX Multi Keywords Highlighter
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - run: npm ci
       - run: npm run ngx-multi-keywords-highlighter:lint
       - run: npm run ngx-multi-keywords-highlighter:test
-      - run: npx standard-version --release-as '${{ github.event.inputs.release_type }}' --dry-run
-      - run: npm run ngx-multi-keywords-highlighter:build
+      - run: npx semantic-release --no-ci --debug=true --dry-run=true
 
   publish-npm:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://fecc-213-61-97-82.ngrok.io/
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+      - run: git config --global user.email "${{ vars.RELEASE_USER_EMAIL }}"
+      - run: git config --global user.name "${{ vars.RELEASE_USER_NAME }}"
       - run: npm ci
-      - run: npx standard-version --release-as patch
-      - run: git push --follow-tags origin HEAD:release
-      - run: npm publish
-        # env:
-        #   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: npm run ngx-multi-keywords-highlighter:build
+      - name: Semantic Release 📦
+        run: npx semantic-release --ci --debug=true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+

@@ -1,6 +1,6 @@
 {
   "name": "@amfrontender/ngx-multi-keywords-highlighter",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "peerDependencies": {
     "@angular/cdk": "15.1.4",
     "@angular/common": "15.1.4",
