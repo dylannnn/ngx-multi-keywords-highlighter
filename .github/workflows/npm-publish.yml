@@ -29,8 +29,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://fecc-213-61-97-82.ngrok.io/
       - run: npm ci
+      - run: npx standard-version --release-as patch
+      - run: git push --follow-tags origin HEAD:release
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        # env:
+        #   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
