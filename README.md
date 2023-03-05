@@ -2,6 +2,8 @@
 
 [![ngx-multi-keywords-highlighter-e2e](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/2dbycs&style=flat&logo=cypress)](https://cloud.cypress.io/projects/2dbycs/runs)
 
+[![Publish NGX Multi Keywords Highlighter](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml)
+
 ## How to use
 
 Add `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/index.scss"` or `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/themes.scss"` to your angular.json to the build options of styles.

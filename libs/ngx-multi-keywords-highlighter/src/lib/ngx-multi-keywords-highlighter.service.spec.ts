@@ -1,7 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
-import { generateKeyword, generateKeywordsFactory } from '../../utilities/generate-keywords.factory';
 import { IKeyword } from './core';
 import { defaultConfig } from './core/default-config';
 import { MultiKeywordsHighlighterConfig } from './core/multi-keywords-highlighter-config.interface';
@@ -10,15 +8,17 @@ import { MultiKeywordsHighlighterConstants } from './core/multi-keywords-highlig
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
+import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
+import { generateKeyword, generateKeywordsFactory } from '../../utilities/generate-keywords.factory';
 
 describe('NgxMultiKeywordsHighlighterService', () => {
   let service: NgxMultiKeywordsHighlighterService;
   let configToken: MultiKeywordsHighlighterConfig;
-  let component: NgxMultiKeywordsHighlighterComponent;
+  // let component: NgxMultiKeywordsHighlighterComponent;
   let fixture: ComponentFixture<NgxMultiKeywordsHighlighterComponent>;
   // let mockNgxMultiKeywordsHighlighterService: Partial<NgxMultiKeywordsHighlighterService>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     // mockNgxMultiKeywordsHighlighterService = {
     //   toggleHighlightStatus: jest.fn(),
     //   addKeyword: jest.fn(),
@@ -36,7 +36,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     //   isMatchedKeyword: jest.fn(),
     // };
 
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [
         NgxMultiKeywordsHighlighterComponent
       ],
@@ -53,7 +53,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     configToken = TestBed.inject(MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN) as MultiKeywordsHighlighterConfig;
 
     fixture = TestBed.createComponent(NgxMultiKeywordsHighlighterComponent);
-    component = fixture.componentInstance;
+    // component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -126,6 +126,8 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
     const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
     const keyword = generateKeyword();
+    
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
     const currentSequence = service.keywordSequence.value;
 
@@ -150,6 +152,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
     const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
     const keyword = generateKeyword();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
 
     service['highlightedStatusSubject'].next(true);
@@ -166,6 +169,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isDuplicatedSpy = jest.spyOn(service, 'isDuplicated');
     const keyword = generateKeyword();
     const currentSequence = service.keywordSequence.value;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
     newKeyword.name = '';
 
@@ -185,6 +189,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isEmptySpy = jest.spyOn(service, 'isEmpty');
     const isDuplicatedSpy = jest.spyOn(service, 'isDuplicated');
     const existingKeyword = generateKeyword();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
     const currentSequence = service.keywordSequence.value;
 
@@ -242,6 +247,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isEmptySpy = jest.spyOn(service, 'isEmpty');
     const isDuplicatedSpy = jest.spyOn(service, 'isDuplicated');
     const existingKeyword = generateKeyword();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
 
     service['localKeywordsSubject'].next([existingKeyword]);
@@ -286,6 +292,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
 
   it('should check a keyword is duplicated when there is one existing keyword', () => {
     const existingKeyword = generateKeyword();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
 
     service['localKeywordsSubject'].next([existingKeyword]);
@@ -294,6 +301,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
 
   it('should check a keyword is duplicated when there are more than one existing keyword', () => {
     const existingKeywords = generateKeywordsFactory(5);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...anotherNewKeyword } = existingKeywords[2];
 
     service['localKeywordsSubject'].next(existingKeywords);
@@ -467,6 +475,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
       createTreeWalkerMock.mockReturnValueOnce('mock return TreeWalker');
       const keyword = generateKeyword();
   
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { name: _, ...newKeyword } = keyword; 
       service.hightlightKeyword(newKeyword as unknown as IKeyword);
       expect(createTreeWalkerMock).not.toHaveBeenCalled();
