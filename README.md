@@ -45,3 +45,21 @@ Add selector to the html
 ```
 
 For more advanced usages, please check the storybook or the demo app
+
+## Semantic Commits
+
+<!-- prettier-ignore-start -->
+| Type     | Notes                                                                                                   |
+|----------|---------------------------------------------------------------------------------------------------------|
+| build    | Changes that affect the build system or external dependencies                                           |
+| chore    | Changes to the build process, release or auxiliary tools and libraries such as documentation generation |
+| ci       | Changes to our CI configuration files and scripts                                                       |
+| docs     | Documentation only changes                                                                              |
+| feat     | A new feature                                                                                           |
+| fix      | A bug fix                                                                                               |
+| perf     | A code change that improves performance                                                                 |
+| refactor | A refactoring                                                                                           |
+| revert   | A revert commit                                                                                         |
+| style    | UI/UX CHANGES                                                                                           |
+| test     | Adding missing tests                                                                                    |
+<!-- prettier-ignore-end -->

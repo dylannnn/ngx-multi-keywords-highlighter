@@ -74,7 +74,9 @@
     "coverage:lib:serve": "npx http-server dist/coverage/libs/ngx-multi-keywords-highlighter -p 4402",
     "coverage:demo:serve": "npx http-server dist/coverage/apps/demo -p 4403",
     "== JEST ==": "================================================",
-    "jest:update:snapshot": "npx nx affected --targets=test --update-snapshot"
+    "jest:update:snapshot": "npx nx affected --targets=test --update-snapshot",
+    "== REPORT ==": "================================================",
+    "ngx-multi-keywords-highlighter:cypress:cucumber:report": "npx http-server dist/cypress/apps/ngx-multi-keywords-highlighter-e2e/cucumber"
   },
   "lint-staged": {
     "**/*": "npm run lint:all"

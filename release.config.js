@@ -3,8 +3,7 @@ module.exports = {
     'main',
     'next',
     'semantic-release',
-    { name: 'beta', prerelease: true },
-    { name: 'alpha', prerelease: true }
+    { name: 'beta', prerelease: true }
   ],
   tagFormat: '${version}',
   plugins: [
