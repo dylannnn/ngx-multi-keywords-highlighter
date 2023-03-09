@@ -38,10 +38,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+.env
 .angular
 
 # Verdaccio
 verdaccio/conf/auth/**/*
-!verdaccio/conf/auth/htpasswd
+!verdaccio/conf/auth/.keepme
 verdaccio/conf/storage/**/*
 !verdaccio/conf/storage/.keepme
