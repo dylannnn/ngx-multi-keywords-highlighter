@@ -3,6 +3,7 @@ module.exports = {
     'main',
     'next',
     'semantic-release',
+    'develop',
     { name: 'beta', prerelease: true }
   ],
   tagFormat: '${version}',
