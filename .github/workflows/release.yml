@@ -24,6 +24,8 @@ jobs:
         run: npm run ngx-multi-keywords-highlighter:lint
       - name: Test
         run: npm run ngx-multi-keywords-highlighter:test
+      - name: Build
+        run: npm run ngx-multi-keywords-highlighter:build
       - name: Semantic DryRun
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
