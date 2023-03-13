@@ -17,11 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Check npm whoami
-        run: |
-          npm whoami --registry https://registry.npmjs.org/
-          cat ~/.npmrc
-          cat ./.npmrc
       - name: Clean Install
         run: npm ci
       - name: Lint
@@ -30,6 +25,14 @@ jobs:
         run: npm run ngx-multi-keywords-highlighter:test
       - name: Build
         run: npm run ngx-multi-keywords-highlighter:build
+      - name: Check npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm whoami --registry https://registry.npmjs.org/
+          cat ~/.npmrc
+          cat ./.npmrc
       - name: Semantic DryRun
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
