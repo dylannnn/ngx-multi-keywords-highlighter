@@ -19,8 +19,19 @@ jobs:
           node-version: 18
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
-      - name: Clean Install
-        run: npm ci
+
+      - name: Cache Gradle packages
+        id: cache-npm-packages
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - if: ${{ steps.cache-npm-packages.outputs.cache-hit != 'true' }}
+        run: npm ci --ignore-scripts
+      # - name: Clean Install
+      #   run: npm ci --ignore-scripts
       - name: Lint
         run: npm run mkh:lint
       - name: Test
@@ -35,31 +46,3 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-  publish-npm:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node.JS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-          registry-url: https://registry.npmjs.org
-      - name: Config Git User
-        run: |
-          git config --global user.email "${{ vars.RELEASE_USER_EMAIL }}"
-          git config --global user.name "${{ vars.RELEASE_USER_NAME }}"
-      - name: Clean Install
-        run: npm ci
-      - name: Build
-        run: npm run mkh:build
-      - name: Semantic Release 📦
-        run: npx semantic-release --branches beta --ci --debug=true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-
