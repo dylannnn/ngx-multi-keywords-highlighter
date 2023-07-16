@@ -1,6 +1,19 @@
 # 1.0.0 (2023-07-16)
 
 
+### Bug Fixes
+
+* clear un-used imports ([#22](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/22)) ([90c0e11](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/90c0e11b88e34e9f133cdb911f2a41684dcafa51))
+* update github actions yml ([#23](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/23)) ([e0f62c7](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/e0f62c71aa03af930125d300dac9eafde0086d1c))
+
+
+### Features
+
+* migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([3f93cb8](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/3f93cb81e20f8fbd9c86018bac261c73026a9efa))
+
+# 1.0.0 (2023-07-16)
+
+
 ### Features
 
 * migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([2b95a2a](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/2b95a2a10464c82ed82c119ca518dc652d99cc4e))

@@ -19,8 +19,7 @@ jobs:
           node-version: 18
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Cache Gradle packages
+      - name: Cache NPM packages
         id: cache-npm-packages
         uses: actions/cache@v3
         env:
