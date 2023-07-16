@@ -5,7 +5,8 @@
     "outDir": "../../dist/out-tsc",
     "allowJs": true,
     "types": ["cypress", "node"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "Node16"
   },
   "include": ["src/**/*.ts", "src/**/*.js", "cypress.config.ts"]
 }

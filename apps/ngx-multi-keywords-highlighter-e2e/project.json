@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e:watch": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
         "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
@@ -19,7 +19,7 @@
       }
     },
     "e2e:ci": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
         "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
@@ -32,7 +32,7 @@
       }
     },
     "e2e:cucumber": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.cucumber.ts",
         "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
@@ -45,7 +45,7 @@
       }
     },
     "e2e:cucumber:watch": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.cucumber.ts",
         "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
@@ -60,7 +60,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [

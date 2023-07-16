@@ -1,6 +1,7 @@
 import { CoreSteps } from '../core/core.steps';
 import { LibPageObjects } from './lib.po';
 import libData from './lib.data';
+import { Then } from '@badeball/cypress-cucumber-preprocessor';
 
 beforeEach(() => {
   cy.viewport('macbook-15');

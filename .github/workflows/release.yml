@@ -21,11 +21,11 @@ jobs:
       - name: Clean Install
         run: npm ci
       - name: Lint
-        run: npm run ngx-multi-keywords-highlighter:lint
+        run: npm run mkh:lint
       - name: Test
-        run: npm run ngx-multi-keywords-highlighter:test
+        run: npm run mkh:test
       - name: Build
-        run: npm run ngx-multi-keywords-highlighter:build
+        run: npm run mkh:build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -53,9 +53,9 @@ jobs:
       - name: Clean Install
         run: npm ci
       - name: Build
-        run: npm run ngx-multi-keywords-highlighter:build
+        run: npm run mkh:build
       - name: Semantic Release 📦
-        run: npx semantic-release --ci --debug=true
+        run: npx semantic-release --branches main --ci --debug=true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

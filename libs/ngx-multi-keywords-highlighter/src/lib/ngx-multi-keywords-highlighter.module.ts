@@ -13,15 +13,15 @@ import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highl
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
 
 @NgModule({
-  declarations: [NgxMultiKeywordsHighlighterComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialComponentsModule,
-  ],
-  providers: [NgxMultiKeywordsHighlighterService],
-  exports: [NgxMultiKeywordsHighlighterComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MaterialComponentsModule,
+        NgxMultiKeywordsHighlighterComponent
+    ],
+    providers: [NgxMultiKeywordsHighlighterService],
+    exports: [NgxMultiKeywordsHighlighterComponent]
 })
 export class NgxMultiKeywordsHighlighterModule {
   // constructor(

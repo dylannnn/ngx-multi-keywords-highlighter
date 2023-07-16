@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import { nxE2EStorybookPreset } from '@nrwl/storybook/presets/cypress';
+import { nxE2EStorybookPreset } from '@nx/storybook/presets/cypress';
 import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
 import createEsbuildPlugin from '@badeball/cypress-cucumber-preprocessor/esbuild';
 import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
@@ -25,5 +25,5 @@ export default defineConfig({
       // Make sure to return the config object as it might have been modified by the plugin.
       return config;
     },
-  }
+  },
 });

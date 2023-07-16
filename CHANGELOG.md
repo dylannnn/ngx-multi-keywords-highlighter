@@ -1,5 +1,28 @@
-# 1.0.0 (2023-03-07)
+# 1.0.0 (2023-07-16)
 
+
+### Features
+
+* migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([2b95a2a](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/2b95a2a10464c82ed82c119ca518dc652d99cc4e))
+* migration to ng16, storybook v7 ([#18](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/18)) ([01e17d2](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/01e17d25a8b0c66135f292dc3bc319fa525a16ab))
+
+# 1.0.0 (2023-07-16)
+
+
+### Features
+
+* migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([2b95a2a](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/2b95a2a10464c82ed82c119ca518dc652d99cc4e))
+* migration to ng16, storybook v7 ([#18](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/18)) ([01e17d2](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/01e17d25a8b0c66135f292dc3bc319fa525a16ab))
+
+# 1.0.0 (2023-07-16)
+
+
+### Features
+
+* migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([2b95a2a](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/2b95a2a10464c82ed82c119ca518dc652d99cc4e))
+* migration to ng16, storybook v7 ([#18](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/18)) ([01e17d2](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/01e17d25a8b0c66135f292dc3bc319fa525a16ab))
+
+# 1.0.0 (2023-03-07)
 
 ### Bug Fixes
 

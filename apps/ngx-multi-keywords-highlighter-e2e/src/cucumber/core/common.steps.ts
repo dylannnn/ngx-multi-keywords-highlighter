@@ -35,7 +35,7 @@ export class CommonSteps extends CommonPageObjects implements CoreSteps {
      * @example I click on the "highlighter button"
      */
     When(new RegExp(`I click on the "([^"]*)"$`), (term: string) => {
-      cy.get(`[data-testid="${pageObject[dataSet[term]]}"]`).trigger('click');
+      cy.get(`[data-testid="${pageObject[dataSet[term]]}"]`).debug().trigger('click');
     });
   }
 
