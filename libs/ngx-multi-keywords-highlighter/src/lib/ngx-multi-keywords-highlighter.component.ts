@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatIconRegistry } from '@angular/material/icon';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import {
   IKeyword,
@@ -21,14 +21,21 @@ import {
 } from './core';
 import { ICON_HIGHLIGHT, ICON_COLOR_LENS, ICON_CLEAR } from './material';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgStyle, NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'mkh-multi-keywords-highlighter',
-  templateUrl: './ngx-multi-keywords-highlighter.component.html',
-  styleUrls: ['./ngx-multi-keywords-highlighter.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mkh-multi-keywords-highlighter',
+    templateUrl: './ngx-multi-keywords-highlighter.component.html',
+    styleUrls: ['./ngx-multi-keywords-highlighter.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatButtonModule, MatTooltipModule, MatMenuModule, MatIconModule, MatBadgeModule, NgStyle, NgIf, MatSlideToggleModule, MatFormFieldModule, MatChipsModule, NgFor, AsyncPipe, DatePipe]
 })
 export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;

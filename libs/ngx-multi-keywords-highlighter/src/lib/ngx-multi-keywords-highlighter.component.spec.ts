@@ -8,6 +8,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { HarnessLoader } from '@angular/cdk/testing';
+import { MatChipInput, MatChipRow } from '@angular/material/chips';
+import { MatIcon } from '@angular/material/icon';
+
 import { MatMenuHarness } from '@angular/material/menu/testing';
 import { MatSlideToggleHarness } from '@angular/material/slide-toggle/testing';
 import {
@@ -24,8 +27,7 @@ import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlig
 import {
   generateKeyword,
 } from '../../utilities';
-import { MatChipInput, MatChipRow } from '@angular/material/chips';
-import { MatIcon } from '@angular/material/icon';
+
 
 describe('NgxMultiKeywordsHighlighterComponent', () => {
   let component: NgxMultiKeywordsHighlighterComponent;
@@ -41,6 +43,7 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MaterialComponentsModule,
+        NgxMultiKeywordsHighlighterComponent,
         NgxMultiKeywordsHighlighterModule.forRoot({
           themeColor: MATERIAL_COLOR.ACCENT,
           enableToggleLabel: true,
@@ -49,8 +52,7 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
           linkToCopyright: true,
           minWidth: 320,
         }),
-      ],
-      declarations: [NgxMultiKeywordsHighlighterComponent],
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NgxMultiKeywordsHighlighterComponent);

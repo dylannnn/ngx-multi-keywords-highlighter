@@ -15,7 +15,7 @@ Import the NgxMultiKeywordsHighlighterModule to your AppModule
 
 Example:
 
-```
+```typescript
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,7 @@ export class AppModule {}
 
 Lazyload Module to an auxiliary routes
 
-```
+```typescript
 // Router configuration
 {
   path: 'lib-lazyload',
@@ -62,9 +62,8 @@ Lazyload Module to an auxiliary routes
   outlet: 'multi-keywords-highlighter',
   component: NgxMultiKeywordsHighlighterComponent
 }
+```
 
-...
-// HTML
-
+```html
 <router-outlet name="multi-keywords-highlighter"></router-outlet>
 ```
