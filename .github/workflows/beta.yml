@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
       - name: Cache NPM packages
         id: cache-npm-packages
@@ -29,8 +28,6 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
       - if: ${{ steps.cache-npm-packages.outputs.cache-hit != 'true' }}
         run: npm ci --ignore-scripts
-      # - name: Clean Install
-      #   run: npm ci --ignore-scripts
       - name: Lint
         run: npm run mkh:lint
       - name: Test
