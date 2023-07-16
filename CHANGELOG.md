@@ -1,3 +1,11 @@
+## [1.0.1-beta.1](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/1.0.0...1.0.1-beta.1) (2023-07-16)
+
+
+### Bug Fixes
+
+* update beta.yml ([b30e135](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/b30e135992b786efcc3d08b75c60f103976e144d))
+* update github actions yml ([#25](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/25)) ([c5da3db](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/c5da3db09b2d4346b40b6c7abc4088b713ec92d7))
+
 # 1.0.0 (2023-07-16)
 
 
