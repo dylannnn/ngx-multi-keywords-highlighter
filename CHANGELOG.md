@@ -1,16 +1,8 @@
 # 1.0.0-beta.1 (2023-10-15)
 
-
 ### Bug Fixes
 
 * update github actions yml ([#26](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/26)) ([23ae8b5](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/23ae8b564b036b06d71f032649cb1dd109264be7))
-
-
-### Features
-
-* migration to ng16, storybook v7 ([#17](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/17)) ([3f93cb8](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/3f93cb81e20f8fbd9c86018bac261c73026a9efa))
-
-## [1.0.1-beta.1](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/1.0.0...1.0.1-beta.1) (2023-07-16)
 
 ### Bug Fixes
 
