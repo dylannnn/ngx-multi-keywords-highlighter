@@ -1,6 +1,5 @@
 # 1.0.0 (2023-03-07)
 
-
 ### Bug Fixes
 
 * github actions release config ([7284a62](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/7284a629231ab67e786822e5e5089021cc7c8a9b))

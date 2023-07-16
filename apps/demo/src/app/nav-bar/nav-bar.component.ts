@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { IKeyword } from '@amfrontender/ngx-multi-keywords-highlighter';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { BehaviorSubject, filter, take } from 'rxjs';
+import { IKeyword, NgxMultiKeywordsHighlighterComponent } from '@amfrontender/ngx-multi-keywords-highlighter';
 
 @Component({
-  selector: 'mkh-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mkh-nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrls: ['./nav-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatButtonModule, NgxMultiKeywordsHighlighterComponent, RouterOutlet, MatIconModule]
 })
 export class NavBarComponent implements OnInit {
   private showHighlighterSubject = new BehaviorSubject(false);

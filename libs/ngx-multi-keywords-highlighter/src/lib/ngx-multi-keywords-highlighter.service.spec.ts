@@ -37,9 +37,6 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     // };
 
     TestBed.configureTestingModule({
-      declarations: [
-        NgxMultiKeywordsHighlighterComponent
-      ],
       imports: [
         NoopAnimationsModule,
         NgxMultiKeywordsHighlighterModule.forRoot(defaultConfig)
