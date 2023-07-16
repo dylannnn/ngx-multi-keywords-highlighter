@@ -11,13 +11,6 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { MatChipInput, MatChipRow } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 
-import { MatMenuHarness } from '@angular/material/menu/testing';
-import { MatSlideToggleHarness } from '@angular/material/slide-toggle/testing';
-import {
-  MatSlideToggle,
-  MatSlideToggleChange,
-} from '@angular/material/slide-toggle';
-
 import { MATERIAL_COLOR, LABEL_POSITION } from './core';
 import { MaterialComponentsModule } from './material';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
