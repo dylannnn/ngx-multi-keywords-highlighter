@@ -42,7 +42,10 @@ Thumbs.db
 .angular
 
 # Verdaccio
-verdaccio/conf/auth/**/*
-!verdaccio/conf/auth/.keepme
-verdaccio/conf/storage/**/*
-!verdaccio/conf/storage/.keepme
+docker/verdaccio/conf/auth/**/*
+!docker/verdaccio/conf/auth/.keepme
+docker/verdaccio/conf/storage/**/*
+!docker/verdaccio/conf/storage/.keepme
+
+# Storybook
+build-storybook.log

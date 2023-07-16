@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IKeyword } from './core';
 import { defaultConfig } from './core/default-config';
@@ -14,27 +14,9 @@ import { generateKeyword, generateKeywordsFactory } from '../../utilities/genera
 describe('NgxMultiKeywordsHighlighterService', () => {
   let service: NgxMultiKeywordsHighlighterService;
   let configToken: MultiKeywordsHighlighterConfig;
-  // let component: NgxMultiKeywordsHighlighterComponent;
   let fixture: ComponentFixture<NgxMultiKeywordsHighlighterComponent>;
-  // let mockNgxMultiKeywordsHighlighterService: Partial<NgxMultiKeywordsHighlighterService>;
 
   beforeEach(() => {
-    // mockNgxMultiKeywordsHighlighterService = {
-    //   toggleHighlightStatus: jest.fn(),
-    //   addKeyword: jest.fn(),
-    //   isValidKeyword: jest.fn(),
-    //   isEmpty: jest.fn(),
-    //   isDuplicated: jest.fn(),
-    //   removeKeyword: jest.fn(),
-    //   toggleHighlighter: jest.fn(),
-    //   hightlightAllKeywords: jest.fn(),
-    //   deHightlightAllKeywords: jest.fn(),
-    //   hightlightKeyword: jest.fn(),
-    //   createTreeWorker: jest.fn(),
-    //   createHighlightElements: jest.fn(),
-    //   deHightlightKeyword: jest.fn(),
-    //   isMatchedKeyword: jest.fn(),
-    // };
 
     TestBed.configureTestingModule({
       imports: [
@@ -50,7 +32,6 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     configToken = TestBed.inject(MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN) as MultiKeywordsHighlighterConfig;
 
     fixture = TestBed.createComponent(NgxMultiKeywordsHighlighterComponent);
-    // component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -97,6 +78,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
         expect(result).toEqual(MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON)
       }
     });
+    tick();
   }));
 
   it('should get isHighlight', () => {
@@ -110,16 +92,17 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     expect(rootNode).toBeDefined();
   });
 
-  it('should toggleHighlightStatus', () => {
+  it('should toggleHighlightStatus', fakeAsync(() => {
     service.toggleHighlightStatus(true);
     service.highlightedStatus$.subscribe({
       next: (status: boolean) => {
         expect(status).toBe(true);
       }
     });
-  });
+    tick();
+  }));
 
-  it('should add a keyword', () => {
+  it('should add a keyword', fakeAsync(() => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
     const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
     const keyword = generateKeyword();
@@ -143,7 +126,8 @@ describe('NgxMultiKeywordsHighlighterService', () => {
         });
       }
     });
-  });
+    tick();
+  }));
 
   it('should add a keyword and highlight it', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
@@ -525,7 +509,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
       document.body.removeChild(highlightedElement);
     });
 
-    // TODO: Find out why not have the text when hightlight and de-highlight
+    // TODO(#37): Find out why not have the text when hightlight and de-highlight
     it('should removes highlighted element when keyword matches', () => {
       const keyword = generateKeyword();
       const keywordArray = LOREM_IPSUM.replace(/[,.]/g, '').split(' ');
@@ -535,7 +519,8 @@ describe('NgxMultiKeywordsHighlighterService', () => {
         name: randomKeyword
       };
       service.hightlightKeyword(keywordToHighlight);
-      // service.deHightlightKeyword(keywordToHighlight);
+      fixture.detectChanges();
+      service.deHightlightKeyword(keywordToHighlight);
       expect(document.querySelector(`.${defaultConfig.highlightClass}`)?.textContent).toBe("")
     });
   });

@@ -6,8 +6,6 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { HarnessLoader } from '@angular/cdk/testing';
 import { MatChipInput, MatChipRow } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 
@@ -26,8 +24,6 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
   let component: NgxMultiKeywordsHighlighterComponent;
   let fixture: ComponentFixture<NgxMultiKeywordsHighlighterComponent>;
   let service: NgxMultiKeywordsHighlighterService;
-
-  let loader: HarnessLoader;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -52,7 +48,6 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     service = TestBed.inject(NgxMultiKeywordsHighlighterService);
-    loader = TestbedHarnessEnvironment.loader(fixture);
   });
 
   it('should create', () => {

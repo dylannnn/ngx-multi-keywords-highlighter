@@ -30,6 +30,9 @@
         "passWithNoTests": true
       },
       "configurations": {
+        "watch": {
+          "watch": true
+        },
         "ci": {
           "ci": true,
           "codeCoverage": true
