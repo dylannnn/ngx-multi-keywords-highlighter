@@ -1,5 +1,5 @@
 {
-  "header": "Release Notes Of NGX Multi Keywords Highlighter",
+  "header": "# Release Notes Of NGX Multi Keywords Highlighter",
   "commitUrlFormat": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/{{hash}}",
   "compareUrlFormat": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/{{previousTag}}...{{currentTag}}",
   "releaseCommitMessageFormat": "chore(release): {{currentTag}}",

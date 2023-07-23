@@ -41,3 +41,12 @@ web:
   showSearch: true
   showDownloadTarball: true
   showRaw: true
+
+# log settings
+log:
+  type: stdout
+  format: pretty
+  level: warn
+
+publish:
+  allow_offline: true # set offline to true to allow publish offline

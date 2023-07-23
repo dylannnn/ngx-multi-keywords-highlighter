@@ -36,13 +36,13 @@ services:
   verdaccio:
     build:
       context: .
-      dockerfile: ./verdaccio/Dockerfile
+      dockerfile: ./docker/verdaccio/Dockerfile
     restart: always
     environment:
       - VERDACCIO_PORT=4873
     ports:
       - "4873:4873"
     volumes:
-      - "./verdaccio/conf/storage:/verdaccio/storage"
-      - "./verdaccio/conf/plugins:/verdaccio/plugins"
-      - "./verdaccio/conf:/verdaccio/conf"
+      - "./docker/verdaccio/conf/storage:/verdaccio/storage"
+      - "./docker/verdaccio/conf/plugins:/verdaccio/plugins"
+      - "./docker/verdaccio/conf:/verdaccio/conf"

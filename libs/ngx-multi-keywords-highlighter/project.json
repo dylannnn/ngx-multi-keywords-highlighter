@@ -10,7 +10,8 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/ngx-multi-keywords-highlighter/ng-package.json",
-        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js"
+        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
@@ -30,6 +31,9 @@
         "passWithNoTests": true
       },
       "configurations": {
+        "watch": {
+          "watch": true
+        },
         "ci": {
           "ci": true,
           "codeCoverage": true

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  LABEL_POSITION,
-  MATERIAL_COLOR,
+  // LABEL_POSITION,
+  // MATERIAL_COLOR,
   NgxMultiKeywordsHighlighterComponent,
 } from '@amfrontender/ngx-multi-keywords-highlighter';
 
