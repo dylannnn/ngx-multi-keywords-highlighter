@@ -7,6 +7,7 @@ import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
 export default defineConfig({
   e2e: {
     ...nxE2EStorybookPreset(__dirname),
+    projectId: '2dbycs',
     specPattern: 'src/cucumber/**/*.feature',
     async setupNodeEvents(
       on: Cypress.PluginEvents,

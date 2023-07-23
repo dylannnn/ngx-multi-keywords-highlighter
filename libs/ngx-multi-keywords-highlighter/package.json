@@ -11,14 +11,10 @@
   "bugs": {
     "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
   "engines": {
     "npm": ">8.0.0",
     "node": ">=18.10.0"
   },
-  "readme": "README.md",
   "peerDependencies": {
     "@angular/cdk": "15.1.4",
     "@angular/common": "15.1.4",

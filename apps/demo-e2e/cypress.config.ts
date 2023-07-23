@@ -7,6 +7,7 @@ export default defineConfig({
   e2e: {
     ...nxE2EPreset(__dirname),
     baseUrl: 'http://localhost:4200',
+    projectId: '2dbycs',
   },
   experimentalStudio: true,
 });

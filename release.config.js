@@ -2,7 +2,6 @@ module.exports = {
   branches: [
     'main',
     'next',
-    'semantic-release',
     'develop',
     { name: 'beta', prerelease: true }
   ],
@@ -107,7 +106,7 @@ module.exports = {
       '@semantic-release/git',
       {
         assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', 'libs/ngx-multi-keywords-highlighter/package.json'],
-        message: 'chore(release): set `package.json` to ${nextRelease.version} [skip ci]'
+        message: 'chore(release): release new version: ${nextRelease.version} [skip ci]'
       }
     ]
   ],

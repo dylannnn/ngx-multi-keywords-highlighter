@@ -2,13 +2,14 @@
 
 [![ngx-multi-keywords-highlighter-e2e](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/2dbycs&style=flat&logo=cypress)](https://cloud.cypress.io/projects/2dbycs/runs)
 
+<!-- TODO Fix this badge -->
 [![Publish NGX Multi Keywords Highlighter](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml)
 
 ## How to use
 
-Add `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/index.scss"` or `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/themes.scss"` to your angular.json to the build options of styles.
+Add `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/index.scss"` or `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/themes.scss"` to your `angular.json` or `project.json` if you use NX to the build options of styles.
 
-Import the `NgxMultiKeywordsHighlighterModule` to your app.module.ts
+Import the `NgxMultiKeywordsHighlighterModule` to your `app.module.ts`
 
 ```typescript
 import { LABEL_POSITION, MATERIAL_COLOR, NgxMultiKeywordsHighlighterModule } from '@amfrontender/ngx-multi-keywords-highlighter';
@@ -63,3 +64,70 @@ For more advanced usages, please check the storybook or the demo app
 | style    | UI/UX CHANGES                                                                                           |
 | test     | Adding missing tests                                                                                    |
 <!-- prettier-ignore-end -->
+
+## Branches
+
+### Feature Branches
+
+#### Release locally with Vadaccio to test
+
+```sh
+docker compose up --build -d
+```
+
+#### CI Tasks
+
+- Lint all
+- Unit Test all
+- E2E Test all
+- Chromatic Test (TBD)
+- Build
+
+### Beta Branch
+
+Beta branch is for pre-release
+
+#### CI Tasks
+
+- Lint all
+- Unit Test all
+- E2E Test all
+- Chromatic Test (TBD)
+- Build
+
+### Next Branch
+
+Any new feature, major version update branch
+
+#### CI Tasks
+
+- Lint all
+- Unit Test all
+- E2E Test all
+- Chromatic Test (TBD)
+- Build
+-
+
+### Develop Branch
+
+Before release, for testing
+
+#### CI Tasks
+
+- Lint all
+- Unit Test all
+- E2E Test all
+- Chromatic Test (TBD)
+- Build
+
+### Main Branch
+
+Production ready branch
+
+#### CI Tasks
+
+- Lint all
+- Unit Test all
+- E2E Test all
+- Chromatic Test (TBD)
+- Build
