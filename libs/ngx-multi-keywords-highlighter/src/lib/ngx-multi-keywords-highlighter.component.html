@@ -14,8 +14,8 @@
     id="mh-keyword-count"
     aria-hidden="false"
     aria-label="Keywords highlights icon"
-    [matBadge]="keywordCount$ | async"
-    [matBadgeHidden]="(keywordCount$ | async) === 0"
+    [matBadge]="keywordCount$"
+    [matBadgeHidden]="keywordCount$ === 0"
     matBadgePosition="after"
     matBadgeColor="accent"
     svgIcon="highlight"
@@ -34,7 +34,7 @@
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
-    <div class="mh-header">
+    <div class="mh-header mb-[10px]">
       <span class="mh-text">
         <span class="mh-app-name">{{ appName }}</span>
         <small class="mh-version mh-text-tint">{{ appVersion }}</small>
@@ -63,7 +63,7 @@
         </ng-container>
         <mat-slide-toggle
           class="mh-toggle"
-          [checked]="highlightStauts$ | async"
+          [checked]="highlightStauts$"
           [matTooltip]="config.enableHighlighterTooltip"
           [labelPosition]="config.toggleLabelPosition"
           [color]="config.themeColor"
@@ -72,7 +72,7 @@
           data-testid="highlight-keywords-slide-toggle"
         >
           <ng-container *ngIf="config.enableToggleLabel">
-            <span class="mh-text">{{ highlightedStautsText$ | async }}</span>
+            <span class="mh-text">{{ highlightedStautsText$ }}</span>
           </ng-container>
         </mat-slide-toggle>
       </div>
@@ -83,7 +83,7 @@
           <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
           <mat-chip-grid aria-label="Enter keywords" #keywordChipList>
             <mat-chip-row
-              *ngFor="let keyword of keywordList$ | async; trackBy: trackById"
+              *ngFor="let keyword of keywordList$; trackBy: trackById"
               selectable="true"
               [removable]="config.removable"
               (removed)="removeKeyword(keyword)"

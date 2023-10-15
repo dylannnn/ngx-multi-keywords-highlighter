@@ -10,8 +10,7 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/ngx-multi-keywords-highlighter/ng-package.json",
-        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js"
       },
       "configurations": {
         "production": {
