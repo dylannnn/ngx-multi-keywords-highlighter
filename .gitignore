@@ -49,3 +49,5 @@ docker/verdaccio/conf/storage/**/*
 
 # Storybook
 build-storybook.log
+.nx
+.nx/cache

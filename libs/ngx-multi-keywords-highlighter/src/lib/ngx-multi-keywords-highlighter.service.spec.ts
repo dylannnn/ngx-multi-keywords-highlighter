@@ -1,15 +1,14 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IKeyword } from './core';
+import { generateKeyword, generateKeywordsFactory } from '../../utilities/generate-keywords.factory';
+import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
+import { IKeyword, MultiKeywordsHighlighterConstants } from './core';
 import { defaultConfig } from './core/default-config';
 import { MultiKeywordsHighlighterConfig } from './core/multi-keywords-highlighter-config.interface';
 import { MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN } from './core/multi-keywords-highlighter.config.token';
-import { MultiKeywordsHighlighterConstants } from './core/multi-keywords-highlighter.constants';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
-import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
-import { generateKeyword, generateKeywordsFactory } from '../../utilities/generate-keywords.factory';
 
 describe('NgxMultiKeywordsHighlighterService', () => {
   let service: NgxMultiKeywordsHighlighterService;
@@ -46,44 +45,25 @@ describe('NgxMultiKeywordsHighlighterService', () => {
 
   it('should get localKeywords', () => {
     expect(service.localKeywords).toHaveLength(0);
-    service['localKeywordsSubject'].next(generateKeywordsFactory(5));
+    service.localKeywords$.set(generateKeywordsFactory(5));
     expect(service.localKeywords).toHaveLength(5);
   });
 
-  it('should get highlighted StatusText OFF', fakeAsync(() => {
-    service.highlightedStatus$.subscribe({
-      next: (result: boolean) => {
-        expect(result).toBe(false);
-      }
-    });
+  it('should get highlighted StatusText OFF', () => {
+    expect(service.highlightedStatus$()).toEqual(false);
+    expect(service.highlightedStatusText).toStrictEqual(MultiKeywordsHighlighterConstants.HIGHLIGHTER.OFF);
+  });
 
-    service.highlightedStatusText$.subscribe({
-      next: (result: string) => {
-        expect(result).toEqual(MultiKeywordsHighlighterConstants.HIGHLIGHTER.OFF)
-      }
-    });
-  }));
-
-  it('should get highlighted StatusText ON', fakeAsync(() => {
-    service['highlightedStatusSubject'].next(true);
-
-    service.highlightedStatus$.subscribe({
-      next: (result: boolean) => {
-        expect(result).toBe(true);
-      }
-    });
-
-    service.highlightedStatusText$.subscribe({
-      next: (result: string) => {
-        expect(result).toEqual(MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON)
-      }
-    });
-    tick();
-  }));
+  it('should get highlighted StatusText ON', () => {
+    service.highlightedStatus$.set(true);
+  
+    expect(service.highlightedStatus$()).toEqual(true);
+    expect(service.highlightedStatusText).toStrictEqual(MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON);
+  });
 
   it('should get isHighlight', () => {
     expect(service.isHighlight).toBe(false);
-    service['highlightedStatusSubject'].next(true);
+    service.highlightedStatus$.set(true);
     expect(service.isHighlight).toBe(true);
   });
 
@@ -92,42 +72,34 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     expect(rootNode).toBeDefined();
   });
 
-  it('should toggleHighlightStatus', fakeAsync(() => {
+  it('should toggleHighlightStatus', () => {
     service.toggleHighlightStatus(true);
-    service.highlightedStatus$.subscribe({
-      next: (status: boolean) => {
-        expect(status).toBe(true);
-      }
-    });
-    tick();
-  }));
+  
+    expect(service.highlightedStatus$()).toEqual(true);
+  });
 
-  it('should add a keyword', fakeAsync(() => {
+  it('should add a keyword', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
     const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
     const keyword = generateKeyword();
     
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
-    const currentSequence = service.keywordSequence.value;
+    const currentSequence = service.keywordSequence$();
 
     service.addKeyword(newKeyword);
 
     expect(isValidKeywordSpy).toHaveBeenCalledWith(newKeyword);
-    expect(service.keywordSequence.value).toEqual(currentSequence + 1);
+    expect(service.keywordSequence$()).toEqual(currentSequence + 1);
     expect(hightlightKeywordSpy).not.toHaveBeenCalled();
 
-    service.localKeywords$.subscribe({
-      next: (result: IKeyword[]) => {
-        expect(result.length).toBe(1);
-        expect(result[0]).toStrictEqual({
-          id: currentSequence + 1,
-          ...newKeyword
-        });
-      }
+    const addedKeywords = service.localKeywords$();
+    expect(addedKeywords.length).toBe(1);
+    expect(addedKeywords[0]).toStrictEqual({
+      id: currentSequence + 1,
+      ...newKeyword
     });
-    tick();
-  }));
+  });
 
   it('should add a keyword and highlight it', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
@@ -136,7 +108,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
 
-    service['highlightedStatusSubject'].next(true);
+    service.highlightedStatus$.set(true);
     service.addKeyword(newKeyword);
 
     expect(service.isHighlight).toBe(true);
@@ -149,7 +121,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const isEmptySpy = jest.spyOn(service, 'isEmpty');
     const isDuplicatedSpy = jest.spyOn(service, 'isDuplicated');
     const keyword = generateKeyword();
-    const currentSequence = service.keywordSequence.value;
+    const currentSequence = service.keywordSequence$();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = keyword;
     newKeyword.name = '';
@@ -158,7 +130,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
 
     expect(isValidKeywordSpy).toHaveBeenCalledWith(newKeyword);
     expect(isValidKeywordSpy).toHaveReturnedWith(false);
-    expect(service.keywordSequence.value).toEqual(currentSequence);
+    expect(service.keywordSequence$()).toEqual(currentSequence);
     expect(isEmptySpy).toHaveBeenCalledWith(newKeyword);
     expect(isEmptySpy).toHaveReturnedWith(true);
     expect(isDuplicatedSpy).not.toHaveBeenCalled();
@@ -172,16 +144,16 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const existingKeyword = generateKeyword();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
-    const currentSequence = service.keywordSequence.value;
+    const currentSequence = service.keywordSequence$();
 
-    service['localKeywordsSubject'].next([existingKeyword]);
+    service.localKeywords$.set([existingKeyword]);
     expect(service.localKeywords).toHaveLength(1);
 
     service.addKeyword(newKeyword);
 
     expect(isValidKeywordSpy).toHaveBeenCalledWith(newKeyword);
     expect(isValidKeywordSpy).toHaveReturnedWith(false);
-    expect(service.keywordSequence.value).toEqual(currentSequence);
+    expect(service.keywordSequence$()).toEqual(currentSequence);
   
     expect(isEmptySpy).toHaveBeenCalledWith(newKeyword);
     expect(isEmptySpy).toHaveReturnedWith(false);
@@ -222,7 +194,6 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     expect(isValidKeywordSpy).toHaveReturnedWith(false);
   });
 
-  // TODO: 
   it('should not valid a keyword when keyword name is duplicated', () => {
     const isValidKeywordSpy = jest.spyOn(service, 'isValidKeyword');
     const isEmptySpy = jest.spyOn(service, 'isEmpty');
@@ -231,7 +202,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
 
-    service['localKeywordsSubject'].next([existingKeyword]);
+    service.localKeywords$.set([existingKeyword]);
 
     service.isValidKeyword(newKeyword);
 
@@ -276,7 +247,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...newKeyword } = existingKeyword;
 
-    service['localKeywordsSubject'].next([existingKeyword]);
+    service.localKeywords$.set([existingKeyword]);
     expect(service.isDuplicated(newKeyword)).toBe(true);
   });
 
@@ -285,17 +256,17 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...anotherNewKeyword } = existingKeywords[2];
 
-    service['localKeywordsSubject'].next(existingKeywords);
+    service.localKeywords$.set(existingKeywords);
     expect(service.isDuplicated(anotherNewKeyword)).toBe(true);
   });
 
   it('should remove a keyword', () => {
     const deHightlightKeywordSpy = jest.spyOn(service, 'deHightlightKeyword');
-    const localKeywordsSubjectSpy = jest.spyOn(service['localKeywordsSubject'], 'next');
+    const localKeywordsSubjectSpy = jest.spyOn(service.localKeywords$, 'set');
     const existingKeywords = generateKeywordsFactory(5);
     const keywordToRemove = existingKeywords[1];
 
-    service['localKeywordsSubject'].next(existingKeywords);
+    service.localKeywords$.set(existingKeywords);
     expect(service.localKeywords).toHaveLength(5);
 
     service.removeKeyword(keywordToRemove);
@@ -310,7 +281,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const existingKeywords = generateKeywordsFactory(5);
     const keywordToRemove = generateKeyword();
 
-    service['localKeywordsSubject'].next(existingKeywords);
+    service.localKeywords$.set(existingKeywords);
     expect(service.localKeywords).toHaveLength(5);
 
     service.removeKeyword(keywordToRemove);
@@ -334,7 +305,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const hightlightAllKeywordsSpy = jest.spyOn(service, 'hightlightAllKeywords');
     const deHightlightAllKeywordsSpy = jest.spyOn(service, 'deHightlightAllKeywords');
 
-    service['highlightedStatusSubject'].next(true);
+    service.highlightedStatus$.set(true);
     expect(service.isHighlight).toBe(true);  
 
     service.toggleHighlighter();
@@ -347,7 +318,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
     const existingKeywords = generateKeywordsFactory(5);
 
-    service['localKeywordsSubject'].next(existingKeywords);
+    service.localKeywords$.set(existingKeywords);
 
     service.hightlightAllKeywords();
 
@@ -363,7 +334,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
     const deHightlightAllKeywordsSpy = jest.spyOn(service, 'deHightlightKeyword');
     const existingKeywords = generateKeywordsFactory(5);
 
-    service['localKeywordsSubject'].next(existingKeywords);
+    service.localKeywords$.set(existingKeywords);
 
     service.deHightlightAllKeywords();
 
@@ -432,8 +403,6 @@ describe('NgxMultiKeywordsHighlighterService', () => {
 
     // TODO
     // Coverage on line: 174-175,182-183,188,193
-
-
     it('should not hightlight a keyword if keyword is falcy', () => {
       const hightlightKeywordSpy = jest.spyOn(service, 'hightlightKeyword');
       const createTreeWalkerMock = jest.fn();
@@ -521,7 +490,7 @@ describe('NgxMultiKeywordsHighlighterService', () => {
       service.hightlightKeyword(keywordToHighlight);
       fixture.detectChanges();
       service.deHightlightKeyword(keywordToHighlight);
-      expect(document.querySelector(`.${defaultConfig.highlightClass}`)?.textContent).toBe("")
+      expect(document.querySelector(`.${defaultConfig.highlightClass}`)?.textContent).toBe("");
     });
   });
 });

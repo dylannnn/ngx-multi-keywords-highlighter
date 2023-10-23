@@ -1,11 +1,11 @@
-import { Meta, moduleMetadata, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MATERIAL_COLOR, LABEL_POSITION } from './core';
-import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
-import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
-import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
 import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
+import { LABEL_POSITION, MATERIAL_COLOR } from './core';
+import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
+import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
 
 const storyRoot = 'story-root';
 
@@ -17,14 +17,20 @@ const outputActions = {
   closeMenu: action('closeMenu'),
 };
 
-const meta: Meta<typeof NgxMultiKeywordsHighlighterComponent> = {
+const meta: Meta<NgxMultiKeywordsHighlighterComponent> = {
   title: 'Library/Multi Keywords Highlighter',
   component: NgxMultiKeywordsHighlighterComponent,
   decorators: [
     componentWrapperDecorator(
       (story) => `<${storyRoot}>${story}</${storyRoot}>`
     )
-  ]
+  ],
+  render: (args: NgxMultiKeywordsHighlighterComponent) => ({
+    props: {
+      ...args,
+      initialized: outputActions.initialized
+    },
+  }),
 };
 
 export default meta;
@@ -46,12 +52,7 @@ export const Default: Story = {
         }),
       ],
     })
-  ],
-  render: () => ({
-    props: {
-      ...outputActions
-    }
-  })
+  ]
 };
 
 export const Customized: Story = {
@@ -71,12 +72,7 @@ export const Customized: Story = {
         }),
       ],
     })
-  ],
-  render: () => ({
-    props: {
-      ...outputActions
-    }
-  })
+  ]
 };
 
 export const Playground: Story = {
@@ -106,10 +102,5 @@ export const Playground: Story = {
         </${storyRoot}>
       `
     ),
-  ],
-  render: () => ({
-    props: {
-      ...outputActions
-    }
-  })
+  ]
 };
