@@ -2,7 +2,7 @@ import { StorybookConfig } from '@storybook/core-webpack';
 
 export const rootMain: StorybookConfig = {
   stories: [],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', '@storybook/addon-a11y']
+  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y']
 };
 
 export const framework = {

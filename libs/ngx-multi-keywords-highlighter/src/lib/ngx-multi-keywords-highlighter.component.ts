@@ -1,3 +1,4 @@
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,27 +7,26 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
+  signal,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
-import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
-import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DomSanitizer } from '@angular/platform-browser';
+
+import { AsyncPipe, DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   IKeyword,
   LibConfig,
-  // MATERIAL_COLOR,
   MultiKeywordsHighlighterConfig,
 } from './core';
-import { ICON_HIGHLIGHT, ICON_COLOR_LENS, ICON_CLEAR } from './material';
+import { ICON_CLEAR, ICON_COLOR_LENS, ICON_HIGHLIGHT } from './material';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
-import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgStyle, NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'mkh-multi-keywords-highlighter',
@@ -89,8 +89,7 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   /**
    * Keyword quantity shows on badge
    */
-  private keywordQuantitySubject = new BehaviorSubject<number>(0);
-  keywordQuantity$ = this.keywordQuantitySubject.asObservable();
+  keywordQuantity$ = signal<number>(0);
 
   constructor(
     private readonly mkhService: NgxMultiKeywordsHighlighterService,
@@ -152,31 +151,29 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   /**
    * Highlighted stauts text
    */
-  get highlightedStautsText$(): Observable<string> {
-    return this.mkhService.highlightedStatusText$;
+  get highlightedStautsText$(): string {
+    return this.mkhService.highlightedStatusText;
   }
 
   /**
    * Highlight status
    */
-  get highlightStauts$(): Observable<boolean> {
-    return this.mkhService.highlightedStatus$;
+  get highlightStauts$(): boolean {
+    return this.mkhService.highlightedStatus$();
   }
 
   /**
    * Keyword list
    */
-  get keywordList$(): Observable<IKeyword[]> {
-    return this.mkhService.localKeywords$;
+  get keywordList$(): IKeyword[] {
+    return this.mkhService.localKeywords$();
   }
 
   /**
    * Keyword counter
    */
-  get keywordCount$(): Observable<number> {
-    return this.mkhService.localKeywords$.pipe(
-      switchMap((data) => of(data.length))
-    );
+  get keywordCount$(): number {
+    return this.mkhService.localKeywords$().length;
   }
 
   /**

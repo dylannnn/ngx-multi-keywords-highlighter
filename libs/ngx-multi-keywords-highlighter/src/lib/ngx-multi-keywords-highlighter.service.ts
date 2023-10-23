@@ -1,26 +1,21 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { Inject, Injectable, signal } from '@angular/core';
 import {
   COLOR,
-  defaultConfig,
   IKeyword,
+  MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN,
   MultiKeywordsHighlighterConfig,
   MultiKeywordsHighlighterConstants,
-  MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN,
+  defaultConfig,
 } from './core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NgxMultiKeywordsHighlighterService {
-  private localKeywordsSubject = new BehaviorSubject<IKeyword[]>([]);
-  localKeywords$ = this.localKeywordsSubject.asObservable();
-
-  private highlightedStatusSubject = new BehaviorSubject<boolean>(false);
-  highlightedStatus$ = this.highlightedStatusSubject.asObservable();
-
-  keywordSequence = new BehaviorSubject<number>(0);
+  localKeywords$ = signal<IKeyword[]>([]);
+  highlightedStatus$ = signal<boolean>(false);
+  keywordSequence$ = signal<number>(0);
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
@@ -33,21 +28,17 @@ export class NgxMultiKeywordsHighlighterService {
   }
 
   get localKeywords(): IKeyword[] {
-    return this.localKeywordsSubject.value;
+    return this.localKeywords$();
   }
 
-  get highlightedStatusText$(): Observable<string> {
-    return this.highlightedStatus$.pipe(
-      map((status) => {
-        return status
-          ? MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON
-          : MultiKeywordsHighlighterConstants.HIGHLIGHTER.OFF;
-      })
-    );
+  get highlightedStatusText(): string {
+    return this.highlightedStatus$() 
+      ? MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON
+      : MultiKeywordsHighlighterConstants.HIGHLIGHTER.OFF;
   }
 
   get isHighlight(): boolean {
-    return this.highlightedStatusSubject.value;
+    return this.highlightedStatus$();
   }
 
   get rootNode(): Element {
@@ -58,26 +49,27 @@ export class NgxMultiKeywordsHighlighterService {
    * Toggle Highlight Status
    */
   toggleHighlightStatus(status: boolean): void {
-    return this.highlightedStatusSubject.next(status);
+    return this.highlightedStatus$.set(status);
   }
 
   /**
    * Add Keyword
    */
   addKeyword(keyword: IKeyword): void {
-    const tempKeywordList = this.localKeywordsSubject.value;
-    let currentSequence = this.keywordSequence.value;
+    const tempKeywordList = this.localKeywords$();
+
+    let currentSequence = this.keywordSequence$();
     if (this.isValidKeyword(keyword)) {
       tempKeywordList.push({
         ...keyword,
         id: (currentSequence += 1),
       });
-      this.keywordSequence.next(currentSequence);
+      this.keywordSequence$.set(currentSequence);
 
       if (this.isHighlight) {
         this.hightlightKeyword(keyword);
       }
-      this.localKeywordsSubject.next(tempKeywordList);
+      this.localKeywords$.set(tempKeywordList);
     }
   }
 
@@ -99,7 +91,7 @@ export class NgxMultiKeywordsHighlighterService {
    * Check keyword is not duplicated
    */
   isDuplicated(keyword: IKeyword): boolean {
-    return this.localKeywordsSubject.value.some(
+    return this.localKeywords$().some(
       (item) => item.name === keyword.name
     );
   }
@@ -108,12 +100,12 @@ export class NgxMultiKeywordsHighlighterService {
    * Remove a Keyword
    */
   removeKeyword(keyword: IKeyword): void {
-    const tempKeywordList = this.localKeywordsSubject.value;
+    const tempKeywordList = this.localKeywords$();
     const index = tempKeywordList.indexOf(keyword);
     if (index >= 0) {
       tempKeywordList.splice(index, 1);
       this.deHightlightKeyword(keyword);
-      this.localKeywordsSubject.next(tempKeywordList);
+      this.localKeywords$.set(tempKeywordList);
     }
   }
 
@@ -130,7 +122,7 @@ export class NgxMultiKeywordsHighlighterService {
    * Highlight all keywords
    */
   hightlightAllKeywords(): void {
-    const allKeywords = this.localKeywordsSubject.value;
+    const allKeywords = this.localKeywords$();
     allKeywords.forEach((keyword) => {
       this.hightlightKeyword(keyword);
     });
@@ -140,7 +132,7 @@ export class NgxMultiKeywordsHighlighterService {
    * De-highlight all keywords
    */
   deHightlightAllKeywords(): void {
-    const allKeywords = this.localKeywordsSubject.value;
+    const allKeywords = this.localKeywords$();
     allKeywords.forEach((keyword) => {
       this.deHightlightKeyword(keyword)
     });
