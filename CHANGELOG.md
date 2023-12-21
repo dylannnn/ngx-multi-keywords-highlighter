@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/1.0.0...1.1.0) (2023-12-21)
+
+
+### Features
+
+* update nx and angular 17 migration ([362a0d3](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/362a0d3f468458ecbb993f12658e93d6284495b0))
+
 # 1.0.0 (2023-12-20)
 
 
