@@ -11,7 +11,10 @@ import {
 } from '@angular/core';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {
+  MatSlideToggleChange,
+  MatSlideToggleModule,
+} from '@angular/material/slide-toggle';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { AsyncPipe, DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
@@ -20,22 +23,32 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-  IKeyword,
-  LibConfig,
-  MultiKeywordsHighlighterConfig,
-} from './core';
+import { IKeyword, LibConfig, MultiKeywordsHighlighterConfig } from './core';
 import { ICON_CLEAR, ICON_COLOR_LENS, ICON_HIGHLIGHT } from './material';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
 
 @Component({
-    selector: 'mkh-multi-keywords-highlighter',
-    templateUrl: './ngx-multi-keywords-highlighter.component.html',
-    styleUrls: ['./ngx-multi-keywords-highlighter.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatButtonModule, MatTooltipModule, MatMenuModule, MatIconModule, MatBadgeModule, NgStyle, NgIf, MatSlideToggleModule, MatFormFieldModule, MatChipsModule, NgFor, AsyncPipe, DatePipe]
+  selector: 'mkh-multi-keywords-highlighter',
+  templateUrl: './ngx-multi-keywords-highlighter.component.html',
+  styleUrls: ['./ngx-multi-keywords-highlighter.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatIconModule,
+    MatBadgeModule,
+    NgStyle,
+    NgIf,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    NgFor,
+    AsyncPipe,
+    DatePipe,
+  ],
 })
 export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
@@ -45,7 +58,7 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
    * @returns boolean
    */
   @Output() initialized: EventEmitter<boolean> = new EventEmitter<boolean>(
-    false
+    false,
   );
 
   /**
@@ -61,7 +74,7 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
    * @returns boolean
    */
   @Output() highlighted: EventEmitter<boolean> = new EventEmitter<boolean>(
-    false
+    false,
   );
 
   /**
@@ -94,19 +107,19 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   constructor(
     private readonly mkhService: NgxMultiKeywordsHighlighterService,
     private readonly iconRegistry: MatIconRegistry,
-    private readonly sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer,
   ) {
     iconRegistry.addSvgIconLiteral(
       'highlight',
-      sanitizer.bypassSecurityTrustHtml(ICON_HIGHLIGHT)
+      sanitizer.bypassSecurityTrustHtml(ICON_HIGHLIGHT),
     );
     iconRegistry.addSvgIconLiteral(
       'color_lens',
-      sanitizer.bypassSecurityTrustHtml(ICON_COLOR_LENS)
+      sanitizer.bypassSecurityTrustHtml(ICON_COLOR_LENS),
     );
     iconRegistry.addSvgIconLiteral(
       'clear',
-      sanitizer.bypassSecurityTrustHtml(ICON_CLEAR)
+      sanitizer.bypassSecurityTrustHtml(ICON_CLEAR),
     );
   }
   ngOnInit(): void {

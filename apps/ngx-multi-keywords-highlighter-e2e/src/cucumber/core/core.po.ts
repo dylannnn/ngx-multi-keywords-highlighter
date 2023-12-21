@@ -1,6 +1,3 @@
 export class CorePageObjects {
-  constructor(
-    public pageObjects: object
-  ) { }
+  constructor(public pageObjects: object) {}
 }
-

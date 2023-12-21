@@ -27,7 +27,11 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "plugins": ["prettier"],
+      "extends": [
+        "plugin:@nx/typescript",
+        "plugin:prettier/recommended"
+      ],
       "rules": {}
     },
     {

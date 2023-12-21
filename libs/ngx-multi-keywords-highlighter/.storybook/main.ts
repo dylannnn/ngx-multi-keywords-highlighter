@@ -1,15 +1,18 @@
 import { StorybookConfig } from '@storybook/core-webpack';
-import { framework, rootMain } from '../../../.storybook/main';
 
 const config: StorybookConfig = {
-  ...rootMain,
-  framework,
-  stories: [...rootMain.stories, '../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: [...(rootMain.addons || [])],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y'],
+  stories: ['../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  framework: {
+    name: '@storybook/angular',
+    options: {
+      builder: { useSWC: true },
+    },
+  },
   docs: {
     autodocs: true,
-    defaultName: 'Docs'
-  }
+    defaultName: 'Docs',
+  },
 };
 
 module.exports = config;

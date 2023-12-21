@@ -17,5 +17,5 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add('clickOutside', () => {
-  cy.get('body').click(0,0);
+  cy.get('body').click(0, 0);
 });

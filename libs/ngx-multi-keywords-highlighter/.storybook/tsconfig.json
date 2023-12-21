@@ -3,15 +3,16 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true
   },
-  "files": ["../../../types.d.ts"],
+  "files": [
+    "./types.d.ts",
+    "./main.ts",
+    "./manager.ts",
+    "./preview.ts",
+    "./theme.ts"
+  ],
   "exclude": ["../**/*.spec.ts"],
   "include": [
     "../src/**/*.stories.ts",
-    "../src/**/*.stories.js",
-    "../src/**/*.stories.jsx",
-    "../src/**/*.stories.tsx",
-    "../src/**/*.stories.mdx",
-    "*.ts",
-    "*.js"
+    "../src/**/*.stories.mdx"
   ]
 }

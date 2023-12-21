@@ -1,4 +1,8 @@
-import { MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN, MATERIAL_COLOR, LABEL_POSITION } from '@amfrontender/ngx-multi-keywords-highlighter';
+import {
+  LABEL_POSITION,
+  MATERIAL_COLOR,
+  MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN,
+} from '@amfrontender/ngx-multi-keywords-highlighter';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,10 +24,10 @@ describe('AppComponent', () => {
             enableHighlighterTooltip: 'Turn on/off highlighter',
             minWidth: 320,
             appRoot: 'mkh-root',
-          }
-        }
+          },
+        },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

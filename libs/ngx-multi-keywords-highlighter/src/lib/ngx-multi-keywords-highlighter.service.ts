@@ -20,7 +20,7 @@ export class NgxMultiKeywordsHighlighterService {
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
     @Inject(MULTI_KEYWORDS_HIGHLIGHTER_CONFIG_TOKEN)
-    private multiKeywordsHighlighterConfig: Partial<MultiKeywordsHighlighterConfig>
+    private multiKeywordsHighlighterConfig: Partial<MultiKeywordsHighlighterConfig>,
   ) {}
 
   get config(): MultiKeywordsHighlighterConfig {
@@ -32,7 +32,7 @@ export class NgxMultiKeywordsHighlighterService {
   }
 
   get highlightedStatusText(): string {
-    return this.highlightedStatus$() 
+    return this.highlightedStatus$()
       ? MultiKeywordsHighlighterConstants.HIGHLIGHTER.ON
       : MultiKeywordsHighlighterConstants.HIGHLIGHTER.OFF;
   }
@@ -42,7 +42,10 @@ export class NgxMultiKeywordsHighlighterService {
   }
 
   get rootNode(): Element {
-    return this.document.body.getElementsByTagName(defaultConfig.appRoot)[0] || this.document.body;
+    return (
+      this.document.body.getElementsByTagName(defaultConfig.appRoot)[0] ||
+      this.document.body
+    );
   }
 
   /**
@@ -91,9 +94,7 @@ export class NgxMultiKeywordsHighlighterService {
    * Check keyword is not duplicated
    */
   isDuplicated(keyword: IKeyword): boolean {
-    return this.localKeywords$().some(
-      (item) => item.name === keyword.name
-    );
+    return this.localKeywords$().some((item) => item.name === keyword.name);
   }
 
   /**
@@ -134,7 +135,7 @@ export class NgxMultiKeywordsHighlighterService {
   deHightlightAllKeywords(): void {
     const allKeywords = this.localKeywords$();
     allKeywords.forEach((keyword) => {
-      this.deHightlightKeyword(keyword)
+      this.deHightlightKeyword(keyword);
     });
   }
 
@@ -183,11 +184,11 @@ export class NgxMultiKeywordsHighlighterService {
       let keywordParts: string[];
       if (this.config.caseSensitive) {
         keywordParts = (nextNode as Text).data.split(
-          new RegExp(`(${keyword.name})`)
+          new RegExp(`(${keyword.name})`),
         );
       } else {
         keywordParts = (nextNode as Text).data.split(
-          new RegExp(`(${keyword.name})`, 'i')
+          new RegExp(`(${keyword.name})`, 'i'),
         );
       }
 
@@ -207,7 +208,7 @@ export class NgxMultiKeywordsHighlighterService {
     return this.document.createTreeWalker(
       rootNode,
       NodeFilter.SHOW_TEXT,
-      this.config.customNodeFilter
+      this.config.customNodeFilter,
     );
   }
 
@@ -216,7 +217,7 @@ export class NgxMultiKeywordsHighlighterService {
    */
   createHighlightElements(
     keywordParts: string[],
-    keyword: IKeyword
+    keyword: IKeyword,
   ): (Text | HTMLSpanElement)[] {
     const newElement: (Text | HTMLSpanElement)[] = [];
     for (const iteratorPart of keywordParts) {
@@ -244,7 +245,7 @@ export class NgxMultiKeywordsHighlighterService {
    */
   deHightlightKeyword(keyword: IKeyword): void {
     const highlightedElements = document.querySelectorAll(
-      `.${defaultConfig.highlightClass}`
+      `.${defaultConfig.highlightClass}`,
     );
     highlightedElements.forEach((elm) => {
       const highlightedElmement = elm as HTMLElement;
@@ -254,7 +255,7 @@ export class NgxMultiKeywordsHighlighterService {
         const textNode = document.createTextNode(highlightedElmement.innerText);
         parentNode?.replaceChild(
           textNode.cloneNode(false),
-          highlightedElmement
+          highlightedElmement,
         );
         // call normalize to combine separated text nodes
         parentNode?.normalize();

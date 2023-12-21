@@ -7,7 +7,6 @@ beforeEach(() => {
 });
 
 export class LibPageSteps extends LibPageObjects implements CoreSteps {
-
   constructor() {
     super();
     this.initSteps();

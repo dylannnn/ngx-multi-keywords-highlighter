@@ -1,7 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { action } from '@storybook/addon-actions';
-import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
 import { LABEL_POSITION, MATERIAL_COLOR } from './core';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
@@ -22,13 +27,13 @@ const meta: Meta<NgxMultiKeywordsHighlighterComponent> = {
   component: NgxMultiKeywordsHighlighterComponent,
   decorators: [
     componentWrapperDecorator(
-      (story) => `<${storyRoot}>${story}</${storyRoot}>`
-    )
+      (story) => `<${storyRoot}>${story}</${storyRoot}>`,
+    ),
   ],
   render: (args: NgxMultiKeywordsHighlighterComponent) => ({
     props: {
       ...args,
-      initialized: outputActions.initialized
+      initialized: outputActions.initialized,
     },
   }),
 };
@@ -51,8 +56,8 @@ export const Default: Story = {
           appRoot: storyRoot,
         }),
       ],
-    })
-  ]
+    }),
+  ],
 };
 
 export const Customized: Story = {
@@ -68,11 +73,11 @@ export const Customized: Story = {
           enableHighlighterTooltip: 'On/Off',
           linkToCopyright: true,
           minWidth: 320,
-          appRoot: storyRoot
+          appRoot: storyRoot,
         }),
       ],
-    })
-  ]
+    }),
+  ],
 };
 
 export const Playground: Story = {
@@ -88,7 +93,7 @@ export const Playground: Story = {
           enableHighlighterTooltip: 'On/Off',
           linkToCopyright: true,
           minWidth: 320,
-          appRoot: storyRoot
+          appRoot: storyRoot,
         }),
       ],
     }),
@@ -100,7 +105,7 @@ export const Playground: Story = {
             <div>${story}</div>
           </nav>
         </${storyRoot}>
-      `
+      `,
     ),
-  ]
+  ],
 };

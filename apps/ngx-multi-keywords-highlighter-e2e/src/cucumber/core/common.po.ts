@@ -7,4 +7,3 @@ export class CommonPageObjects implements CorePageObjects {
     return cy.visit(url);
   }
 }
-

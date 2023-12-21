@@ -35,27 +35,39 @@ export class LibSupport {
   }
 
   expectKewwordsHighlighterOff() {
-    cy.get('[data-testid="highlight-keywords-slide-toggle"]').should('not.have.class', 'mat-mdc-slide-toggle-checked');
-    cy.get('[data-testid="highlight-keywords-slide-toggle"] .mh-text').contains('OFF');
+    cy.get('[data-testid="highlight-keywords-slide-toggle"]').should(
+      'not.have.class',
+      'mat-mdc-slide-toggle-checked',
+    );
+    cy.get('[data-testid="highlight-keywords-slide-toggle"] .mh-text').contains(
+      'OFF',
+    );
   }
 
   turnOnKewwordsHighlighter() {
     cy.get('[data-testid="highlight-keywords-slide-toggle"]').trigger('click');
-    cy.get('[data-testid="highlight-keywords-slide-toggle"]').should('have.class', 'mat-mdc-slide-toggle-checked');
-    cy.get('[data-testid="highlight-keywords-slide-toggle"] .mh-text').contains('ON');
+    cy.get('[data-testid="highlight-keywords-slide-toggle"]').should(
+      'have.class',
+      'mat-mdc-slide-toggle-checked',
+    );
+    cy.get('[data-testid="highlight-keywords-slide-toggle"] .mh-text').contains(
+      'ON',
+    );
   }
 
   highlightKewword(keyword: string) {
     this.click('highlight-keywords-button');
     cy.get('[data-testid="highlight-keywords-slide-toggle"]').trigger('click');
-  
+
     cy.get('[data-testid="mkh-keywords-input"]').type(`${keyword}{enter}`);
     cy.get('.mh-text-highlighted').should('have.length.at.least', 1);
     cy.get('#mh-keyword-count .mat-badge-content').then(($elm) => {
       const badgeCount = parseInt($elm.text().trim(), 10);
-      cy.get('mat-chip-row').its('length').then((length) => {
-        expect(badgeCount).eq(length);
-      });
+      cy.get('mat-chip-row')
+        .its('length')
+        .then((length) => {
+          expect(badgeCount).eq(length);
+        });
     });
     cy.get('mat-chip-row').find('[matchipremove]').first().trigger('click');
     cy.clickOutside();
@@ -72,17 +84,18 @@ export class LibSupport {
     this.click('highlight-keywords-button');
     cy.get('[data-testid="highlight-keywords-slide-toggle"]').trigger('click');
 
-    keywords.forEach(keyword => {
+    keywords.forEach((keyword) => {
       cy.get('[data-testid="mkh-keywords-input"]').type(`${keyword}{enter}`);
     });
     // cy.get('[data-testid="mkh-keywords-input"]').type('ipsum,');
     cy.get('.mh-text-highlighted').should('have.length', 5);
     cy.get('#mh-keyword-count .mat-badge-content').then(($elm) => {
       const badgeCount = parseInt($elm.text().trim(), 10);
-      cy.get('mat-chip-row').its('length').then((length) => {
-        expect(badgeCount).eq(length);
-      });
+      cy.get('mat-chip-row')
+        .its('length')
+        .then((length) => {
+          expect(badgeCount).eq(length);
+        });
     });
-
   }
 }

@@ -8,21 +8,21 @@
     "editor.formatOnPaste": true
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": true
+    "source.fixAll.markdownlint": "explicit"
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "source.organizeImports": true
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
     },
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
 }
