@@ -1,11 +1,11 @@
 {
   "name": "mkh",
-  "version": "0.0.0",
+  "version": "1.0.0-development",
   "license": "MIT",
   "homepage": "https://www.yunfei.li",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dylannnn/ngx-multi-keywords-highlighter.git"
+    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git"
   },
   "bugs": {
     "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues"
@@ -59,7 +59,7 @@
     "cypress:demo:open": "cd apps/demo-e2e && npx cypress open",
     "cypress:open": "cd apps/ngx-multi-keywords-highlighter-e2e && npx cypress open",
     "== Chromatic ==": "================================================",
-    "chromatic": "npx chromatic --build-script-name=mkh:storybook:build",
+    "chromatic": "npx chromatic --build-script-name=mkh:storybook:build --force-rebuild --exit-zero-on-changes",
     "chromatic:exit-once-uploaded": "npx chromatic --build-script-name=mkh:storybook:build --exit-once-uploaded",
     "chromatic:exit-zero-on-changes": "npx chromatic --build-script-name=mkh:storybook:build --exit-zero-on-changes",
     "chromatic:auto-accept-changes": "npx chromatic --build-script-name=mkh:storybook:build --auto-accept-changes",
@@ -72,7 +72,8 @@
     "== JEST ==": "================================================",
     "jest:update:snapshot": "npx nx affected --targets=test --update-snapshot",
     "== REPORT ==": "================================================",
-    "ngx-multi-keywords-highlighter:cypress:cucumber:report": "npx http-server dist/cypress/apps/ngx-multi-keywords-highlighter-e2e/cucumber"
+    "ngx-multi-keywords-highlighter:cypress:cucumber:report": "npx http-server dist/cypress/apps/ngx-multi-keywords-highlighter-e2e/cucumber",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "**/*": "npm run lint:all"
@@ -93,13 +94,13 @@
     "zone.js": "0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.0.7",
-    "@angular-devkit/core": "^17.0.7",
-    "@angular-devkit/schematics": "^17.0.7",
+    "@angular-devkit/build-angular": "^17.0.8",
+    "@angular-devkit/core": "^17.0.8",
+    "@angular-devkit/schematics": "^17.0.8",
     "@angular-eslint/eslint-plugin": "^17.1.1",
     "@angular-eslint/eslint-plugin-template": "^17.1.1",
     "@angular-eslint/template-parser": "^17.1.1",
-    "@angular/cli": "^17.0.7",
+    "@angular/cli": "^17.0.8",
     "@angular/compiler-cli": "^17.0.8",
     "@angular/language-service": "^17.0.8",
     "@badeball/cypress-cucumber-preprocessor": "^20.0.0",
@@ -107,20 +108,16 @@
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@compodoc/compodoc": "^1.1.23",
-    "@nx/angular": "17.2.6",
-    "@nx/cypress": "17.2.6",
-    "@nx/eslint": "17.2.6",
-    "@nx/eslint-plugin": "17.2.6",
-    "@nx/jest": "17.2.6",
-    "@nx/storybook": "17.2.6",
-    "@nx/workspace": "17.2.6",
-    "@schematics/angular": "^17.0.7",
+    "@nx/angular": "17.2.7",
+    "@nx/cypress": "17.2.7",
+    "@nx/eslint": "17.2.7",
+    "@nx/eslint-plugin": "17.2.7",
+    "@nx/jest": "17.2.7",
+    "@nx/storybook": "17.2.7",
+    "@nx/workspace": "17.2.7",
+    "@schematics/angular": "^17.0.8",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.2.5",
-    "@semantic-release/npm": "^11.0.2",
-    "@semantic-release/release-notes-generator": "^12.1.0",
     "@storybook/addon-a11y": "^7.6.6",
     "@storybook/addon-actions": "^7.6.6",
     "@storybook/addon-docs": "^7.6.6",
@@ -140,7 +137,7 @@
     "@typescript-eslint/eslint-plugin": "6.15.0",
     "@typescript-eslint/parser": "6.15.0",
     "autoprefixer": "^10.4.16",
-    "cypress": "^13.6.1",
+    "cypress": "^13.6.2",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-cypress": "2.15.1",
@@ -154,7 +151,7 @@
     "jest-preset-angular": "13.1.4",
     "lint-staged": "^15.2.0",
     "ng-packagr": "^17.0.3",
-    "nx": "17.2.6",
+    "nx": "17.2.7",
     "postcss": "^8.4.32",
     "postcss-import": "~15.1.0",
     "postcss-preset-env": "~9.3.0",

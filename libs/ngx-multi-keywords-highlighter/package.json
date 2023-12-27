@@ -5,7 +5,7 @@
   "homepage": "https://www.yunfei.li",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
+    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
     "directory": "libs/ngx-multi-keywords-highlighter"
   },
   "bugs": {
