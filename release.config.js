@@ -21,6 +21,9 @@ module.exports = {
       '@semantic-release/release-notes-generator',
       {
         preset: 'angular',
+        parserOpts: {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+        },
         presetConfig: {
           header: '# Release Notes Of NGX Multi Keywords Highlighter',
           commitUrlFormat: 'https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/{{hash}}',
