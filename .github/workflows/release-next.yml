@@ -36,7 +36,7 @@ jobs:
       - name: Build
         run: npm run mkh:build
       - name: Semantic Release 📦
-        run: npx semantic-release --ci
+        run: npx semantic-release --ci --plugins @semantic-release/changelog
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
