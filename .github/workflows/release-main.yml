@@ -1,8 +1,12 @@
 name: Publish NGX Multi Keywords Highlighter
 
 on:
-  release:
-    types: [ published ]
+  push:
+    branches:
+      - main
+      - develop
+      - beta
+      - next
 
 jobs:
   build:
@@ -29,7 +33,7 @@ jobs:
       - name: Build
         run: npm run mkh:build
       - name: Semantic Release 📦
-        run: npx semantic-release --branches main --ci
+        run: npx semantic-release --ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

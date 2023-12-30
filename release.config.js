@@ -2,9 +2,9 @@ module.exports = {
   branches: [
     'main',
     { name: 'feature/**', prerelease: "${name.split('/').slice(0, 2).join('-').toLowerCase()}" },
-    { name: 'develop', prerelease: 'dev' },
-    { name: 'next', prerelease: 'rc', channel: "next" },
-    { name: 'beta', prerelease: 'beta', channel: "beta" }
+    { name: 'develop', prerelease: true },
+    { name: 'next', prerelease: true },
+    { name: 'beta', prerelease: true }
   ],
   tagFormat: '${version}',
   plugins: [
