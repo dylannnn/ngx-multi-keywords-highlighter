@@ -5,30 +5,26 @@
   "homepage": "https://www.yunfei.li",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
+    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
     "directory": "libs/ngx-multi-keywords-highlighter"
   },
   "bugs": {
     "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
   "engines": {
     "npm": ">8.0.0",
     "node": ">=18.10.0"
   },
-  "readme": "README.md",
   "peerDependencies": {
-    "@angular/cdk": "15.1.4",
-    "@angular/common": "15.1.4",
-    "@angular/core": "15.1.4",
-    "@angular/forms": "15.1.4",
-    "@angular/material": "15.1.4",
-    "rxjs": "^7.8.0"
+    "@angular/cdk": "^17.0.4",
+    "@angular/material": "^17.0.4",
+    "@angular/common": "^17.0.8",
+    "@angular/core": "^17.0.8",
+    "@angular/forms": "^17.0.8",
+    "rxjs": "^7.8.1"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.6.2"
   },
   "sideEffects": false
 }

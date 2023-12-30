@@ -26,7 +26,7 @@ const generateKeyword = (): IKeyword => {
       COLOR_PALETTE.DEFAULT[
         Math.floor(Math.random() * COLOR_PALETTE.DEFAULT.length)
       ],
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   };
   return keyword;
 };
@@ -40,4 +40,4 @@ const getRandomKeyword = (): string => {
   return keywordArray[Math.floor(Math.random() * keywordArray.length)];
 };
 
-export { generateKeywordsFactory, generateKeyword, getRandomKeyword };
+export { generateKeyword, generateKeywordsFactory, getRandomKeyword };

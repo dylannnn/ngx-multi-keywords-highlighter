@@ -15,7 +15,7 @@ const config: Config = {
         tsconfig: '<rootDir>/tsconfig.spec.json',
         stringifyContentPathRegex: '\\.(html|svg)$',
       },
-    ]
+    ],
   },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   snapshotSerializers: [
@@ -30,9 +30,9 @@ const config: Config = {
       {
         outputDirectory: 'dist/reports',
         outputName: 'unit-report.xml',
-      }
-    ]
-  ]
+      },
+    ],
+  ],
 };
 
 export default config;

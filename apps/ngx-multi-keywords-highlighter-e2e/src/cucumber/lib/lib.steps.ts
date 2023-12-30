@@ -1,14 +1,12 @@
 import { CoreSteps } from '../core/core.steps';
-import { LibPageObjects } from './lib.po';
 import libData from './lib.data';
-import { Then } from '@badeball/cypress-cucumber-preprocessor';
+import { LibPageObjects } from './lib.po';
 
 beforeEach(() => {
   cy.viewport('macbook-15');
 });
 
 export class LibPageSteps extends LibPageObjects implements CoreSteps {
-
   constructor() {
     super();
     this.initSteps();

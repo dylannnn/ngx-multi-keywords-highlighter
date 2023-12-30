@@ -1,33 +1,22 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { HarnessLoader } from '@angular/cdk/testing';
 import { MatChipInput, MatChipRow } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MATERIAL_COLOR, LABEL_POSITION } from './core';
+import { LABEL_POSITION, MATERIAL_COLOR } from './core';
 import { MaterialComponentsModule } from './material';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';
 
-import {
-  generateKeyword,
-} from '../../utilities';
-
+import { generateKeyword } from '../../utilities';
 
 describe('NgxMultiKeywordsHighlighterComponent', () => {
   let component: NgxMultiKeywordsHighlighterComponent;
   let fixture: ComponentFixture<NgxMultiKeywordsHighlighterComponent>;
   let service: NgxMultiKeywordsHighlighterService;
-
-  let loader: HarnessLoader;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,14 +34,13 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
           linkToCopyright: true,
           minWidth: 320,
         }),
-      ]
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NgxMultiKeywordsHighlighterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     service = TestBed.inject(NgxMultiKeywordsHighlighterService);
-    loader = TestbedHarnessEnvironment.loader(fixture);
   });
 
   it('should create', () => {
@@ -109,10 +97,8 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     // );
     // const onHighlightedSpy = jest.spyOn(component.highlighted, 'emit');
     // let isChecked = false;
-
     // component.menuTrigger.openMenu();
     // fixture.detectChanges();
-
     // const highlightKeywordsMenu = await loader.getHarness(MatMenuHarness);
     // const slideToggleHarness = await highlightKeywordsMenu.getHarness(
     //   MatSlideToggleHarness
@@ -120,7 +106,6 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     // const slideToggle = fixture.debugElement.query(
     //   By.directive(MatSlideToggle)
     // ).componentInstance;
-
     // await slideToggleHarness.toggle();
     // fixture.detectChanges();
     // isChecked = await slideToggleHarness.isChecked();
@@ -133,7 +118,6 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     // expect(onServiceToggleHighlighterSpy).toHaveBeenCalled();
     // expect(onHighlightedSpy).toHaveBeenCalledWith(isChecked);
     // expect(component.config.themeColor).toBe(MATERIAL_COLOR.ACCENT);
-
     // await slideToggleHarness.toggle();
     // fixture.detectChanges();
     // isChecked = await slideToggleHarness.isChecked();
@@ -157,7 +141,9 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     const keyword = generateKeyword();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id: _, ...keywordWithoutId } = keyword;
-    expect(component.trackById(keyword.id || 0, keywordWithoutId)).toBeUndefined();
+    expect(
+      component.trackById(keyword.id || 0, keywordWithoutId),
+    ).toBeUndefined();
   });
 
   it('should add keyword', () => {
@@ -168,7 +154,7 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     const keyword = generateKeyword();
     component.menuTrigger.openMenu();
     fixture.detectChanges();
-  
+
     const matChipInput = fixture.debugElement.query(By.directive(MatChipInput));
     matChipInput.nativeElement.focus();
     matChipInput.nativeElement.value = keyword.name;
@@ -205,12 +191,11 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
       id: expect.any(Number),
       color: keyword.color,
       name: keyword.name,
-      createdAt: keyword.createdAt
+      createdAt: keyword.createdAt,
     };
 
     expect(removeKeywordSpy).toHaveBeenLastCalledWith(expectObject);
     expect(serviceSpy).toHaveBeenCalledWith(expectObject);
     expect(outputSpy).toHaveBeenCalledWith(service.localKeywords);
   });
-
 });

@@ -27,7 +27,11 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "plugins": ["prettier"],
+      "extends": [
+        "plugin:@nx/typescript",
+        "plugin:prettier/recommended"
+      ],
       "rules": {}
     },
     {
@@ -41,6 +45,13 @@
         "jest": true
       },
       "rules": {}
+    },
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/dependency-checks": "error"
+      }
     }
   ],
   "extends": ["plugin:storybook/recommended"]

@@ -4,29 +4,20 @@
   "sourceRoot": "apps/ngx-multi-keywords-highlighter-e2e/src",
   "projectType": "application",
   "targets": {
-    "e2e:watch": {
+    "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
         "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
         "testingType": "e2e",
+        "headed": true,
         "watch": true
       },
       "configurations": {
         "ci": {
-          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
-        }
-      }
-    },
-    "e2e:ci": {
-      "executor": "@nx/cypress:cypress",
-      "options": {
-        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
-        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
-        "testingType": "e2e"
-      },
-      "configurations": {
-        "ci": {
+          "headed": false,
+          "watch": false,
+          "record": true,
           "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
         }
       }
@@ -39,28 +30,20 @@
         "testingType": "e2e"
       },
       "configurations": {
+        "watch": {
+          "headed": true,
+          "watch": true
+        },
         "ci": {
-          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
-        }
-      }
-    },
-    "e2e:cucumber:watch": {
-      "executor": "@nx/cypress:cypress",
-      "options": {
-        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.cucumber.ts",
-        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
-        "testingType": "e2e",
-        "headed": true,
-        "watch": true
-      },
-      "configurations": {
-        "ci": {
+          "headed": false,
+          "watch": false,
+          "record": true,
           "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
         }
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [

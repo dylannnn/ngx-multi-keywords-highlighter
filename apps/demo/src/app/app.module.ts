@@ -1,7 +1,11 @@
+import {
+  LABEL_POSITION,
+  MATERIAL_COLOR,
+  NgxMultiKeywordsHighlighterModule,
+} from '@amfrontender/ngx-multi-keywords-highlighter';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxMultiKeywordsHighlighterModule, MATERIAL_COLOR, LABEL_POSITION } from '@amfrontender/ngx-multi-keywords-highlighter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -12,24 +16,24 @@ import { DynamicComponent } from './dynamic-component/dynamic.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        MaterialModule,
-        NgxMultiKeywordsHighlighterModule.forRoot({
-            themeColor: MATERIAL_COLOR.PRIMARY,
-            enableToggleLabel: true,
-            toggleLabelPosition: LABEL_POSITION.BEFORE,
-            enableHighlighterTooltip: 'Turn on/off highlighter',
-            minWidth: 320,
-            appRoot: 'mkh-root',
-        }),
-        NavBarComponent,
-        DemoComponent,
-        DynamicComponent
-    ],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MaterialModule,
+    NgxMultiKeywordsHighlighterModule.forRoot({
+      themeColor: MATERIAL_COLOR.PRIMARY,
+      enableToggleLabel: true,
+      toggleLabelPosition: LABEL_POSITION.BEFORE,
+      enableHighlighterTooltip: 'Turn on/off highlighter',
+      minWidth: 320,
+      appRoot: 'mkh-root',
+    }),
+    NavBarComponent,
+    DemoComponent,
+    DynamicComponent,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

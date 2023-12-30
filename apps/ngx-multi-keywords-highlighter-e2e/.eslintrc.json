@@ -4,6 +4,10 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "plugins": ["cypress"],
+      "extends": [
+        "plugin:cypress/recommended"
+      ],
       "rules": {}
     }
   ]

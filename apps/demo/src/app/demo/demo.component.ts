@@ -1,3 +1,4 @@
+import { NgComponentOutlet } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -6,11 +7,10 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NgComponentOutlet } from '@angular/common';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { DynamicComponent } from '../dynamic-component/dynamic.component';
 import { Info } from '../shared/info.class';
@@ -18,12 +18,18 @@ import { PeriodicElement } from '../shared/periodic-element.interface';
 import { MOCK_PERIODIC_ELEMENT_DATA } from '../shared/periodic-element.mock';
 
 @Component({
-    selector: 'mkh-demo',
-    templateUrl: './demo.component.html',
-    styleUrls: ['./demo.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, NgComponentOutlet]
+  selector: 'mkh-demo',
+  templateUrl: './demo.component.html',
+  styleUrls: ['./demo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    NgComponentOutlet,
+  ],
 })
 export class DemoComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<PeriodicElement>;

@@ -1,28 +1,27 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import {
-  LABEL_POSITION,
-  MATERIAL_COLOR,
+  // LABEL_POSITION,
+  // MATERIAL_COLOR,
   NgxMultiKeywordsHighlighterComponent,
 } from '@amfrontender/ngx-multi-keywords-highlighter';
-
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { DemoComponent } from './demo/demo.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'demo',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'demo',
-    component: DemoComponent
+    component: DemoComponent,
   },
   // Demo for lazyloading library
   {
     path: 'lib-experimental',
     outlet: 'multi-keywords-highlighter',
-    component: NgxMultiKeywordsHighlighterComponent
+    component: NgxMultiKeywordsHighlighterComponent,
     /**
      *  IF NgxMultiKeywordsHighlighterModule not been loaded via AppModule, then it can be lazy loaded here with code below.
      */
@@ -41,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'demo'
+    redirectTo: 'demo',
   },
 ];
 

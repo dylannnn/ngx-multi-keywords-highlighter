@@ -1,11 +1,13 @@
-import { LibSupport } from "../support/lib.support";
+import { LibSupport } from '../support/lib.support';
 
 const lib = new LibSupport();
 
 describe('ngx-multi-keywords-highlighter', () => {
   beforeEach(() => {
     cy.viewport('macbook-15');
-    lib.visitStorybookComponent('library-multi-keywords-highlighter--playground');
+    lib.visitStorybookComponent(
+      'library-multi-keywords-highlighter--playground',
+    );
   });
 
   it('open the highlighter', () => {
