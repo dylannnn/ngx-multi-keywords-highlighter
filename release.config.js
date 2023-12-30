@@ -1,9 +1,10 @@
 module.exports = {
   branches: [
     'main',
-    'next',
-    'develop',
-    { name: 'beta', prerelease: true }
+    { name: 'feature/**', prerelease: "${name.split('/').slice(0, 2).join('-').toLowerCase()}" },
+    { name: 'develop', prerelease: 'dev' },
+    { name: 'next', prerelease: 'rc', channel: "next" },
+    { name: 'beta', prerelease: 'beta', channel: "beta" }
   ],
   tagFormat: '${version}',
   plugins: [
@@ -20,12 +21,15 @@ module.exports = {
       '@semantic-release/release-notes-generator',
       {
         preset: 'angular',
+        parserOpts: {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+        },
         presetConfig: {
-          header: 'Release Notes Of NGX Multi Keywords Highlighter',
+          header: '# Release Notes Of NGX Multi Keywords Highlighter',
           commitUrlFormat: 'https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/{{hash}}',
           compareUrlFormat: 'https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/{{previousTag}}...{{currentTag}}',
           releaseCommitMessageFormat: 'chore(release): {{currentTag}}',
-          tagPrefix:  '',
+          tagPrefix: '',
           types: [
             {
               type: 'build',
@@ -82,6 +86,14 @@ module.exports = {
               type: 'json'
             },
             {
+              filename: '.compodocrc.yaml',
+              type: 'yaml'
+            },
+            {
+              filename: 'libs/ngx-multi-keywords-highlighter/src/lib/core/version.ts',
+              type: 'typescript'
+            },
+            {
               filename: 'libs/ngx-multi-keywords-highlighter/package.json',
               type: 'json'
             }
@@ -105,10 +117,9 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', 'libs/ngx-multi-keywords-highlighter/package.json'],
+        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', '.compodocrc.yaml', 'libs/ngx-multi-keywords-highlighter/package.json', 'libs/ngx-multi-keywords-highlighter/src/lib/core/version.ts'],
         message: 'chore(release): release new version: ${nextRelease.version} [skip ci]'
       }
     ]
-  ],
-  debug: true
+  ]
 }
