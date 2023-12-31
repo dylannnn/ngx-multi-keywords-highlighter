@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/1.0.1...1.1.0) (2023-12-31)
+
+
+### Features
+
+* **pipeline:** align release version ([#51](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/51)) ([cda5d94](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/cda5d94561f7545dc46003bc3ca6a15412004976))
+
 # [1.1.0-develop.1](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/1.0.1...1.1.0-develop.1) (2023-12-31)
 
 
