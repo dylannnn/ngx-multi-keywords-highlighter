@@ -7,15 +7,24 @@ on:
       - develop
       - beta
       - next
+permissions:
+  contents: read
+
 
 jobs:
   build:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    name: release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.JS
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
@@ -33,7 +42,7 @@ jobs:
       - name: Build
         run: npm run mkh:build
       - name: Semantic Release 📦
-        run: npx semantic-release --ci
+        run: npx semantic-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
