@@ -3,7 +3,7 @@ name: NgxMultiKeywordsHighlighter Documentation
 # Configurations: https://compodoc.app/guides/options.html
 tsconfig: tsconfig.doc.json
 theme: material
-version: 1.0.1
+version: 1.3.0
 # language: en-US
 customFavicon: tools/assets/favicon.ico
 customLogo: tools/assets/logo-light.svg
