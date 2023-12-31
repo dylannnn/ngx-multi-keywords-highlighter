@@ -1,9 +1,14 @@
-# NgxMultiKeywordsHighlighterWorkspace
+# Ngx Multi Keywords Highlighter Workspace
 
+![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+![npm (scoped)](https://img.shields.io/npm/v/%40amfrontender/ngx-multi-keywords-highlighter)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dylannnn/ngx-multi-keywords-highlighter)
 [![ngx-multi-keywords-highlighter-e2e](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/2dbycs&style=flat&logo=cypress)](https://cloud.cypress.io/projects/2dbycs/runs)
+[![Publish NGX Multi Keywords Highlighter](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/release-main.yml/badge.svg)](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/release-main.yml)
 
-<!-- TODO Fix this badge -->
-[![Publish NGX Multi Keywords Highlighter](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/npm-publish.yml)
+## Screenshort
+
+![NGX Multi Keywords Highlighter](tools/assets/multi-keywords-highlighter.png "NGX Multi Keywords Highlighter")
 
 ## How to use
 
