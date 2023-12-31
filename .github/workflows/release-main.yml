@@ -28,12 +28,20 @@ jobs:
           node-version: 18
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
+      - name: Cache NPM packages
+        id: cache-npm-packages
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-npm-packages
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - if: ${{ steps.cache-npm-packages.outputs.cache-hit != 'true' }}
+        run: npm ci --ignore-scripts
       - name: Config Git User
         run: |
           git config --global user.email "${{ vars.RELEASE_USER_EMAIL }}"
           git config --global user.name "${{ vars.RELEASE_USER_NAME }}"
-      - name: Clean Install
-        run: npm ci
       - name: Lint
         run: npm run mkh:lint
       - name: Test
