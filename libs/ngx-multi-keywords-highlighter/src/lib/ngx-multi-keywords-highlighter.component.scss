@@ -1,0 +1,93 @@
+[role='menu'] {
+  &.mat-mdc-menu-panel {
+    &.mh {
+      &-menu {
+        @apply min-w-full max-w-full pt-0 px-4 pb-1;
+      }
+    }
+  }
+}
+
+.mh {
+  &-text {
+    @apply text-xs;
+    &-tint {
+      color: lighten($color: #000000, $amount: 60);
+    }
+    &-highlighted {
+      @apply py-0 px-[5px] rounded-[3px] no-underline inline-block shadow-md;
+    }
+  }
+  &-app-name {
+    @apply mr-1;
+  }
+  &-version {
+    @apply text-xs;
+  }
+  &-panel {
+    @apply flex flex-col;
+  }
+  &-keyword {
+    &-list {
+      @apply w-full;
+    }
+  }
+  &-header {
+    @apply flex flex-row items-center justify-between;
+  }
+  &-actions {
+    @apply flex flex-row items-center justify-end;
+  }
+  &-body {
+    @apply flex flex-col;
+  }
+  &-footer {
+    @apply flex items-center justify-between;
+  }
+  &-date {
+    @apply ml-1;
+  }
+}
+
+.mh-toggle {
+  &[ng-reflect-label-position='before'] {
+    .mh-text {
+      @apply mr-3;
+    }
+  }
+  &[ng-reflect-label-position='after'] {
+    .mh-text {
+      @apply ml-3;
+    }
+  }
+}
+
+a {
+  &.mh {
+    &-copyright {
+      color: lighten($color: #000000, $amount: 60);
+      @apply no-underline;
+      &.underline {
+        text-decoration-line: underline;
+      }
+    }
+  }
+  &:hover {
+    @apply underline;
+  }
+}
+
+
+// MDC CHIP
+.mat-mdc-chip-input {
+  &.mat-mdc-form-field-input-control {
+    @apply ml-0;
+  }
+}
+
+// MDC CHIP SET
+.mat-mdc-chip-set
+  .mat-mdc-standard-chip:not(.mdc-evolution-chip--selected)
+  .mdc-evolution-chip__action--primary:before {
+  @apply border-0;
+}

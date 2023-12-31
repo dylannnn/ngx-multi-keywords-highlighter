@@ -1,0 +1,91 @@
+{
+  "name": "ngx-multi-keywords-highlighter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/ngx-multi-keywords-highlighter/src",
+  "prefix": "mkh",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/ngx-multi-keywords-highlighter/ng-package.json",
+        "tailwindConfig": "libs/ngx-multi-keywords-highlighter/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-multi-keywords-highlighter/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-multi-keywords-highlighter/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/dist/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/ngx-multi-keywords-highlighter/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        },
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-multi-keywords-highlighter/**/*.ts",
+          "libs/ngx-multi-keywords-highlighter/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
+        "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
+        "compodoc": false,
+        "styles": ["libs/ngx-multi-keywords-highlighter/src/styles/index.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ngx-multi-keywords-highlighter",
+        "configDir": "libs/ngx-multi-keywords-highlighter/.storybook",
+        "browserTarget": "ngx-multi-keywords-highlighter:build-storybook",
+        "compodoc": false,
+        "styles": ["libs/ngx-multi-keywords-highlighter/src/styles/index.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/ngx-multi-keywords-highlighter/.storybook --url=http://localhost:4400"
+      }
+    }
+  },
+  "tags": ["scope:lib"]
+}

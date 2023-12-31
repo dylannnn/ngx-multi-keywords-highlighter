@@ -1,0 +1,6 @@
+.mkh-nav-bar {
+  @apply container m-auto flex items-center justify-between;
+  &-right {
+    @apply flex items-center ml-3;
+  }
+}

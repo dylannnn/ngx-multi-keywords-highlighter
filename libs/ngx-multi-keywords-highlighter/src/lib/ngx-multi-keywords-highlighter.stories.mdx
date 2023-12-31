@@ -1,0 +1,69 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
+
+<Meta title="Documentation" />
+
+# ngx-multi-keywords-highlighter Storybook
+
+This library was build with mixed tools frameworks: NX, Angular, Angular Material, Angular Flexlayout, Jest and Storybook.
+
+## How to use
+
+### Method 1
+
+Import the NgxMultiKeywordsHighlighterModule to your AppModule
+
+Example:
+
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent,
+    ...
+  ],
+  imports: [
+    ...,
+    NgxMultiKeywordsHighlighterModule.forRoot({
+      themeColor: MATERIAL_COLOR.PRIMARY,
+      enableToggleLabel: false,
+      toggleLabelPosition: LABEL_POSITION.BEFORE,
+      enableHighlighterTooltip: 'Turn on/off highlighter',
+      minWidth: 320
+    })
+  ],
+  providers: [
+    ...
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+### Method 2
+
+Lazyload Module to an auxiliary routes
+
+```typescript
+// Router configuration
+{
+  path: 'lib-lazyload',
+  // Do not load `NgxMultiKeywordsHighlighterModule` via AppModule
+  loadChildren: () => import('@amfrontender/ngx-multi-keywords-highlighter').then(m => {
+    m.NgxMultiKeywordsHighlighterModule.forRoot({
+      themeColor: MATERIAL_COLOR.PRIMARY,
+      enableToggleLabel: false,
+      toggleLabelPosition: LABEL_POSITION.BEFORE,
+      enableHighlighterTooltip: 'Turn on/off highlighter',
+      minWidth: 320,
+      ...
+    });
+    return m.NgxMultiKeywordsHighlighterModule;
+  }),
+  outlet: 'multi-keywords-highlighter',
+  component: NgxMultiKeywordsHighlighterComponent
+}
+```
+
+```html
+<router-outlet name="multi-keywords-highlighter"></router-outlet>
+```

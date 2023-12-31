@@ -1,0 +1,30 @@
+{
+  "name": "@amfrontender/ngx-multi-keywords-highlighter",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://www.yunfei.li",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
+    "directory": "libs/ngx-multi-keywords-highlighter"
+  },
+  "bugs": {
+    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues"
+  },
+  "engines": {
+    "npm": ">8.0.0",
+    "node": ">=18.10.0"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^17.0.4",
+    "@angular/material": "^17.0.4",
+    "@angular/common": "^17.0.8",
+    "@angular/core": "^17.0.8",
+    "@angular/forms": "^17.0.8",
+    "rxjs": "^7.8.1"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "sideEffects": false
+}

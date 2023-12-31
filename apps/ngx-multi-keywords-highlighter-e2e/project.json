@@ -1,0 +1,57 @@
+{
+  "name": "ngx-multi-keywords-highlighter-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ngx-multi-keywords-highlighter-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
+        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
+        "testingType": "e2e",
+        "headed": true,
+        "watch": true
+      },
+      "configurations": {
+        "ci": {
+          "headed": false,
+          "watch": false,
+          "record": true,
+          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
+        }
+      }
+    },
+    "e2e:cucumber": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.cucumber.ts",
+        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "watch": {
+          "headed": true,
+          "watch": true
+        },
+        "ci": {
+          "headed": false,
+          "watch": false,
+          "record": true,
+          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/ngx-multi-keywords-highlighter-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ngx-multi-keywords-highlighter"]
+}

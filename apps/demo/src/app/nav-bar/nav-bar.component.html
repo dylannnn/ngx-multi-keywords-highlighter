@@ -1,0 +1,23 @@
+<nav
+  class="mkh-nav-bar mat-elevation-z1"
+>
+  <a mat-button color="primary">DEMO</a>
+  <div class="mkh-nav-bar-right">
+    <button
+      data-testid="toggle-highlight-button"
+      mat-button
+      (click)="toggleLib()"
+    >
+      Highlighter
+    </button>
+    <mkh-multi-keywords-highlighter
+      class="default-lib"
+      data-testid="default-lib"
+      (keywordListOutput)="onKeywordListOutput($event)"
+    ></mkh-multi-keywords-highlighter>
+    <router-outlet name="multi-keywords-highlighter"></router-outlet>
+    <button mat-icon-button color="primary">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</nav>

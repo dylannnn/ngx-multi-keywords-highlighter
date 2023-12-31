@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  storybook:
+    build:
+      context: .
+      dockerfile: ./docker/storybook/storybook.Dockerfile
+    restart: always
+    ports:
+      - "8092:8080"
+
+  compodoc:
+    build:
+      context: .
+      dockerfile: ./docker/compodoc/compodoc.Dockerfile
+    restart: always
+    ports:
+      - "8094:8080"
+
+  coverage:
+    build:
+      context: .
+      dockerfile: ./docker/coverage/coverage.Dockerfile
+    restart: always
+    ports:
+      - "8096:8080"
+
+  demo:
+    build:
+      context: .
+      dockerfile: ./docker/demo/demo.Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+
+  verdaccio:
+    build:
+      context: .
+      dockerfile: ./docker/verdaccio/Dockerfile
+    restart: always
+    environment:
+      - VERDACCIO_PORT=4873
+    ports:
+      - "4873:4873"
+    volumes:
+      - "./docker/verdaccio/conf/storage:/verdaccio/storage"
+      - "./docker/verdaccio/conf/plugins:/verdaccio/plugins"
+      - "./docker/verdaccio/conf:/verdaccio/conf"
