@@ -2,10 +2,11 @@
   "name": "@amfrontender/ngx-multi-keywords-highlighter",
   "version": "1.3.0",
   "license": "MIT",
-  "homepage": "https://www.yunfei.li",
+  "author": "Yunfei Li <dylannnnlee@gmail.com> (https://yunfei.li)",
+  "homepage": "https://github.com/dylannnn/ngx-multi-keywords-highlighter#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
+    "url": "git+https://github.com/dylannnn/ngx-multi-keywords-highlighter.git",
     "directory": "libs/ngx-multi-keywords-highlighter"
   },
   "bugs": {

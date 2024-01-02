@@ -1,0 +1,16 @@
+{
+  "name": "verdaccio",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "start": {
+      "executor": "@nx/js:verdaccio",
+      "options": {
+        "port": 4873,
+        "config": "{projectRoot}/config.yml",
+        "storage": "{workspaceRoot}/.nx/local-registry/storage",
+        "location": "user",
+        "clear": true
+      }
+    }
+  }
+}
