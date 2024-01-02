@@ -6,7 +6,7 @@
   "homepage": "https://github.com/dylannnn/ngx-multi-keywords-highlighter#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter.git"
+    "url": "git+https://github.com/dylannnn/ngx-multi-keywords-highlighter.git"
   },
   "bugs": {
     "url": "https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues"
@@ -32,7 +32,7 @@
     "mkh:test:update-snapshot": "nx run ngx-multi-keywords-highlighter:test --update-snapshot=true",
     "mkh:test:watch": "nx run ngx-multi-keywords-highlighter:test:watch",
     "mkh:test:coverage": "nx run ngx-multi-keywords-highlighter:test --coverage",
-    "mkh:build": "nx run ngx-multi-keywords-highlighter:build",
+    "mkh:build": "nx run ngx-multi-keywords-highlighter:build && cp README.md ./dist/libs/ngx-multi-keywords-highlighter/README.md",
     "mkh:watch": "nx run ngx-multi-keywords-highlighter:build --watch",
     "mkh:storybook": "nx run ngx-multi-keywords-highlighter:storybook",
     "mkh:storybook:build": "nx run ngx-multi-keywords-highlighter:build-storybook",
@@ -167,6 +167,10 @@
     "ts-jest": "29.1.1",
     "ts-node": "10.9.2",
     "typescript": "5.2.2",
+    "verdaccio": "^5.29.0",
     "webpack": "^5.89.0"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }
