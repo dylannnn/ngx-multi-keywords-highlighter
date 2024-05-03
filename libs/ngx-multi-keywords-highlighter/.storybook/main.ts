@@ -2,7 +2,7 @@ import { StorybookConfig } from '@storybook/core-webpack';
 
 const config: StorybookConfig = {
   addons: ['@storybook/addon-essentials', '@storybook/addon-a11y'],
-  stories: ['../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
   framework: {
     name: '@storybook/angular',
     options: {
@@ -12,6 +12,9 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true,
     defaultName: 'Docs',
+  },
+  core: {
+    disableTelemetry: true,
   },
 };
 

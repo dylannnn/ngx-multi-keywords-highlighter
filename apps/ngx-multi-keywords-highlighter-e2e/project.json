@@ -1,57 +1,49 @@
 {
   "name": "ngx-multi-keywords-highlighter-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/ngx-multi-keywords-highlighter-e2e/src",
   "projectType": "application",
+  "sourceRoot": "apps/ngx-multi-keywords-highlighter-e2e/src",
+  "implicitDependencies": ["ngx-multi-keywords-highlighter"],
   "targets": {
-    "e2e": {
-      "executor": "@nx/cypress:cypress",
+    "bddgen": {
+      "command": "bddgen",
       "options": {
-        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.ts",
-        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
-        "testingType": "e2e",
-        "headed": true,
-        "watch": true
-      },
-      "configurations": {
-        "ci": {
-          "headed": false,
-          "watch": false,
-          "record": true,
-          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
-        }
+        "cwd": "{projectRoot}"
       }
     },
-    "e2e:cucumber": {
-      "executor": "@nx/cypress:cypress",
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "dependsOn": ["bddgen"],
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/ngx-multi-keywords-highlighter-e2e"],
       "options": {
-        "cypressConfig": "apps/ngx-multi-keywords-highlighter-e2e/cypress.config.cucumber.ts",
-        "devServerTarget": "ngx-multi-keywords-highlighter:storybook",
-        "testingType": "e2e"
-      },
-      "configurations": {
-        "watch": {
-          "headed": true,
-          "watch": true
-        },
-        "ci": {
-          "headed": false,
-          "watch": false,
-          "record": true,
-          "devServerTarget": "ngx-multi-keywords-highlighter:storybook:ci"
-        }
+        "config": "apps/ngx-multi-keywords-highlighter-e2e/playwright.config.ts",
+        "headed": false,
+        "ui": false
+      }
+    },
+    "e2e:ui": {
+      "executor": "@nx/playwright:playwright",
+      "dependsOn": ["bddgen"],
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/ngx-multi-keywords-highlighter-e2e"],
+      "options": {
+        "config": "apps/ngx-multi-keywords-highlighter-e2e/playwright.config.ts",
+        "headed": true,
+        "ui": true
+      }
+    },
+    "e2e:ci": {
+      "executor": "@nx/playwright:playwright",
+      "dependsOn": ["bddgen"],
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/ngx-multi-keywords-highlighter-e2e"],
+      "options": {
+        "config": "apps/ngx-multi-keywords-highlighter-e2e/playwright.config.ts",
+        "headed": false,
+        "ui": false,
+        "fullyParallel": true
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/ngx-multi-keywords-highlighter-e2e/**/*.{js,ts}"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["ngx-multi-keywords-highlighter"]
+  }
 }

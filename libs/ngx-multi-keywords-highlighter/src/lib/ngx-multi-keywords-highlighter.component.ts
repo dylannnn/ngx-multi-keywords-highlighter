@@ -1,4 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { AsyncPipe, DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,20 +10,18 @@ import {
   ViewEncapsulation,
   signal,
 } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import {
   MatSlideToggleChange,
   MatSlideToggleModule,
 } from '@angular/material/slide-toggle';
-import { DomSanitizer } from '@angular/platform-browser';
-
-import { AsyncPipe, DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DomSanitizer } from '@angular/platform-browser';
 import { IKeyword, LibConfig, MultiKeywordsHighlighterConfig } from './core';
 import { ICON_CLEAR, ICON_COLOR_LENS, ICON_HIGHLIGHT } from './material';
 import { NgxMultiKeywordsHighlighterService } from './ngx-multi-keywords-highlighter.service';

@@ -4,7 +4,6 @@
     "apps/**/*.spec.ts",
     "apps/**/*.stories.ts",
     "apps/demo/src/test-setup.ts",
-    "apps/demo-e2e/**/*",
     "libs/**/*.spec.ts",
     "libs/**/*.stories.ts"
   ]

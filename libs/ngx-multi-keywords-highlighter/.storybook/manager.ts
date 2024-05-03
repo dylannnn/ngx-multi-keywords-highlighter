@@ -1,4 +1,4 @@
-import { addons } from '@storybook/addons';
+import { addons } from '@storybook/manager-api';
 import theme from './theme';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import favicon from '../../../tools/assets/favicon.svg';

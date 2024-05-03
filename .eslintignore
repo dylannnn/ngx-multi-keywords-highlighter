@@ -1,1 +1,2 @@
 node_modules
+apps/**-e2e/.feature-generate-bdd/**/*.spec.js

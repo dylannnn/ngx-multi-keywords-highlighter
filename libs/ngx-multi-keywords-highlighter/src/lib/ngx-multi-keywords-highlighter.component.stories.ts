@@ -1,9 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { action } from '@storybook/addon-actions';
 import {
   Meta,
   StoryObj,
+  applicationConfig,
   componentWrapperDecorator,
   moduleMetadata,
 } from '@storybook/angular';
@@ -11,7 +12,6 @@ import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
 import { LABEL_POSITION, MATERIAL_COLOR } from './core';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
-
 const storyRoot = 'story-root';
 
 const outputActions = {
@@ -30,72 +30,84 @@ const meta: Meta<NgxMultiKeywordsHighlighterComponent> = {
       (story) => `<${storyRoot}>${story}</${storyRoot}>`,
     ),
   ],
-  render: (args: NgxMultiKeywordsHighlighterComponent) => ({
-    props: {
-      ...args,
-      initialized: outputActions.initialized,
-    },
-  }),
+  // render: (args: NgxMultiKeywordsHighlighterComponent) => ({
+  //   props: {
+  //     ...args,
+  //     ...outputActions,
+  //   },
+  // }),
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<NgxMultiKeywordsHighlighterComponent>;
 
 export const Default: Story = {
   decorators: [
+    applicationConfig({
+      providers: [
+        provideAnimations(),
+        importProvidersFrom(
+          NgxMultiKeywordsHighlighterModule.forRoot({
+            themeColor: MATERIAL_COLOR.PRIMARY,
+            enableToggleLabel: true,
+            toggleLabelPosition: LABEL_POSITION.BEFORE,
+            enableHighlighterTooltip: 'Turn on/off highlighter',
+            minWidth: 320,
+            appRoot: storyRoot,
+          }),
+        ),
+      ],
+    }),
     moduleMetadata({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        BrowserAnimationsModule,
-        NgxMultiKeywordsHighlighterModule.forRoot({
-          themeColor: MATERIAL_COLOR.PRIMARY,
-          enableToggleLabel: true,
-          toggleLabelPosition: LABEL_POSITION.BEFORE,
-          enableHighlighterTooltip: 'Turn on/off highlighter',
-          minWidth: 320,
-          appRoot: storyRoot,
-        }),
-      ],
     }),
   ],
 };
 
 export const Customized: Story = {
   decorators: [
+    applicationConfig({
+      providers: [
+        provideAnimations(),
+        importProvidersFrom(
+          NgxMultiKeywordsHighlighterModule.forRoot({
+            themeColor: MATERIAL_COLOR.ACCENT,
+            enableToggleLabel: true,
+            toggleLabelPosition: LABEL_POSITION.BEFORE,
+            enableHighlighterTooltip: 'On/Off',
+            linkToCopyright: true,
+            minWidth: 320,
+            appRoot: storyRoot,
+          }),
+        ),
+      ],
+    }),
     moduleMetadata({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        BrowserAnimationsModule,
-        NgxMultiKeywordsHighlighterModule.forRoot({
-          themeColor: MATERIAL_COLOR.ACCENT,
-          enableToggleLabel: true,
-          toggleLabelPosition: LABEL_POSITION.BEFORE,
-          enableHighlighterTooltip: 'On/Off',
-          linkToCopyright: true,
-          minWidth: 320,
-          appRoot: storyRoot,
-        }),
-      ],
     }),
   ],
 };
 
 export const Playground: Story = {
   decorators: [
+    applicationConfig({
+      providers: [
+        provideAnimations(),
+        importProvidersFrom(
+          NgxMultiKeywordsHighlighterModule.forRoot({
+            themeColor: MATERIAL_COLOR.ACCENT,
+            enableToggleLabel: true,
+            toggleLabelPosition: LABEL_POSITION.BEFORE,
+            enableHighlighterTooltip: 'On/Off',
+            linkToCopyright: true,
+            minWidth: 320,
+            appRoot: storyRoot,
+          }),
+        ),
+      ],
+    }),
     moduleMetadata({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        BrowserAnimationsModule,
-        NgxMultiKeywordsHighlighterModule.forRoot({
-          themeColor: MATERIAL_COLOR.ACCENT,
-          enableToggleLabel: true,
-          toggleLabelPosition: LABEL_POSITION.BEFORE,
-          enableHighlighterTooltip: 'On/Off',
-          linkToCopyright: true,
-          minWidth: 320,
-          appRoot: storyRoot,
-        }),
-      ],
     }),
     componentWrapperDecorator(
       (story) => `

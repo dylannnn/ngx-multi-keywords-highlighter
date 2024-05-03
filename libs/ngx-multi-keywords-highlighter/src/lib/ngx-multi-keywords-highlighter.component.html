@@ -79,9 +79,13 @@
     </div>
     <div class="mh-body">
       <div class="mh-content">
-        <mat-form-field class="mh-keyword-list" appearance="fill">
+        <mat-form-field appearance="fill" class="mh-keyword-list">
           <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
-          <mat-chip-grid aria-label="Enter keywords" #keywordChipList>
+          <mat-chip-grid
+            #keywordChipList
+            aria-label="Enter keywords"
+            data-testid="highlight-keywords-chips"
+          >
             <mat-chip-row
               *ngFor="let keyword of keywordList$; trackBy: trackById"
               selectable="true"

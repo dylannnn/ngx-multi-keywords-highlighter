@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';

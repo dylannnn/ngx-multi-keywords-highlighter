@@ -51,3 +51,6 @@ docker/verdaccio/conf/storage/**/*
 build-storybook.log
 .nx
 .nx/cache
+
+# BDD
+/apps/**-e2e/.feature-generate-bdd
