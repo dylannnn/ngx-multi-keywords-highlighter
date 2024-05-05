@@ -6,7 +6,7 @@
   "prefix": "mkh",
   "targets": {
     "copy:docs": {
-      "command": "cp {README.md,CHANGELOG.md,LICENSE} dist/libs/ngx-multi-keywords-highlighter/",
+      "command": "cp README.md CHANGELOG.md LICENSE dist/libs/ngx-multi-keywords-highlighter/",
       "options": {
         "cwd": "{workspaceRoot}"
       }
