@@ -40,14 +40,14 @@ jobs:
         run: |
           git config --global user.email "${{ vars.RELEASE_USER_EMAIL }}"
           git config --global user.name "${{ vars.RELEASE_USER_NAME }}"
-      - name: Lint
+      - name: Lint 🙅‍♂️
         run: npm run mkh:lint
-      - name: Test
+      - name: Test 🕵️‍♂️
         run: npm run mkh:test
-      - name: Build
+      - name: Build 🙌
         run: npm run mkh:build
       - name: Semantic Release 📦
-        run: npx semantic-release --debug --dry-run
+        run: npx semantic-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
