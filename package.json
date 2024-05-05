@@ -1,6 +1,6 @@
 {
   "name": "mkh",
-  "version": "2.1.0-development",
+  "version": "2.1.1",
   "license": "MIT",
   "author": "Yunfei Li <dylannnnlee@gmail.com> (https://yunfei.li)",
   "homepage": "https://github.com/dylannnn/ngx-multi-keywords-highlighter#readme",
@@ -111,6 +111,7 @@
     "@playwright/test": "^1.43.1",
     "@schematics/angular": "^17.3.6",
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@storybook/addon-a11y": "^8.0.9",
     "@storybook/addon-actions": "^8.0.9",

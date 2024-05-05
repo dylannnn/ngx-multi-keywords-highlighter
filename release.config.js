@@ -113,6 +113,12 @@ module.exports = {
         pkgRoot: 'dist/libs/ngx-multi-keywords-highlighter'
       }
     ],
+    [
+      '@semantic-release/exec',
+      {
+        "verifyReleaseCmd": "bash tools/semantic-release/update-version.sh ${lastRelease.version} ${nextRelease.version}",
+      }
+    ],
     '@semantic-release/github',
     [
       '@semantic-release/git',

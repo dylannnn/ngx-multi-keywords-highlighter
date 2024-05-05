@@ -1,14 +1,13 @@
-output: ./dist/compodoc
 name: NgxMultiKeywordsHighlighter Documentation
+version: 2.1.1
 # Configurations: https://compodoc.app/guides/options.html
 tsconfig: tsconfig.doc.json
 theme: material
-version: 1.3.0
-# language: en-US
 customFavicon: tools/assets/favicon.ico
 customLogo: tools/assets/logo-light.svg
 hideGenerator: true
 disablePrivate: true
 disableInternal: true
 # disableCoverage: true
+output: ./dist/compodoc
 unitTestCoverage: ./dist/coverage/libs/ngx-multi-keywords-highlighter/coverage-summary.json
