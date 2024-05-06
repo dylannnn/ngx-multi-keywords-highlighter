@@ -123,7 +123,7 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', '.compodocrc.yaml', 'libs/ngx-multi-keywords-highlighter/package.json', 'libs/ngx-multi-keywords-highlighter/src/lib/core/version.ts'],
+        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', '.compodocrc.yaml', 'libs/ngx-multi-keywords-highlighter/package.json'],
         message: 'chore(release): release new version: ${nextRelease.version} [skip ci]'
       }
     ]

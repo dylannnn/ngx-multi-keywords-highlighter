@@ -1,11 +1,8 @@
-import { version } from './version';
-
 /**
  * Multi Keywords Highlighter Constants
  */
 export class MultiKeywordsHighlighterConstants {
   static readonly APP_NAME = 'Multi keywords highlighter';
-  static readonly APP_VERSION = version || '~0.0.0';
   static readonly COPYRIGHT = {
     AUTHOR: 'Amfrontender',
     CONTACT: 'https://github.com/Amfrontender',

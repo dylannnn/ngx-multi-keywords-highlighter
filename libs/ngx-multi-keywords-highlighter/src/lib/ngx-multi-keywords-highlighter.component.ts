@@ -147,13 +147,6 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   }
 
   /**
-   * Library version
-   */
-  get appVersion(): string {
-    return LibConfig.APP_VERSION;
-  }
-
-  /**
    * Library configuration
    */
   get config(): MultiKeywordsHighlighterConfig {
