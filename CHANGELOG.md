@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.3...2.1.4) (2024-05-06)
+
+
+### Bug Fixes
+
+* resolve package.json version ([df90a18](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/df90a189154b4a2de3ac59ed10160e47caec38f6))
+
 ## [2.1.3](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.2...2.1.3) (2024-05-06)
 
 
