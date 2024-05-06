@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.2...2.1.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* fix missing update version from dist folder ([f13a267](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/f13a2674e459971fa99b5749ab4850aaadd13431))
+
 ## [2.1.2](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.1...2.1.2) (2024-05-06)
 
 
