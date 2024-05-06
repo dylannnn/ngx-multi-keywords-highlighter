@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.1...2.1.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* fix release pipeline for missing versions update ([075370d](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/075370d6dc602a4828df2d8206b40185f4f12148))
+
 ## [2.1.1](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.0...2.1.1) (2024-05-05)
 
 
