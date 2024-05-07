@@ -156,29 +156,29 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
   /**
    * Highlighted stauts text
    */
-  get highlightedStautsText$(): string {
+  get highlightedStautsText(): string {
     return this.mkhService.highlightedStatusText;
   }
 
   /**
    * Highlight status
    */
-  get highlightStauts$(): boolean {
-    return this.mkhService.highlightedStatus$();
+  get highlightStauts(): boolean {
+    return this.mkhService.isHighlight;
   }
 
   /**
    * Keyword list
    */
-  get keywordList$(): IKeyword[] {
-    return this.mkhService.localKeywords$();
+  get keywordList(): IKeyword[] {
+    return this.mkhService.localKeywords;
   }
 
   /**
    * Keyword counter
    */
-  get keywordCount$(): number {
-    return this.mkhService.localKeywords$().length;
+  get keywordCount(): number {
+    return this.mkhService.localKeywords.length;
   }
 
   /**

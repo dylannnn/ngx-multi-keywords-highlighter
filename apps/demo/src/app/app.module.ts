@@ -1,7 +1,7 @@
 import {
   LABEL_POSITION,
   MATERIAL_COLOR,
-  NgxMultiKeywordsHighlighterModule,
+  provideNgxMultiKeywordsHighlighter,
 } from '@amfrontender/ngx-multi-keywords-highlighter';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +22,20 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    NgxMultiKeywordsHighlighterModule.forRoot({
+    // NgxMultiKeywordsHighlighterModule.forRoot({
+    //   themeColor: MATERIAL_COLOR.PRIMARY,
+    //   enableToggleLabel: true,
+    //   toggleLabelPosition: LABEL_POSITION.BEFORE,
+    //   enableHighlighterTooltip: 'Turn on/off highlighter',
+    //   minWidth: 320,
+    //   appRoot: 'mkh-root',
+    // }),
+    NavBarComponent,
+    DemoComponent,
+    DynamicComponent,
+  ],
+  providers: [
+    provideNgxMultiKeywordsHighlighter({
       themeColor: MATERIAL_COLOR.PRIMARY,
       enableToggleLabel: true,
       toggleLabelPosition: LABEL_POSITION.BEFORE,
@@ -30,9 +43,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       minWidth: 320,
       appRoot: 'mkh-root',
     }),
-    NavBarComponent,
-    DemoComponent,
-    DynamicComponent,
   ],
   bootstrap: [AppComponent],
 })

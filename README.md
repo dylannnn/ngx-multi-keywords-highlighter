@@ -4,6 +4,8 @@
 ![npm (scoped)](https://img.shields.io/npm/v/%40amfrontender/ngx-multi-keywords-highlighter)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dylannnn/ngx-multi-keywords-highlighter)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Publish NGX Multi Keywords Highlighter](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/release-main.yml/badge.svg)](https://github.com/dylannnn/ngx-multi-keywords-highlighter/actions/workflows/release-main.yml)
+<a href="https://github.com/storybooks/storybook" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
 
 ## Project Overview
 

@@ -41,6 +41,36 @@ export class AppModule {}
 
 ### Method 2
 
+Use 'provideNgxMultiKeywordsHighlighter'
+
+Example:
+
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent,
+    ...
+  ],
+  imports: [
+    ...
+  ],
+  providers: [
+    ...,
+    provideNgxMultiKeywordsHighlighter({
+      themeColor: MATERIAL_COLOR.PRIMARY,
+      enableToggleLabel: false,
+      toggleLabelPosition: LABEL_POSITION.BEFORE,
+      enableHighlighterTooltip: 'Turn on/off highlighter',
+      minWidth: 320
+    })
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+### Method 3
+
 Lazyload Module to an auxiliary routes
 
 ```typescript

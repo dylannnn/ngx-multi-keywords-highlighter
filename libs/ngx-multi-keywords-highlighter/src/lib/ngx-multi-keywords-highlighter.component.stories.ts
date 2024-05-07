@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { action } from '@storybook/addon-actions';
 import {
   Meta,
   StoryObj,
@@ -12,15 +11,9 @@ import { LOREM_IPSUM } from '../../utilities/lorem-ipsum';
 import { LABEL_POSITION, MATERIAL_COLOR } from './core';
 import { NgxMultiKeywordsHighlighterComponent } from './ngx-multi-keywords-highlighter.component';
 import { NgxMultiKeywordsHighlighterModule } from './ngx-multi-keywords-highlighter.module';
-const storyRoot = 'story-root';
+import { provideNgxMultiKeywordsHighlighter } from './ngx-multi-keywords-highlighter.provider';
 
-const outputActions = {
-  initialized: action('initialized'),
-  keywordListOutput: action('keywordListOutput'),
-  highlighted: action('highlighted'),
-  openMenu: action('openMenu'),
-  closeMenu: action('closeMenu'),
-};
+const storyRoot = 'story-root';
 
 const meta: Meta<NgxMultiKeywordsHighlighterComponent> = {
   title: 'Library/Multi Keywords Highlighter',
@@ -30,18 +23,12 @@ const meta: Meta<NgxMultiKeywordsHighlighterComponent> = {
       (story) => `<${storyRoot}>${story}</${storyRoot}>`,
     ),
   ],
-  // render: (args: NgxMultiKeywordsHighlighterComponent) => ({
-  //   props: {
-  //     ...args,
-  //     ...outputActions,
-  //   },
-  // }),
 };
 
 export default meta;
 type Story = StoryObj<NgxMultiKeywordsHighlighterComponent>;
 
-export const Default: Story = {
+export const DefaultWithModule: Story = {
   decorators: [
     applicationConfig({
       providers: [
@@ -69,17 +56,15 @@ export const Customized: Story = {
     applicationConfig({
       providers: [
         provideAnimations(),
-        importProvidersFrom(
-          NgxMultiKeywordsHighlighterModule.forRoot({
-            themeColor: MATERIAL_COLOR.ACCENT,
-            enableToggleLabel: true,
-            toggleLabelPosition: LABEL_POSITION.BEFORE,
-            enableHighlighterTooltip: 'On/Off',
-            linkToCopyright: true,
-            minWidth: 320,
-            appRoot: storyRoot,
-          }),
-        ),
+        provideNgxMultiKeywordsHighlighter({
+          themeColor: MATERIAL_COLOR.WARN,
+          enableToggleLabel: true,
+          toggleLabelPosition: LABEL_POSITION.BEFORE,
+          enableHighlighterTooltip: 'On/Off',
+          linkToCopyright: true,
+          minWidth: 320,
+          appRoot: storyRoot,
+        }),
       ],
     }),
     moduleMetadata({
@@ -93,17 +78,15 @@ export const Playground: Story = {
     applicationConfig({
       providers: [
         provideAnimations(),
-        importProvidersFrom(
-          NgxMultiKeywordsHighlighterModule.forRoot({
-            themeColor: MATERIAL_COLOR.ACCENT,
-            enableToggleLabel: true,
-            toggleLabelPosition: LABEL_POSITION.BEFORE,
-            enableHighlighterTooltip: 'On/Off',
-            linkToCopyright: true,
-            minWidth: 320,
-            appRoot: storyRoot,
-          }),
-        ),
+        provideNgxMultiKeywordsHighlighter({
+          themeColor: MATERIAL_COLOR.ACCENT,
+          enableToggleLabel: true,
+          toggleLabelPosition: LABEL_POSITION.BEFORE,
+          enableHighlighterTooltip: 'On/Off',
+          linkToCopyright: true,
+          minWidth: 320,
+          appRoot: storyRoot,
+        }),
       ],
     }),
     moduleMetadata({
