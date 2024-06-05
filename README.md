@@ -29,6 +29,8 @@ To get started with this project, follow these steps:
 
 1. Add `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/index.scss"` or `"node_modules/@amfrontender/ngx-multi-keywords-highlighter/themes/themes.scss"` to your `angular.json` or `project.json` if you use NX to the build options of styles.
 
+- Generate Material 3 theme: `nx generate @angular/material:m3-theme`
+
 2. Import the `NgxMultiKeywordsHighlighterModule` to your `app.module.ts`
 
     ```typescript

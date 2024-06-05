@@ -34,12 +34,12 @@
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
-    <div class="mh-header mb-[10px]">
+    <div class="mh-header">
       <span class="mh-text">
         <span class="mh-app-name">{{ appName }}</span>
       </span>
       <div class="mh-actions">
-        <ng-container *ngIf="config.enableColorPalette">
+        @if (config.enableColorPalette) {
           <button
             mat-icon-button
             aria-label="Color theme"
@@ -59,7 +59,7 @@
               <!-- <lib-color-palette></lib-color-palette> -->
             </div>
           </mat-menu>
-        </ng-container>
+        }
         <mat-slide-toggle
           class="mh-toggle"
           [checked]="highlightStauts"
@@ -70,9 +70,9 @@
           ariaLabel="Toggle Highlighter"
           data-testid="highlight-keywords-slide-toggle"
         >
-          <ng-container *ngIf="config.enableToggleLabel">
+          @if (config.enableToggleLabel) {
             <span class="mh-text">{{ highlightedStautsText }}</span>
-          </ng-container>
+          }
         </mat-slide-toggle>
       </div>
     </div>
@@ -101,14 +101,16 @@
               >
                 {{ keyword.name }}
               </span>
-              <mat-icon
-                svgIcon="clear"
-                matTooltip="Clear"
-                matChipRemove
-                *ngIf="config.removable"
-                [ngStyle]="{ fill: config.chipIconColor }"
-              >
-              </mat-icon>
+
+              @if (config.removable) {
+                <mat-icon
+                  svgIcon="clear"
+                  matTooltip="Clear"
+                  matChipRemove
+                  [ngStyle]="{ fill: config.chipIconColor }"
+                >
+                </mat-icon>
+              }
             </mat-chip-row>
           </mat-chip-grid>
           <input
@@ -126,7 +128,7 @@
           >Separate by comma [,] or enter key</span
         >
         <span class="mh-text mh-text-tint">
-          <ng-container *ngIf="config.linkToCopyright; else normalCopyright">
+          @if (config.linkToCopyright) {
             &copy;
             <a
               [href]="copyrightLink"
@@ -134,10 +136,9 @@
               target="_blank"
               >{{ copyright }}</a
             >
-          </ng-container>
-          <ng-template #normalCopyright>
+          } @else {
             <span class="mh-copyright">&copy; {{ copyright }}</span>
-          </ng-template>
+          }
           <span class="mh-date">{{ currentYear | date: 'yyyy' }}</span>
         </span>
       </div>
