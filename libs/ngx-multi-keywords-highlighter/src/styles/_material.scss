@@ -1,28 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 
-// Include non-theme styles for core.
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.angular.io/guide/theming
+/*
+Define the palettes for your theme using the Material Design palettes available in palette.scss (imported above).
+For each palette, you can optionally specify a default, lighter, and darker hue.
+Available color palettes: https://material.angular.io/guide/theming
+
+Pre-defined palettes
+
+$red-palette
+$green-palette
+$blue-palette
+$yellow-palette
+$cyan-palette
+$magenta-palette
+$orange-palette
+$chartreuse-palette
+$spring-green-palette
+$azure-palette
+$violet-palette
+$rose-palette
+
+*/
 
 $mkh-material-theme: mat.define-theme((
   color: (
     theme-type: light,
-    primary: mat.$violet-palette,
+    primary: mat.$blue-palette,
+    tertiary: mat.$spring-green-palette,
+    use-system-variables: true,
+  ),
+  typography: (
+    use-system-variables: true,    
   ),
   density: (
-    scale: -5
+    scale: 0
   )
 ));
 
-html {
+:root {
   @include mat.all-component-themes($mkh-material-theme);
-
+  @include mat.system-level-colors($mkh-material-theme);
+  @include mat.system-level-typography($mkh-material-theme);
+  @include mat.typography-hierarchy($mkh-material-theme);
   --mdc-chip-outline-width: 0;
 }
+
+
 
 html,
 body {
@@ -32,3 +57,27 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.color-primary {
+  @include mat.icon-color($mkh-material-theme, $color-variant: primary);
+}
+
+.color-secondary {
+  @include mat.icon-color($mkh-material-theme, $color-variant: secondary);
+}
+
+.color-tertiary {
+  @include mat.icon-color($mkh-material-theme, $color-variant: tertiary);
+}
+
+.color-error {
+  @include mat.icon-color($mkh-material-theme, $color-variant: error);
+}
+
+@for $i from 0 through 24 {
+  .elevation-z#{$i} {
+    @include mat.elevation-transition();
+    @include mat.elevation($i);
+  }
+}
+

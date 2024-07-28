@@ -2,7 +2,7 @@
   mat-icon-button
   aria-hidden="false"
   aria-label="Multi keywords highlighter"
-  [color]="config.themeColor"
+  class="color-primary"
   [matTooltip]="appName"
   [matMenuTriggerFor]="menu"
   (menuOpened)="onOpened()"
@@ -17,16 +17,16 @@
     [matBadge]="keywordCount"
     [matBadgeHidden]="keywordCount === 0"
     matBadgePosition="after"
-    matBadgeColor="accent"
     svgIcon="highlight"
   ></mat-icon>
 </button>
 <mat-menu
   backdropClass="mh-backdrop"
-  class="mh-menu"
+  class="mh-menu elevation-z2"
   #menu="matMenu"
   xPosition="before"
   yPosition="below"
+  [aria-label]="'Multi keywords highlighter menu'"
 >
   <div
     class="mh-panel"
@@ -65,9 +65,8 @@
           [checked]="highlightStauts"
           [matTooltip]="config.enableHighlighterTooltip"
           [labelPosition]="config.toggleLabelPosition"
-          [color]="config.themeColor"
           (change)="onToggle($event)"
-          ariaLabel="Toggle Highlighter"
+          [aria-label]="'Toggle Highlighter'"
           data-testid="highlight-keywords-slide-toggle"
         >
           @if (config.enableToggleLabel) {
@@ -79,48 +78,51 @@
     <div class="mh-body">
       <div class="mh-content">
         <mat-form-field appearance="fill" class="mh-keyword-list">
-          <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
+          <mat-label>{{ config.keywordsLabel }}</mat-label>
           <mat-chip-grid
             #keywordChipList
             aria-label="Enter keywords"
             data-testid="highlight-keywords-chips"
           >
-            <mat-chip-row
-              *ngFor="let keyword of keywordList; trackBy: trackById"
-              selectable="true"
-              [removable]="config.removable"
-              (removed)="removeKeyword(keyword)"
-              [ngStyle]="{ 'background-color': keyword?.color }"
-            >
-              <span
-                matTooltip="{{
-                  keyword.name.length >= 36 ? keyword.name : null
-                }}"
-                class="mh-keyword-list-text"
-                [ngStyle]="{ color: config.chipTextColor }"
+            @for (keyword of keywordList; track keyword.id) {
+              <mat-chip-row
+                selectable="true"
+                [removable]="config.removable"
+                (removed)="removeKeyword(keyword)"
+                [ngStyle]="{ 'background-color': keyword.color }"
+                [aria-description]="'press enter to edit ' + keyword.name"
               >
-                {{ keyword.name }}
-              </span>
-
-              @if (config.removable) {
-                <mat-icon
-                  svgIcon="clear"
-                  matTooltip="Clear"
-                  matChipRemove
-                  [ngStyle]="{ fill: config.chipIconColor }"
+                <span
+                  matTooltip="{{
+                    keyword.name.length >= 36 ? keyword.name : null
+                  }}"
+                  class="mh-keyword-list-text"
+                  [ngStyle]="{ color: config.chipTextColor }"
                 >
-                </mat-icon>
-              }
-            </mat-chip-row>
+                  {{ keyword.name }}
+                </span>
+
+                @if (config.removable) {
+                  <mat-icon
+                    svgIcon="clear"
+                    matTooltip="Clear"
+                    matChipRemove
+                    [ngStyle]="{ fill: config.chipIconColor }"
+                    [attr.aria-label]="'remove ' + keyword.name"
+                  >
+                  </mat-icon>
+                }
+              </mat-chip-row>
+            }
+            <input
+              data-testid="mkh-keywords-input"
+              placeholder="{{ config.keywordsPlaceholder }}"
+              [matChipInputFor]="keywordChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addKeyword($event)"
+            />
           </mat-chip-grid>
-          <input
-            data-testid="mkh-keywords-input"
-            placeholder="{{ config.keywordsPlaceholder }}"
-            [matChipInputFor]="keywordChipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="addKeyword($event)"
-          />
         </mat-form-field>
       </div>
       <div class="mh-footer">
@@ -131,7 +133,7 @@
           @if (config.linkToCopyright) {
             &copy;
             <a
-              [href]="copyrightLink"
+              [attr.href]="copyrightLink"
               class="mh-copyright underline"
               target="_blank"
               >{{ copyright }}</a

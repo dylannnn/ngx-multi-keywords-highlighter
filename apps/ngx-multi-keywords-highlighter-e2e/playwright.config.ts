@@ -14,8 +14,8 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4400';
 
 const playwrightBDDDir = defineBddConfig({
   verbose: false,
-  paths: ['./src/features/**/*.feature'],
-  require: ['./src/features/**/*.ts', './src/support/**/*.ts'],
+  features: ['./src/features/**/*.feature'],
+  steps: ['./src/features/**/*.ts', './src/support/**/*.ts'],
   outputDir: '.feature-generate-bdd',
 });
 
@@ -27,7 +27,7 @@ export default defineConfig({
     testDir: './src',
   }),
   testDir: playwrightBDDDir,
-  outputDir: `${workspaceRoot}/dist/.playwright/apps/ngx-multi-keywords-highlighter-e2e/runtime-output`,
+  outputDir: `${workspaceRoot}/dist/playwright/apps/ngx-multi-keywords-highlighter-e2e/runtime-output`,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL,
@@ -39,7 +39,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run mkh:storybook',
     url: 'http://localhost:4400',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env['CI'],
     cwd: workspaceRoot,
     stdout: 'ignore',
     stderr: 'pipe',
@@ -58,7 +58,7 @@ export default defineConfig({
     [
       'html',
       {
-        outputFolder: `${workspaceRoot}/dist/.playwright/apps/ngx-multi-keywords-highlighter-e2e/report`,
+        outputFolder: `${workspaceRoot}/dist/playwright/apps/ngx-multi-keywords-highlighter-e2e/report`,
       },
     ],
   ],

@@ -46,7 +46,7 @@ To get started with this project, follow these steps:
         provideAnimations(),
         importProvidersFrom(
           NgxMultiKeywordsHighlighterModule.forRoot({
-            themeColor: MATERIAL_COLOR.ACCENT,
+            themeColor: MATERIAL_COLOR.PRIMARY,
             enableToggleLabel: true,
             toggleLabelPosition: LABEL_POSITION.BEFORE,
             enableHighlighterTooltip: 'On/Off',

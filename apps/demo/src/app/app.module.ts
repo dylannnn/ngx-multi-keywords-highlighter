@@ -3,7 +3,10 @@ import {
   MATERIAL_COLOR,
   provideNgxMultiKeywordsHighlighter,
 } from '@amfrontender/ngx-multi-keywords-highlighter';
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -43,6 +46,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       minWidth: 320,
       appRoot: 'mkh-root',
     }),
+    provideExperimentalZonelessChangeDetection(),
   ],
   bootstrap: [AppComponent],
 })

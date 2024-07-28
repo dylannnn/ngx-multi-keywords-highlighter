@@ -7,7 +7,8 @@ export class MultiKeywordsHighlighterConstants {
     AUTHOR: 'Amfrontender',
     CONTACT: 'https://github.com/Amfrontender',
   };
-  static KEYWORDS_PLACEHOLDER = 'Keywords...';
+  static KEYWORDS_LABEL = 'Keywords';
+  static KEYWORDS_PLACEHOLDER = 'New keywords...';
   static REMOVABLE = true;
   static MIN_WIDTH = 340;
   static ENABLE_TOGGLE_LABEL = false;
@@ -34,8 +35,9 @@ export const NAME_SPACE = {
 
 export enum MATERIAL_COLOR {
   PRIMARY = 'primary',
-  ACCENT = 'accent',
-  WARN = 'warn',
+  SECONDARY = 'secondary',
+  TERTIARY = 'tertiary',
+  ERROR = 'error',
 }
 
 export enum LABEL_POSITION {

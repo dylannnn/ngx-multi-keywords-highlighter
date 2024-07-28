@@ -24,6 +24,7 @@ export const defaultConfig: MultiKeywordsHighlighterConfig = {
   enableToggleLabel: MultiKeywordsHighlighterConstants.ENABLE_TOGGLE_LABEL,
   highlightClass: MultiKeywordsHighlighterConstants.HIGHLIGHT_CLASS,
   initKeywords: MultiKeywordsHighlighterConstants.INIT_KEYWORDS,
+  keywordsLabel: MultiKeywordsHighlighterConstants.KEYWORDS_LABEL,
   keywordsPlaceholder: MultiKeywordsHighlighterConstants.KEYWORDS_PLACEHOLDER,
   linkToCopyright: true,
   minSearchLength: MultiKeywordsHighlighterConstants.MIN_SEARCH_LENGTH,
