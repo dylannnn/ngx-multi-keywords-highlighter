@@ -2,7 +2,7 @@
   mat-icon-button
   aria-hidden="false"
   aria-label="Multi keywords highlighter"
-  [color]="config.themeColor"
+  class="color-primary"
   [matTooltip]="appName"
   [matMenuTriggerFor]="menu"
   (menuOpened)="onOpened()"
@@ -17,16 +17,16 @@
     [matBadge]="keywordCount"
     [matBadgeHidden]="keywordCount === 0"
     matBadgePosition="after"
-    matBadgeColor="accent"
     svgIcon="highlight"
   ></mat-icon>
 </button>
 <mat-menu
   backdropClass="mh-backdrop"
-  class="mh-menu"
+  class="mh-menu elevation-z2"
   #menu="matMenu"
   xPosition="before"
   yPosition="below"
+  [aria-label]="'Multi keywords highlighter menu'"
 >
   <div
     class="mh-panel"
@@ -34,12 +34,12 @@
     (click)="$event.stopPropagation()"
     [ngStyle]="{ minWidth: config.minWidth + 'px' }"
   >
-    <div class="mh-header mb-[10px]">
+    <div class="mh-header">
       <span class="mh-text">
         <span class="mh-app-name">{{ appName }}</span>
       </span>
       <div class="mh-actions">
-        <ng-container *ngIf="config.enableColorPalette">
+        @if (config.enableColorPalette) {
           <button
             mat-icon-button
             aria-label="Color theme"
@@ -59,66 +59,70 @@
               <!-- <lib-color-palette></lib-color-palette> -->
             </div>
           </mat-menu>
-        </ng-container>
+        }
         <mat-slide-toggle
           class="mh-toggle"
           [checked]="highlightStauts"
           [matTooltip]="config.enableHighlighterTooltip"
           [labelPosition]="config.toggleLabelPosition"
-          [color]="config.themeColor"
           (change)="onToggle($event)"
-          ariaLabel="Toggle Highlighter"
+          [aria-label]="'Toggle Highlighter'"
           data-testid="highlight-keywords-slide-toggle"
         >
-          <ng-container *ngIf="config.enableToggleLabel">
+          @if (config.enableToggleLabel) {
             <span class="mh-text">{{ highlightedStautsText }}</span>
-          </ng-container>
+          }
         </mat-slide-toggle>
       </div>
     </div>
     <div class="mh-body">
       <div class="mh-content">
         <mat-form-field appearance="fill" class="mh-keyword-list">
-          <mat-label>{{ config.keywordsPlaceholder }}</mat-label>
+          <mat-label>{{ config.keywordsLabel }}</mat-label>
           <mat-chip-grid
             #keywordChipList
             aria-label="Enter keywords"
             data-testid="highlight-keywords-chips"
           >
-            <mat-chip-row
-              *ngFor="let keyword of keywordList; trackBy: trackById"
-              selectable="true"
-              [removable]="config.removable"
-              (removed)="removeKeyword(keyword)"
-              [ngStyle]="{ 'background-color': keyword?.color }"
-            >
-              <span
-                matTooltip="{{
-                  keyword.name.length >= 36 ? keyword.name : null
-                }}"
-                class="mh-keyword-list-text"
-                [ngStyle]="{ color: config.chipTextColor }"
+            @for (keyword of keywordList; track keyword.id) {
+              <mat-chip-row
+                selectable="true"
+                [removable]="config.removable"
+                (removed)="removeKeyword(keyword)"
+                [ngStyle]="{ 'background-color': keyword.color }"
+                [aria-description]="'press enter to edit ' + keyword.name"
               >
-                {{ keyword.name }}
-              </span>
-              <mat-icon
-                svgIcon="clear"
-                matTooltip="Clear"
-                matChipRemove
-                *ngIf="config.removable"
-                [ngStyle]="{ fill: config.chipIconColor }"
-              >
-              </mat-icon>
-            </mat-chip-row>
+                <span
+                  matTooltip="{{
+                    keyword.name.length >= 36 ? keyword.name : null
+                  }}"
+                  class="mh-keyword-list-text"
+                  [ngStyle]="{ color: config.chipTextColor }"
+                >
+                  {{ keyword.name }}
+                </span>
+
+                @if (config.removable) {
+                  <mat-icon
+                    svgIcon="clear"
+                    matTooltip="Clear"
+                    matChipRemove
+                    [ngStyle]="{ fill: config.chipIconColor }"
+                    [attr.aria-label]="'remove ' + keyword.name"
+                  >
+                  </mat-icon>
+                }
+              </mat-chip-row>
+            }
+            <input
+              data-testid="mkh-keywords-input"
+              placeholder="{{ config.keywordsPlaceholder }}"
+              [matChipInputFor]="keywordChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addKeyword($event)"
+            />
           </mat-chip-grid>
-          <input
-            data-testid="mkh-keywords-input"
-            placeholder="{{ config.keywordsPlaceholder }}"
-            [matChipInputFor]="keywordChipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="addKeyword($event)"
-          />
         </mat-form-field>
       </div>
       <div class="mh-footer">
@@ -126,18 +130,17 @@
           >Separate by comma [,] or enter key</span
         >
         <span class="mh-text mh-text-tint">
-          <ng-container *ngIf="config.linkToCopyright; else normalCopyright">
+          @if (config.linkToCopyright) {
             &copy;
             <a
-              [href]="copyrightLink"
+              [attr.href]="copyrightLink"
               class="mh-copyright underline"
               target="_blank"
               >{{ copyright }}</a
             >
-          </ng-container>
-          <ng-template #normalCopyright>
+          } @else {
             <span class="mh-copyright">&copy; {{ copyright }}</span>
-          </ng-template>
+          }
           <span class="mh-date">{{ currentYear | date: 'yyyy' }}</span>
         </span>
       </div>

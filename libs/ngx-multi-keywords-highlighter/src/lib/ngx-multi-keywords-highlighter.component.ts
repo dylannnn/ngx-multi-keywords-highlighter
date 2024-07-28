@@ -205,7 +205,7 @@ export class NgxMultiKeywordsHighlighterComponent implements OnInit {
     this.highlighted.emit(event.checked);
     // BUG: this.config is READONLY, Need to create a method to update the config.
     // event.checked
-    //   ? (this.config.themeColor = MATERIAL_COLOR.ACCENT)
+    //   ? (this.config.themeColor = MATERIAL_COLOR.TERTIARY)
     //   : (this.config.themeColor = MATERIAL_COLOR.PRIMARY);
   }
 

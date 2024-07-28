@@ -18,7 +18,8 @@
       "options": {
         "config": "apps/ngx-multi-keywords-highlighter-e2e/playwright.config.ts",
         "headed": false,
-        "ui": false
+        "ui": false,
+        "skipInstall": true
       }
     },
     "e2e:ui": {

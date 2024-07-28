@@ -47,6 +47,8 @@
 }
 
 .mh-toggle {
+  scale: 0.8;
+
   &[ng-reflect-label-position='before'] {
     .mh-text {
       @apply mr-3;
@@ -72,19 +74,4 @@ a {
   &:hover {
     @apply underline;
   }
-}
-
-
-// MDC CHIP
-.mat-mdc-chip-input {
-  &.mat-mdc-form-field-input-control {
-    @apply ml-0;
-  }
-}
-
-// MDC CHIP SET
-.mat-mdc-chip-set
-  .mat-mdc-standard-chip:not(.mdc-evolution-chip--selected)
-  .mdc-evolution-chip__action--primary:before {
-  @apply border-0;
 }

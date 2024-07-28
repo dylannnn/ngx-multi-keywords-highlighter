@@ -5,9 +5,6 @@ const config: StorybookConfig = {
   stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
   framework: {
     name: '@storybook/angular',
-    options: {
-      builder: { useSWC: true },
-    },
   },
   docs: {
     autodocs: true,

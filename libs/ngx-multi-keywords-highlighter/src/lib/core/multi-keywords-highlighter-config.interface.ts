@@ -38,6 +38,7 @@ export interface MultiKeywordsHighlighterConfig {
   enableToggleLabel: boolean;
   highlightClass: string;
   initKeywords: boolean;
+  keywordsLabel: string;
   keywordsPlaceholder: string;
   linkToCopyright: boolean;
   minSearchLength: number;

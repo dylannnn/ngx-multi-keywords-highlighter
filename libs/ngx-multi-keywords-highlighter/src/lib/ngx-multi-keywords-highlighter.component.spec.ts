@@ -27,7 +27,7 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
         MaterialComponentsModule,
         NgxMultiKeywordsHighlighterComponent,
         NgxMultiKeywordsHighlighterModule.forRoot({
-          themeColor: MATERIAL_COLOR.ACCENT,
+          themeColor: MATERIAL_COLOR.PRIMARY,
           enableToggleLabel: true,
           toggleLabelPosition: LABEL_POSITION.AFTER,
           enableHighlighterTooltip: 'OPEN/CLOSE',
@@ -117,7 +117,7 @@ describe('NgxMultiKeywordsHighlighterComponent', () => {
     // expect(onServiceToggleHighlightStatusSpy).toHaveBeenCalledWith(isChecked);
     // expect(onServiceToggleHighlighterSpy).toHaveBeenCalled();
     // expect(onHighlightedSpy).toHaveBeenCalledWith(isChecked);
-    // expect(component.config.themeColor).toBe(MATERIAL_COLOR.ACCENT);
+    // expect(component.config.themeColor).toBe(MATERIAL_COLOR.PRIMARY);
     // await slideToggleHarness.toggle();
     // fixture.detectChanges();
     // isChecked = await slideToggleHarness.isChecked();

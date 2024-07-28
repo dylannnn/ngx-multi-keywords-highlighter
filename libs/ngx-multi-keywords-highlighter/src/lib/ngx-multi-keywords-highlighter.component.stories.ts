@@ -57,7 +57,7 @@ export const Customized: Story = {
       providers: [
         provideAnimations(),
         provideNgxMultiKeywordsHighlighter({
-          themeColor: MATERIAL_COLOR.WARN,
+          themeColor: MATERIAL_COLOR.ERROR,
           enableToggleLabel: true,
           toggleLabelPosition: LABEL_POSITION.BEFORE,
           enableHighlighterTooltip: 'On/Off',
@@ -79,7 +79,7 @@ export const Playground: Story = {
       providers: [
         provideAnimations(),
         provideNgxMultiKeywordsHighlighter({
-          themeColor: MATERIAL_COLOR.ACCENT,
+          themeColor: MATERIAL_COLOR.TERTIARY,
           enableToggleLabel: true,
           toggleLabelPosition: LABEL_POSITION.BEFORE,
           enableHighlighterTooltip: 'On/Off',
