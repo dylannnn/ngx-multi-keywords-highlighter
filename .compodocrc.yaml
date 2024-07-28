@@ -1,5 +1,5 @@
 name: NgxMultiKeywordsHighlighter Documentation
-version: 2.1.4
+version: 2.2.0
 # Configurations: https://compodoc.app/guides/options.html
 tsconfig: tsconfig.doc.json
 theme: material

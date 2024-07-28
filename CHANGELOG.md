@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.4...2.2.0) (2024-07-28)
+
+
+### Features
+
+* update to ng 18, material 3 ([#57](https://github.com/dylannnn/ngx-multi-keywords-highlighter/issues/57)) ([1949099](https://github.com/dylannnn/ngx-multi-keywords-highlighter/commit/1949099d9c401a97c95a32026374e240873785e1))
+
 ## [2.1.4](https://github.com/dylannnn/ngx-multi-keywords-highlighter/compare/2.1.3...2.1.4) (2024-05-06)
 
 
